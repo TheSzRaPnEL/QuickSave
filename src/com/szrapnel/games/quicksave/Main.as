@@ -1,12 +1,13 @@
-package com.szrapnel.games.quicksave
-{
+package com.szrapnel.games.quicksave {
 	import flash.desktop.NativeApplication;
 	import flash.events.Event;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.geom.Rectangle;
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
+	import starling.core.Starling;
 	
 	/**
 	 * QuickSave document class
@@ -14,6 +15,7 @@ package com.szrapnel.games.quicksave
 	 */
 	public class Main extends Sprite 
 	{
+		private var star:Starling;
 		
 		public function Main():void 
 		{
@@ -21,12 +23,12 @@ package com.szrapnel.games.quicksave
 			stage.align = StageAlign.TOP_LEFT;
 			stage.addEventListener(Event.DEACTIVATE, deactivate);
 			
-			// touch or gesture?
 			Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
 			
-			// entry point
-			
-			// new to AIR? please read *carefully* the readme.txt files!
+			star = new Starling(StarlingMain, stage, new Rectangle(0, 0, stage.fullScreenWidth, stage.fullScreenHeight));
+			star.stage.stageWidth  = 540;
+			star.stage.stageHeight = 960;
+			star.start();
 		}
 		
 		private function deactivate(e:Event):void 
