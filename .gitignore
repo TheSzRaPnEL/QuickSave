@@ -4,3 +4,7 @@ PackageApp.bat
 QuickSave.as3proj
 bat/
 bin/QuickSave.swf
+/cert
+cert/
+dist/
+/gfx/CowFall_pack1

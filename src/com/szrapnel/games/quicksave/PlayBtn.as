@@ -7,20 +7,18 @@ package com.szrapnel.games.quicksave
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class Cow extends Sprite 
+	public class PlayBtn extends Sprite 
 	{
 		private var container:Sprite;
 		
-		public function Cow() 
+		public function PlayBtn() 
 		{
 			super();
 			
 			container = new Sprite();
 			addChild(container);
 			
-			var image:Image = new Image(Assets.getTexture("CowFall_Cow"));
-			image.x = - image.width / 2;
-			image.y = - image.height / 2;
+			var image:Image = new Image(Assets.getTexture("CowFall_button_PLAY"));
 			container.addChild(image);
 		}
 		

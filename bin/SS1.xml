@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:fe3e7d25779f86c8139c27e8a7a04201:c6360cfa2e0b8650d34e196471ac9757:71863976068c759eab0a10f1b3b20904$ -->
+<!-- $TexturePacker:SmartUpdate:7aa3f6e651651c110a7fcd0eeea86528:dc65fedbe3cabf0521ced5294c9a481a:71863976068c759eab0a10f1b3b20904$ -->
 <TextureAtlas imagePath="E:/Projects/QuickSave/bin/SS{n}.png/SS1.png">
     <SubTexture name="CowFall_bckg1_anim_019" x="4" y="4" width="544" height="324"/>
     <SubTexture name="CowFall_bckg1_anim_020" x="554" y="4" rotated="true" width="324" height="544"/>
@@ -9,5 +9,5 @@
     <SubTexture name="CowFall_bckg1_anim_023" x="4" y="664" width="544" height="324"/>
     <SubTexture name="CowFall_bckg1_anim_024" x="4" y="994" width="544" height="324"/>
     <SubTexture name="CowFall_bckg1_anim_025" x="554" y="1104" rotated="true" width="324" height="544"/>
-    <SubTexture name="CowFall_platform" x="884" y="4" rotated="true" width="96" height="166"/>
+    <SubTexture name="CowFall_platform" x="884" y="4" rotated="true" width="77" height="150"/>
 </TextureAtlas>

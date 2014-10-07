@@ -3,6 +3,9 @@ package com.szrapnel.games.quicksave
 	import starling.core.Starling;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.events.Touch;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	import starling.utils.AssetManager;
 	
 	/**
@@ -13,6 +16,8 @@ package com.szrapnel.games.quicksave
 	{
 		private var assetManager:AssetManager;
 		private var gameStage:GameStage;
+		private var symulation:Symulation;
+		private var gameLogic:GameLogic;
 		
 		public function StarlingMain() 
 		{
@@ -28,6 +33,8 @@ package com.szrapnel.games.quicksave
 			assetManager.enqueue("SS0.png");
 			assetManager.enqueue("SS1.xml");
 			assetManager.enqueue("SS1.png");
+			assetManager.enqueue("font.fnt");
+			assetManager.enqueue("font.png");
 			assetManager.loadQueue(onProgress);
 		}
 		
@@ -45,6 +52,11 @@ package com.szrapnel.games.quicksave
 			
 			gameStage = new GameStage();
 			addChild(gameStage);
+			
+			symulation = new Symulation();
+			
+			gameLogic = new GameLogic(gameStage, symulation);
+			addChild(gameLogic);
 		}
 		
 	}

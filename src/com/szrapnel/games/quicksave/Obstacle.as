@@ -7,18 +7,18 @@ package com.szrapnel.games.quicksave
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class Cow extends Sprite 
+	public class Obstacle extends Sprite 
 	{
 		private var container:Sprite;
 		
-		public function Cow() 
+		public function Obstacle() 
 		{
 			super();
 			
 			container = new Sprite();
 			addChild(container);
 			
-			var image:Image = new Image(Assets.getTexture("CowFall_Cow"));
+			var image:Image = new Image(Assets.getTexture("CowFall_hurdle"));
 			image.x = - image.width / 2;
 			image.y = - image.height / 2;
 			container.addChild(image);

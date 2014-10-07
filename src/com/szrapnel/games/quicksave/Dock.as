@@ -7,20 +7,19 @@ package com.szrapnel.games.quicksave
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class Cow extends Sprite 
+	public class Dock extends Sprite 
 	{
 		private var container:Sprite;
 		
-		public function Cow() 
+		public function Dock() 
 		{
 			super();
 			
 			container = new Sprite();
+			container.scaleX = -1;
 			addChild(container);
 			
-			var image:Image = new Image(Assets.getTexture("CowFall_Cow"));
-			image.x = - image.width / 2;
-			image.y = - image.height / 2;
+			var image:Image = new Image(Assets.getTexture("CowFall_doc"));
 			container.addChild(image);
 		}
 		

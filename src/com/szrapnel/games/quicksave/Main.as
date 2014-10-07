@@ -26,7 +26,7 @@ package com.szrapnel.games.quicksave {
 			Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
 			
 			star = new Starling(StarlingMain, stage, new Rectangle(0, 0, stage.fullScreenWidth, stage.fullScreenHeight));
-			star.stage.stageWidth  = 540;
+			star.stage.stageWidth = 540;
 			star.stage.stageHeight = 960;
 			star.start();
 		}

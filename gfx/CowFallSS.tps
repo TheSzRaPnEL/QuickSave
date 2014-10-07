@@ -218,6 +218,8 @@
             <filename>D:/DOWNLOAD/CowFall_pack1/CowFall_button_PLAY.png</filename>
             <filename>D:/DOWNLOAD/CowFall_pack1/CowFall_Cow.png</filename>
             <filename>D:/DOWNLOAD/CowFall_pack1/CowFall_platform.png</filename>
+            <filename>D:/DOWNLOAD/CowFall_pack1/CowFall_doc.png</filename>
+            <filename>D:/DOWNLOAD/CowFall_pack1/CowFall_hurdle.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

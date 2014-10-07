@@ -1,5 +1,6 @@
 package com.szrapnel.games.quicksave 
 {
+	import starling.display.Quad;
 	import starling.display.Sprite;
 	/**
 	 * ...
@@ -7,10 +8,13 @@ package com.szrapnel.games.quicksave
 	 */
 	public class GameStage extends Sprite
 	{
-		private var cow:Cow;
+		private var _cow:Sprite;
 		private var background:Background;
 		private var fire:Fire;
-		private var platform:Platform;
+		private var _platform:Sprite;
+		private var _banner:Banner;
+		private var _playBtn:PlayBtn;
+		private var dock:Dock;
 		
 		public function GameStage() 
 		{
@@ -25,15 +29,50 @@ package com.szrapnel.games.quicksave
 			addChild(fire);
 			fire.play();
 			
-			cow = new Cow();
+			_cow = new Cow();
 			cow.x = 0;
-			cow.y = 0;
+			cow.y = -100;
 			addChild(cow);
 			
-			platform = new Platform();
-			platform.x = 0;
-			platform.y = 500;
+			_platform = new Platform();
+			platform.x = 100;
+			platform.y = 480;
 			addChild(platform);
+			
+			dock = new Dock();
+			dock.x = 540;
+			dock.y = 365;
+			addChild(dock);
+			
+			_banner = new Banner();
+			banner.x = background.width - 287;
+			banner.y = 0;
+			addChild(banner);
+			
+			_playBtn = new PlayBtn();
+			playBtn.x = (background.width - playBtn.width)/2;
+			playBtn.y = (background.height - playBtn.height)/2;
+			addChild(playBtn);
+		}
+		
+		public function get cow():Sprite 
+		{
+			return _cow;
+		}
+		
+		public function get platform():Sprite 
+		{
+			return _platform;
+		}
+		
+		public function get playBtn():PlayBtn 
+		{
+			return _playBtn;
+		}
+		
+		public function get banner():Banner 
+		{
+			return _banner;
 		}
 		
 	}

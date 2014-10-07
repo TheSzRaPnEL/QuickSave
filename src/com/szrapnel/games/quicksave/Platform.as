@@ -19,6 +19,7 @@ package com.szrapnel.games.quicksave
 			addChild(container);
 			
 			var image:Image = new Image(Assets.getTexture("CowFall_platform"));
+			image.y = - 50;
 			container.addChild(image);
 		}
 		
