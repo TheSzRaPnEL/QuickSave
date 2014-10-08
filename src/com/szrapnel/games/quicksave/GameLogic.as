@@ -1,5 +1,7 @@
 package com.szrapnel.games.quicksave 
 {
+	import flash.utils.clearTimeout;
+	import flash.utils.setTimeout;
 	import nape.geom.Vec2;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -18,11 +20,16 @@ package com.szrapnel.games.quicksave
 		private var score:int;
 		private var level:int;
 		private var now:Number;
+		private var clickTime:Number;
+		private var lastMaxVelocity:Number;
+		private var timerId:uint;
 		
 		public function GameLogic(gameStage:GameStage,symulation:Symulation) 
 		{
 			this.gameStage = gameStage;
 			this.symulation = symulation;
+			clickTime = 0;
+			lastMaxVelocity = -500;
 			
 			gameStage.playBtn.addEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
 		}
@@ -60,15 +67,50 @@ package com.szrapnel.games.quicksave
 				var touch:Touch = e.getTouch(stage);
 				if (touch.phase == TouchPhase.BEGAN)
 				{
-					if (symulation.platform.velocity.x > -500)
+					stopResetVelocityTimer();
+					
+					var now:Number = new Date().time;
+					if (clickTime == 0)
+					{
+						clickTime = now;
+					}
+					
+					if (now - clickTime < 250)
+					{
+						lastMaxVelocity -= 300;
+						symulation.platform.velocity.x = lastMaxVelocity;
+					}
+					else if (symulation.platform.velocity.x > -500)
 					{
 						symulation.platform.velocity.x = -500;
+						lastMaxVelocity = -500;
 					}
-					else
-					{
-						symulation.platform.velocity.x -= 100;
-					}
+					
+					clickTime = now;
 				}
+				else if (touch.phase == TouchPhase.ENDED)
+				{
+					startResetVelocityTimer();
+				}
+			}
+		}
+		
+		private function startResetVelocityTimer():void 
+		{
+			timerId = setTimeout(resetVelocityTimer, 300);
+		}
+		
+		private function stopResetVelocityTimer():void 
+		{
+			clearTimeout(timerId);
+		}
+		
+		private function resetVelocityTimer():void 
+		{
+			if (symulation.platform.velocity.x <= -500)
+			{
+				symulation.platform.velocity.x = -500;
+				lastMaxVelocity = -500;
 			}
 		}
 		
