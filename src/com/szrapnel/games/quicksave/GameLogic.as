@@ -153,7 +153,7 @@ package com.szrapnel.games.quicksave
 		private function theend():void 
 		{
 			symulation.reset();
-			symulation.update(0);
+			symulation.update(0.1);
 			
 			gameStage.cow.x = symulation.ball.position.x;
 			gameStage.cow.y = symulation.ball.position.y;

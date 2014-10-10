@@ -1,12 +1,15 @@
-package com.szrapnel.games.quicksave {
-	import flash.desktop.NativeApplication;
-	import flash.events.Event;
+package com.szrapnel.games.quicksave
+{
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.events.Event;
 	import flash.geom.Rectangle;
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
+	import so.cuo.platform.admob.Admob;
+	import so.cuo.platform.admob.AdmobEvent;
+	import so.cuo.platform.admob.AdmobPosition;
 	import starling.core.Starling;
 	
 	/**
@@ -16,6 +19,7 @@ package com.szrapnel.games.quicksave {
 	public class Main extends Sprite 
 	{
 		private var star:Starling;
+		private var admob:Admob;
 		
 		public function Main():void 
 		{
@@ -29,6 +33,18 @@ package com.szrapnel.games.quicksave {
 			star.stage.stageWidth = 540;
 			star.stage.stageHeight = 960;
 			star.start();
+			
+			admob = Admob.getInstance();
+			admob.setKeys("ca-app-pub-3669883303109473/6323752906");
+			admob.showBanner(Admob.BANNER,AdmobPosition.TOP_LEFT);
+		}
+		
+		private function onAdReceived(event:AdmobEvent):void
+		{
+			if (event.type == AdmobEvent.onBannerReceive)
+			{
+				//
+			}
 		}
 		
 		private function deactivate(e:Event):void 
