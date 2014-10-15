@@ -12,6 +12,7 @@ package com.szrapnel.games.quicksave
 		private var background:Background;
 		private var fire:Fire;
 		private var _platform:Sprite;
+		private var _platform2:Sprite;
 		private var _banner:Banner;
 		private var _playBtn:PlayBtn;
 		private var dock:Dock;
@@ -39,6 +40,11 @@ package com.szrapnel.games.quicksave
 			platform.y = 480;
 			addChild(platform);
 			
+			_platform2 = new Platform();
+			platform2.x = 100;
+			platform2.y = 680;
+			addChild(platform2);
+			
 			dock = new Dock();
 			dock.x = 540;
 			dock.y = 365;
@@ -63,6 +69,11 @@ package com.szrapnel.games.quicksave
 		public function get platform():Sprite 
 		{
 			return _platform;
+		}
+		
+		public function get platform2():Sprite 
+		{
+			return _platform2;
 		}
 		
 		public function get playBtn():PlayBtn 

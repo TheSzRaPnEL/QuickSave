@@ -20,9 +20,13 @@ package com.szrapnel.games.quicksave
 		private var score:int;
 		private var level:int;
 		private var now:Number;
+		private var now2:Number;
 		private var clickTime:Number;
+		private var clickTime2:Number;
 		private var lastMaxVelocity:Number;
+		private var lastMaxVelocity2:Number;
 		private var timerId:uint;
+		private var timerId2:uint;
 		
 		public function GameLogic(gameStage:GameStage,symulation:Symulation) 
 		{
@@ -64,39 +68,76 @@ package com.szrapnel.games.quicksave
 		{
 			if (e.getTouch(stage))
 			{
-				var touch:Touch = e.getTouch(stage);
-				if (touch.phase == TouchPhase.BEGAN)
+				var touches:Vector.<Touch> = e.getTouches(stage);
+				for each (var touch:Touch in touches)
 				{
-					stopResetVelocityTimer();
-					
-					var now:Number = new Date().time;
-					if (clickTime == 0)
+					if (touch.getLocation(stage).x > 270)
 					{
-						clickTime = now;
+						if (touch.phase == TouchPhase.BEGAN)
+						{
+							stopResetVelocityTimer();
+							
+							var now:Number = new Date().time;
+							if (clickTime == 0)
+							{
+								clickTime = now;
+							}
+							
+							if (now - clickTime < 250)
+							{
+								lastMaxVelocity -= 300;
+								symulation.platform.velocity.x = lastMaxVelocity;
+							}
+							else if (symulation.platform.velocity.x > -500)
+							{
+								symulation.platform.velocity.x = -500;
+								lastMaxVelocity = -500;
+							}
+							
+							clickTime = now;
+						}
+						else if (touch.phase == TouchPhase.ENDED)
+						{
+							startResetVelocityTimer();
+						}
 					}
-					
-					if (now - clickTime < 250)
+					else if (touch.getLocation(stage).x < 270)
 					{
-						lastMaxVelocity -= 300;
-						symulation.platform.velocity.x = lastMaxVelocity;
+						if (touch.phase == TouchPhase.BEGAN)
+						{
+							stopResetVelocityTimer();
+							
+							var now2:Number = new Date().time;
+							if (clickTime2 == 0)
+							{
+								clickTime2 = now;
+							}
+							
+							if (now2 - clickTime2 < 250)
+							{
+								lastMaxVelocity2 += 300;
+								symulation.platform2.velocity.x = lastMaxVelocity2;
+							}
+							else if (symulation.platform2.velocity.x < 500)
+							{
+								symulation.platform2.velocity.x = 500;
+								lastMaxVelocity2 = 500;
+							}
+							
+							clickTime2 = now2;
+						}
+						else if (touch.phase == TouchPhase.ENDED)
+						{
+							startResetVelocityTimer2();
+						}
 					}
-					else if (symulation.platform.velocity.x > -500)
-					{
-						symulation.platform.velocity.x = -500;
-						lastMaxVelocity = -500;
-					}
-					
-					clickTime = now;
-				}
-				else if (touch.phase == TouchPhase.ENDED)
-				{
-					startResetVelocityTimer();
 				}
 			}
 		}
 		
 		private function startResetVelocityTimer():void 
 		{
+			clearTimeout(timerId)
 			timerId = setTimeout(resetVelocityTimer, 300);
 		}
 		
@@ -114,6 +155,26 @@ package com.szrapnel.games.quicksave
 			}
 		}
 		
+		private function startResetVelocityTimer2():void 
+		{
+			clearTimeout(timerId2)
+			timerId2 = setTimeout(resetVelocityTimer2, 300);
+		}
+		
+		private function stopResetVelocityTimer2():void 
+		{
+			clearTimeout(timerId2);
+		}
+		
+		private function resetVelocityTimer2():void 
+		{
+			if (symulation.platform2.velocity.x >= 500)
+			{
+				symulation.platform2.velocity.x = 500;
+				lastMaxVelocity2 = 500;
+			}
+		}
+		
 		private function onEFrame(e:Event):void 
 		{
 			gameStage.cow.x = symulation.ball.position.x;
@@ -121,6 +182,7 @@ package com.szrapnel.games.quicksave
 			gameStage.cow.rotation = symulation.ball.rotation;
 			
 			gameStage.platform.x = symulation.platform.position.x;
+			gameStage.platform2.x = symulation.platform2.position.x;
 			
 			if (gameStage.cow.y > 960)
 			{
@@ -133,7 +195,8 @@ package com.szrapnel.games.quicksave
 			else
 			{
 				now = new Date().time;
-				symulation.update((now - startTime - 1) / 1000);
+				symulation.update((now - startTime + 1) / 1000);
+				//symulation.update(1/60);
 				startTime = now;
 			}
 		}
@@ -141,7 +204,7 @@ package com.szrapnel.games.quicksave
 		private function dropNewCow():void 
 		{
 			score++;
-			if (score >= level*10)
+			if (score >= 10)
 			{
 				level++;
 				symulation.space.gravity = Vec2.weak(0, 500+100*level);

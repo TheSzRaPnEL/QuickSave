@@ -1,6 +1,13 @@
 package com.szrapnel.games.quicksave 
 {
+	import com.szrapnel.games.quicksave.events.DisplayListEvent;
+	import com.szrapnel.games.quicksave.events.GameEvent;
+	import com.szrapnel.games.quicksave.events.IntroEvent;
+	import com.szrapnel.games.quicksave.intro.IntroMovie;
+	import flash.geom.Rectangle;
 	import starling.core.Starling;
+	import starling.display.BlendMode;
+	import starling.display.Quad;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.Touch;
@@ -18,6 +25,9 @@ package com.szrapnel.games.quicksave
 		private var gameStage:GameStage;
 		private var symulation:Symulation;
 		private var gameLogic:GameLogic;
+		private var gameBackground:Quad;
+		private var introMovie:IntroMovie;
+		private var offset:int;
 		
 		public function StarlingMain() 
 		{
@@ -26,6 +36,11 @@ package com.szrapnel.games.quicksave
 		
 		private function init(e:Event):void 
 		{
+			gameBackground = new Quad(Starling.current.viewPort.width, Starling.current.viewPort.height, 0x1A1A1A);
+			gameBackground.blendMode = BlendMode.NONE;
+			gameBackground.touchable = false;
+			addChild(gameBackground);
+			
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			
 			assetManager = new AssetManager();
@@ -50,13 +65,75 @@ package com.szrapnel.games.quicksave
 		{
 			Assets.assetManager = assetManager;
 			
+			offset = int((Starling.current.viewPort.width - 540 * Starling.current.viewPort.height / Starling.current.stage.stageHeight) / 2);
+			
+			introMovie = new IntroMovie();
+			introMovie.x = offset;
+			introMovie.addEventListener(IntroEvent.INTRO_FINISHED, onIntroFinished_handler);
+			addChild(introMovie);
+			introMovie.play();
+			
+			gameBackground.touchable = true;
+			addEventListener(TouchEvent.TOUCH, onStageTouch_handler);
+			
+			Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.HIDE_PRELOADER_OVERLAY));
+			
+			Starling.current.stage.addEventListener(GameEvent.START_GAME, onStartGame_handler);
+		}
+		
+		private function onStartGame_handler(e:GameEvent):void 
+		{
+			startGame();
+		}
+		
+		private function startGame():void
+		{
+			Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.HIDE_ADMOB));
+			
+			gameBackground.touchable = false;
+			removeEventListener(TouchEvent.TOUCH, onStageTouch_handler);
+			
 			gameStage = new GameStage();
+			gameStage.clipRect = new Rectangle(0, 0, 540, 960);
+			gameStage.x = offset;
 			addChild(gameStage);
 			
 			symulation = new Symulation();
 			
 			gameLogic = new GameLogic(gameStage, symulation);
 			addChild(gameLogic);
+		}
+		
+		private function stopGame():void
+		{
+			gameBackground.touchable = true;
+			
+			gameStage.removeFromParent(true);
+			gameStage = null;
+			gameLogic.removeFromParent(true);
+			gameLogic = null;
+			symulation = null;
+		}
+		
+		private function onIntroFinished_handler(e:IntroEvent):void 
+		{
+			Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.SHOW_ADMOB));
+		}
+		
+		private function onStageTouch_handler(e:TouchEvent):void 
+		{
+			if (e.getTouch(stage))
+			{
+				var touch:Touch = e.getTouch(stage);
+				if (touch.phase == TouchPhase.BEGAN)
+				{
+					if (introMovie.isPlaying)
+					{
+						introMovie.stop();
+					}
+					introMovie.end();
+				}
+			}
 		}
 		
 	}

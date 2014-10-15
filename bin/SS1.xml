@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:7aa3f6e651651c110a7fcd0eeea86528:dc65fedbe3cabf0521ced5294c9a481a:71863976068c759eab0a10f1b3b20904$ -->
+<!-- $TexturePacker:SmartUpdate:b23454690cb453da5b519d99fbd97777:f1064d6e9e4f031f3dc77c869102d0ea:71863976068c759eab0a10f1b3b20904$ -->
 <TextureAtlas imagePath="E:/Projects/QuickSave/bin/SS{n}.png/SS1.png">
+    <SubTexture name="CowFall_INTRO_cloud" x="554" y="252" width="428" height="280"/>
+    <SubTexture name="CowFall_INTRO_eye1" x="884" y="694" width="106" height="106"/>
+    <SubTexture name="CowFall_INTRO_logo" x="554" y="4" width="462" height="242"/>
+    <SubTexture name="CowFall_INTRO_myNAME" x="554" y="538" width="366" height="119"/>
     <SubTexture name="CowFall_bckg1_anim_019" x="4" y="4" width="544" height="324"/>
-    <SubTexture name="CowFall_bckg1_anim_020" x="554" y="4" rotated="true" width="324" height="544"/>
-    <SubTexture name="CowFall_bckg1_anim_021" x="4" y="334" width="544" height="324"/>
-    <SubTexture name="CowFall_bckg1_anim_022" x="554" y="554" rotated="true" width="324" height="544"/>
-    <SubTexture name="CowFall_bckg1_anim_023" x="4" y="664" width="544" height="324"/>
-    <SubTexture name="CowFall_bckg1_anim_024" x="4" y="994" width="544" height="324"/>
-    <SubTexture name="CowFall_bckg1_anim_025" x="554" y="1104" rotated="true" width="324" height="544"/>
-    <SubTexture name="CowFall_platform" x="884" y="4" rotated="true" width="77" height="150"/>
+    <SubTexture name="CowFall_bckg1_anim_020" x="4" y="334" width="544" height="324"/>
+    <SubTexture name="CowFall_bckg1_anim_021" x="554" y="663" rotated="true" width="324" height="544"/>
+    <SubTexture name="CowFall_bckg1_anim_022" x="4" y="664" width="544" height="324"/>
+    <SubTexture name="CowFall_bckg1_anim_023" x="4" y="994" width="544" height="324"/>
+    <SubTexture name="CowFall_bckg1_anim_024" x="554" y="1213" rotated="true" width="324" height="544"/>
+    <SubTexture name="CowFall_bckg1_anim_025" x="4" y="1324" width="544" height="324"/>
+    <SubTexture name="CowFall_button_PLAY" x="4" y="1763" rotated="true" width="165" height="169"/>
+    <SubTexture name="CowFall_doc" x="988" y="252" width="27" height="191"/>
+    <SubTexture name="CowFall_platform" x="926" y="538" rotated="true" width="77" height="150"/>
 </TextureAtlas>
