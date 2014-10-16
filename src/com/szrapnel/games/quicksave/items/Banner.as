@@ -1,5 +1,6 @@
-package com.szrapnel.games.quicksave 
+package com.szrapnel.games.quicksave.items
 {
+	import com.szrapnel.games.quicksave.services.Assets;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.text.TextField;
@@ -9,13 +10,13 @@ package com.szrapnel.games.quicksave
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class Banner extends Sprite 
+	public class Banner extends Sprite
 	{
 		private var container:Sprite;
 		private var headline:TextField;
 		private var _savedTxtf:TextField;
 		
-		public function Banner() 
+		public function Banner()
 		{
 			super();
 			
@@ -40,7 +41,7 @@ package com.szrapnel.games.quicksave
 			container.addChild(savedTxtf);
 		}
 		
-		public function get savedTxtf():TextField 
+		public function get savedTxtf():TextField
 		{
 			return _savedTxtf;
 		}

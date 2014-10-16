@@ -50,7 +50,7 @@ package com.szrapnel.games.quicksave
 			star = new Starling(StarlingMain, stage, new Rectangle(0, 0, stage.fullScreenWidth, stage.fullScreenHeight));
 			star.antiAliasing = 0;
 			star.stage.stageHeight = 960;
-			star.stage.stageWidth = 540 + stage.fullScreenWidth - stage.fullScreenHeight / 960 * 540;
+			star.stage.stageWidth = stage.fullScreenWidth * 960 / stage.fullScreenHeight;
 			
 			star.start();
 			star.addEventListener(starling.events.Event.ROOT_CREATED, onStarlingRootCreated);

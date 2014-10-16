@@ -3,7 +3,7 @@ package com.szrapnel.games.quicksave.intro
 	import com.greensock.TimelineLite;
 	import com.greensock.TweenLite;
 	import com.greensock.easing.Bounce;
-	import com.szrapnel.games.quicksave.Assets;
+	import com.szrapnel.games.quicksave.services.Assets;
 	import com.szrapnel.games.quicksave.events.DisplayListEvent;
 	import com.szrapnel.games.quicksave.events.GameEvent;
 	import com.szrapnel.games.quicksave.events.IntroEvent;
@@ -87,7 +87,7 @@ package com.szrapnel.games.quicksave.intro
 		private function onPlayBtnTriggered_handler(e:Event):void 
 		{
 			touchable = false;
-			Starling.current.stage.dispatchEvent(new GameEvent(GameEvent.START_GAME));
+			dispatchEvent(new IntroEvent(IntroEvent.START_BTN_CLICKED));
 		}
 		
 		public function play():void

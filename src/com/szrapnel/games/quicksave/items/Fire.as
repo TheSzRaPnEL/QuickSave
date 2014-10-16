@@ -1,5 +1,6 @@
-package com.szrapnel.games.quicksave 
+package com.szrapnel.games.quicksave.items
 {
+	import com.szrapnel.games.quicksave.services.Assets;
 	import starling.core.Starling;
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
@@ -8,19 +9,19 @@ package com.szrapnel.games.quicksave
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class Fire extends Sprite 
+	public class Fire extends Sprite
 	{
 		private var container:Sprite;
 		private var animation:MovieClip;
 		
-		public function Fire() 
+		public function Fire()
 		{
 			super();
 			
 			container = new Sprite();
 			addChild(container);
 			
-			animation = new MovieClip(Assets.getTextures("CowFall_bckg1_anim_0"),25);
+			animation = new MovieClip(Assets.getTextures("CowFall_bckg1_anim_0"), 25);
 			container.addChild(animation);
 		}
 		

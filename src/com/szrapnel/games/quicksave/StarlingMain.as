@@ -4,6 +4,10 @@ package com.szrapnel.games.quicksave
 	import com.szrapnel.games.quicksave.events.GameEvent;
 	import com.szrapnel.games.quicksave.events.IntroEvent;
 	import com.szrapnel.games.quicksave.intro.IntroMovie;
+	import com.szrapnel.games.quicksave.services.Assets;
+	import com.szrapnel.games.quicksave.services.GameLogic;
+	import com.szrapnel.games.quicksave.services.GameStage;
+	import com.szrapnel.games.quicksave.services.Symulation;
 	import flash.geom.Rectangle;
 	import starling.core.Starling;
 	import starling.display.BlendMode;
@@ -65,11 +69,12 @@ package com.szrapnel.games.quicksave
 		{
 			Assets.assetManager = assetManager;
 			
-			offset = int((Starling.current.viewPort.width - 540 * Starling.current.viewPort.height / Starling.current.stage.stageHeight) / 2);
+			offset = int(Starling.current.stage.stageWidth - 540) / 2;
 			
 			introMovie = new IntroMovie();
 			introMovie.x = offset;
 			introMovie.addEventListener(IntroEvent.INTRO_FINISHED, onIntroFinished_handler);
+			introMovie.addEventListener(IntroEvent.START_BTN_CLICKED, onStartBtnClicked_handler);
 			addChild(introMovie);
 			introMovie.play();
 			
@@ -79,6 +84,11 @@ package com.szrapnel.games.quicksave
 			Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.HIDE_PRELOADER_OVERLAY));
 			
 			Starling.current.stage.addEventListener(GameEvent.START_GAME, onStartGame_handler);
+		}
+		
+		private function onStartBtnClicked_handler(e:Event):void 
+		{
+			startGame();
 		}
 		
 		private function onStartGame_handler(e:GameEvent):void 

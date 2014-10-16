@@ -1,5 +1,4 @@
-package com.szrapnel.games.quicksave 
-{
+package com.szrapnel.games.quicksave.items {
 	import starling.display.Image;
 	import starling.display.Sprite;
 	
@@ -7,18 +6,20 @@ package com.szrapnel.games.quicksave
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class PlayBtn extends Sprite 
+	public class Obstacle extends Sprite 
 	{
 		private var container:Sprite;
 		
-		public function PlayBtn() 
+		public function Obstacle() 
 		{
 			super();
 			
 			container = new Sprite();
 			addChild(container);
 			
-			var image:Image = new Image(Assets.getTexture("CowFall_button_PLAY"));
+			var image:Image = new Image(Assets.getTexture("CowFall_hurdle"));
+			image.x = - image.width / 2;
+			image.y = - image.height / 2;
 			container.addChild(image);
 		}
 		

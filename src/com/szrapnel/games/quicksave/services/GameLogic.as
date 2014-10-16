@@ -1,5 +1,4 @@
-package com.szrapnel.games.quicksave 
-{
+package com.szrapnel.games.quicksave.services {
 	import flash.utils.clearTimeout;
 	import flash.utils.setTimeout;
 	import nape.geom.Vec2;

@@ -1,5 +1,4 @@
-package com.szrapnel.games.quicksave
-{
+package com.szrapnel.games.quicksave.services {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import nape.callbacks.CbEvent;

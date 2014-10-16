@@ -1,5 +1,6 @@
-package com.szrapnel.games.quicksave 
+package com.szrapnel.games.quicksave.items
 {
+	import com.szrapnel.games.quicksave.services.Assets;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	
@@ -7,19 +8,18 @@ package com.szrapnel.games.quicksave
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class Platform extends Sprite 
+	public class Background extends Sprite
 	{
 		private var container:Sprite;
 		
-		public function Platform() 
+		public function Background()
 		{
 			super();
 			
 			container = new Sprite();
 			addChild(container);
 			
-			var image:Image = new Image(Assets.getTexture("CowFall_platform"));
-			image.y = - 50;
+			var image:Image = new Image(Assets.getTexture("CowFall_bckg"));
 			container.addChild(image);
 		}
 		
