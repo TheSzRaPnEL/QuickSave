@@ -1,9 +1,11 @@
 package com.szrapnel.games.quicksave 
 {
+	import com.greensock.TweenLite;
 	import com.szrapnel.games.quicksave.events.DisplayListEvent;
 	import com.szrapnel.games.quicksave.events.GameEvent;
 	import com.szrapnel.games.quicksave.events.IntroEvent;
 	import com.szrapnel.games.quicksave.intro.IntroMovie;
+	import com.szrapnel.games.quicksave.screens.SelectionScreen;
 	import com.szrapnel.games.quicksave.services.Assets;
 	import com.szrapnel.games.quicksave.services.GameLogic;
 	import com.szrapnel.games.quicksave.services.GameStage;
@@ -32,6 +34,7 @@ package com.szrapnel.games.quicksave
 		private var gameBackground:Quad;
 		private var introMovie:IntroMovie;
 		private var offset:int;
+		private var selectionScreen:SelectionScreen;
 		
 		public function StarlingMain() 
 		{
@@ -71,6 +74,22 @@ package com.szrapnel.games.quicksave
 			
 			offset = int(Starling.current.stage.stageWidth - 540) / 2;
 			
+			gameStage = new GameStage();
+			gameStage.clipRect = new Rectangle(0, 0, 540, 960);
+			gameStage.x = offset;
+			addChild(gameStage);
+			gameStage.visible = false;
+			
+			symulation = new Symulation();
+			
+			gameLogic = new GameLogic(gameStage, symulation);
+			addChild(gameLogic);
+			
+			selectionScreen = new SelectionScreen();
+			selectionScreen.x = offset;
+			addChild(selectionScreen);
+			selectionScreen.visible = false;
+			
 			introMovie = new IntroMovie();
 			introMovie.x = offset;
 			introMovie.addEventListener(IntroEvent.INTRO_FINISHED, onIntroFinished_handler);
@@ -83,12 +102,23 @@ package com.szrapnel.games.quicksave
 			
 			Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.HIDE_PRELOADER_OVERLAY));
 			
-			Starling.current.stage.addEventListener(GameEvent.START_GAME, onStartGame_handler);
+			Starling.current.root.addEventListener(GameEvent.START_GAME, onStartGame_handler);
 		}
 		
 		private function onStartBtnClicked_handler(e:Event):void 
 		{
-			startGame();
+			gotoSelectionScreen();
+		}
+		
+		private function gotoSelectionScreen():void 
+		{
+			selectionScreen.visible = true;
+			TweenLite.to(introMovie, 0.3, { x: -introMovie.width / 4, y: -introMovie.height / 4, alpha:0, scaleX:1.5, scaleY:1.5, onComplete: removeIntroScreen } );
+		}
+		
+		private function removeIntroScreen():void 
+		{
+			removeChild(introMovie);
 		}
 		
 		private function onStartGame_handler(e:GameEvent):void 
@@ -103,15 +133,16 @@ package com.szrapnel.games.quicksave
 			gameBackground.touchable = false;
 			removeEventListener(TouchEvent.TOUCH, onStageTouch_handler);
 			
-			gameStage = new GameStage();
-			gameStage.clipRect = new Rectangle(0, 0, 540, 960);
-			gameStage.x = offset;
-			addChild(gameStage);
+			gameStage.visible = true;
 			
-			symulation = new Symulation();
-			
-			gameLogic = new GameLogic(gameStage, symulation);
-			addChild(gameLogic);
+			TweenLite.to(selectionScreen, 0.3, { x: -selectionScreen.width / 4, y: -selectionScreen.height / 4, alpha:0, scaleX:1.5, scaleY:1.5, onComplete: removeSelectionScreen } );
+		}
+		
+		private function removeSelectionScreen():void 
+		{
+			//removeChild(selectionScreen);
+			selectionScreen.visible = false;
+			selectionScreen.touchable = false;
 		}
 		
 		private function stopGame():void

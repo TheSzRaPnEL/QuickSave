@@ -71,7 +71,7 @@ package com.szrapnel.games.quicksave.intro
 			container.addChild(cowFallLogo);
 			cowFallLogo.visible = false;
 			
-			logo = new Image(Assets.getTexture("logo_SzRaPnEL"));
+			logo = new Image(Assets.getTexture("CowFall_szrapnel"));
 			logo.x = 136;
 			logo.y = 880;
 			container.addChild(logo);

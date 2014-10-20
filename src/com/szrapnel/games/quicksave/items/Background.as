@@ -19,7 +19,7 @@ package com.szrapnel.games.quicksave.items
 			container = new Sprite();
 			addChild(container);
 			
-			var image:Image = new Image(Assets.getTexture("CowFall_bckg"));
+			var image:Image = new Image(Assets.getTexture("CowFall_bckg1"));
 			container.addChild(image);
 		}
 		

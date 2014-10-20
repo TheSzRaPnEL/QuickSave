@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.5.2</string>
         <key>fileName</key>
-        <string>E:/Projects/QuickSave/gfx/CowFallSS.tps</string>
+        <string>E:/Projects/QuickSave/gfx/CowFallSS1.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>sparrow</string>
         <key>textureFileName</key>
-        <filename>../bin/SS0.png</filename>
+        <filename>../bin/SS1.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -78,7 +78,7 @@
         <key>webpQualityLevel</key>
         <uint>101</uint>
         <key>textureSubPath</key>
-        <string>E:/Projects/QuickSave/bin/SS0.png</string>
+        <string>E:/Projects/QuickSave/bin/SS1.png</string>
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
@@ -145,7 +145,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../bin/SS0.xml</filename>
+                <filename>../bin/SS1.xml</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -188,31 +188,39 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_001.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_002.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_003.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_004.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_005.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_006.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_007.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_008.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_009.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_010.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_011.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_012.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_013.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_014.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_015.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_016.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_017.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_018.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_019.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_020.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_021.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_022.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_023.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_024.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_025.jpg</filename>
+            <filename>CowFall_pack3/CowFall_bckg1.jpg</filename>
+            <filename>CowFall_pack3/CowFall_button_PLAY.png</filename>
+            <filename>CowFall_pack2/CowFall_INTRO_cloud.jpg</filename>
+            <filename>CowFall_pack2/CowFall_INTRO_cow.png</filename>
+            <filename>CowFall_pack2/CowFall_INTRO_eye1.jpg</filename>
+            <filename>CowFall_pack2/CowFall_INTRO_eye2.jpg</filename>
+            <filename>CowFall_pack2/CowFall_INTRO_logo.png</filename>
+            <filename>CowFall_pack2/CowFall_INTRO_myNAME.jpg</filename>
+            <filename>CowFall_pack3/CowFall_szrapnel.png</filename>
+            <filename>CowFall_pack3/CowFall_bckg3.jpg</filename>
+            <filename>CowFall_pack3/CowFall_bckg3_anim_000.jpg</filename>
+            <filename>CowFall_pack3/CowFall_bckg3_anim_001.jpg</filename>
+            <filename>CowFall_pack3/CowFall_bckg3_anim_002.jpg</filename>
+            <filename>CowFall_pack3/CowFall_bckg3_anim_003.jpg</filename>
+            <filename>CowFall_pack3/CowFall_Bull.png</filename>
+            <filename>CowFall_pack3/CowFall_banner.png</filename>
+            <filename>CowFall_pack3/CowFall_bckg_U.jpg</filename>
+            <filename>CowFall_pack3/CowFall_bckg3_button_off.png</filename>
+            <filename>CowFall_pack3/CowFall_bckg3_button_on.png</filename>
+            <filename>CowFall_pack3/CowFall_bckg3_doc.png</filename>
+            <filename>CowFall_pack3/CowFall_bckg3_door.png</filename>
+            <filename>CowFall_pack3/CowFall_bckg3_platform.png</filename>
+            <filename>CowFall_pack3/CowFall_button_pouse.png</filename>
+            <filename>CowFall_pack3/CowFall_button_taptap.png</filename>
+            <filename>CowFall_pack3/CowFall_skull.png</filename>
+            <filename>CowFall_pack3/CowFall_lock.png</filename>
+            <filename>CowFall_pack3/CowFall_SScreen_level1.png</filename>
+            <filename>CowFall_pack3/CowFall_SScreen_level3.png</filename>
+            <filename>CowFall_pack3/CowFall_SScreen_level3_lock.png</filename>
+            <filename>CowFall_pack1/CowFall_Cow.png</filename>
+            <filename>CowFall_pack1/CowFall_doc.png</filename>
+            <filename>CowFall_pack1/CowFall_hurdle.png</filename>
+            <filename>CowFall_pack1/CowFall_platform.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
