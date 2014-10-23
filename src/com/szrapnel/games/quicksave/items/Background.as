@@ -11,6 +11,7 @@ package com.szrapnel.games.quicksave.items
 	public class Background extends Sprite
 	{
 		private var container:Sprite;
+		private var _image:Image;
 		
 		public function Background()
 		{
@@ -19,8 +20,13 @@ package com.szrapnel.games.quicksave.items
 			container = new Sprite();
 			addChild(container);
 			
-			var image:Image = new Image(Assets.getTexture("CowFall_bckg1"));
+			_image = new Image(Assets.getTexture("CowFall_bckg1"));
 			container.addChild(image);
+		}
+		
+		public function get image():Image 
+		{
+			return _image;
 		}
 		
 	}

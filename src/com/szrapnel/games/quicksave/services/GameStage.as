@@ -15,7 +15,7 @@ package com.szrapnel.games.quicksave.services
 	public class GameStage extends Sprite
 	{
 		private var _cow:Sprite;
-		private var background:Background;
+		private var _background:Background;
 		private var fire:Fire;
 		private var _platform:Sprite;
 		private var _platform2:Sprite;
@@ -25,7 +25,7 @@ package com.szrapnel.games.quicksave.services
 		
 		public function GameStage() 
 		{
-			background = new Background();
+			_background = new Background();
 			background.x = 0;
 			background.y = 0;
 			addChild(background);
@@ -90,6 +90,11 @@ package com.szrapnel.games.quicksave.services
 		public function get banner():Banner 
 		{
 			return _banner;
+		}
+		
+		public function get background():Background 
+		{
+			return _background;
 		}
 		
 	}

@@ -1,18 +1,16 @@
 package com.szrapnel.games.quicksave.intro 
 {
+	import com.greensock.easing.Bounce;
 	import com.greensock.TimelineLite;
 	import com.greensock.TweenLite;
-	import com.greensock.easing.Bounce;
-	import com.szrapnel.games.quicksave.services.Assets;
-	import com.szrapnel.games.quicksave.events.DisplayListEvent;
-	import com.szrapnel.games.quicksave.events.GameEvent;
 	import com.szrapnel.games.quicksave.events.IntroEvent;
+	import com.szrapnel.games.quicksave.services.Assets;
 	import starling.core.Starling;
-	import starling.display.BlendMode;
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.textures.Texture;
 	
 	/**
 	 * CowFall intro animation
@@ -21,6 +19,8 @@ package com.szrapnel.games.quicksave.intro
 	public class IntroMovie extends Sprite
 	{
 		private var container:Sprite;
+		private var background:Image;
+		private var background2:Image;
 		private var eyes:Image;
 		private var logo:Image;
 		private var cloud:Image;
@@ -38,6 +38,12 @@ package com.szrapnel.games.quicksave.intro
 			container = new Sprite();
 			addChild(container);
 			
+			background = new Image(Texture.fromColor(Starling.current.stage.stageWidth, Starling.current.stage.stageHeight, 0x1A1A1A));
+			container.addChild(background);
+		}
+		
+		public function generate():void
+		{
 			eyes = new Image(Assets.getTexture("CowFall_INTRO_eye1"));
 			eyes.x = 112;
 			eyes.y = 356;
@@ -103,7 +109,7 @@ package com.szrapnel.games.quicksave.intro
 			timelineAnimation.append(TweenLite.delayedCall(0, function():void { eyes.texture = Assets.getTexture("CowFall_INTRO_eye1") } ));
 			timelineAnimation.append(TweenLite.delayedCall(0.5, function():void { cloud.visible = true; cloud.alpha = 0 } ));
 			timelineAnimation.append(TweenLite.to(cloud, 0.2, { alpha:1 } ));
-			timelineAnimation.append(TweenLite.delayedCall(0.2, function():void { cloudText.visible = true; cloudText.alpha = 0 } ));
+			timelineAnimation.append(TweenLite.delayedCall(0.2, function():void { cloudText.visible = true; cloudText.alpha = 0; } ));
 			timelineAnimation.append(TweenLite.to(cloudText, 0.2, { alpha:1 } ));
 			timelineAnimation.appendMultiple([TweenLite.to(eyes, 0.5, { alpha:0 } ), TweenLite.to(cloud, 0.5, { alpha:0 } ), TweenLite.to(cloudText, 0.5, { alpha:0 } )], 1);
 			timelineAnimation.append(TweenLite.delayedCall(0, function():void { eyes.visible = false; cloud.visible = false; cloudText.visible = false; } ));
@@ -112,8 +118,10 @@ package com.szrapnel.games.quicksave.intro
 			timelineAnimation.append(TweenLite.delayedCall(0.2, function():void { cowFallLogo.visible = true; cowFallLogo.alpha = 0; cowFallLogo.scaleX = 1.5; cowFallLogo.scaleY = cowFallLogo.scaleX;  } ));
 			timelineAnimation.append(TweenLite.to(cowFallLogo, 0.6, { scaleX:1, scaleY:1, alpha:1, ease:Bounce.easeOut } ));
 			timelineAnimation.appendMultiple([TweenLite.to(cow, 0.5, { y:cow.y - 200 } ), TweenLite.to(cowFallLogo, 0.5, { y:cowFallLogo.y - 200 } )], 0.5);
-			timelineAnimation.append(TweenLite.delayedCall(0.1, function():void { playBtn.visible = true; playBtn.alpha = 0 } ));
-			timelineAnimation.append(TweenLite.to(playBtn, 0.2, { alpha:1 } ), 0.5);
+			timelineAnimation.append(TweenLite.delayedCall(0.1, function():void { background2 = new Image(Assets.getTexture("CowFall_bckg_U")); container.addChildAt(background2, 0); } ));
+			timelineAnimation.append(TweenLite.to(background, 0.4, { alpha:0 } ));
+			timelineAnimation.append(TweenLite.delayedCall(0, function():void { playBtn.visible = true; playBtn.alpha = 0 } ));
+			timelineAnimation.append(TweenLite.to(playBtn, 0.2, { alpha:1 } ));
 			timelineAnimation.append(TweenLite.delayedCall(0, function():void { dispatchEvent(new IntroEvent(IntroEvent.INTRO_FINISHED)); } ));
 			
 			timelineAnimation.play();
@@ -133,6 +141,14 @@ package com.szrapnel.games.quicksave.intro
 			if (isPlaying == false)
 			{
 				timelineAnimation.gotoAndStop(0);
+				
+				background.visible = false;
+				
+				if (background2 == null)
+				{
+					background2 = new Image(Assets.getTexture("CowFall_bckg_U"));
+					container.addChildAt(background2, 0);
+				}
 				
 				cow.visible = true;
 				cow.alpha = 1;

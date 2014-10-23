@@ -1,9 +1,7 @@
 package com.szrapnel.games.quicksave.screens
 {
 	import com.szrapnel.games.quicksave.components.SimpleButton;
-	import com.szrapnel.games.quicksave.events.GameEvent;
 	import com.szrapnel.games.quicksave.services.Assets;
-	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -41,8 +39,7 @@ package com.szrapnel.games.quicksave.screens
 		
 		private function onMiniatureTriggered_handler(e:Event):void 
 		{
-			trace("miniature " + levelMiniatures.indexOf(e.target) + " touched");
-			Starling.current.root.dispatchEvent(new GameEvent(GameEvent.START_GAME));
+			dispatchEventWith(Event.TRIGGERED, false, levelMiniatures.indexOf(e.target));
 		}
 		
 	}

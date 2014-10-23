@@ -1,8 +1,8 @@
-package com.szrapnel.games.quicksave
+package com.szrapnel
 {
 	import com.szrapnel.games.quicksave.events.DisplayListEvent;
+	import com.szrapnel.games.quicksave.QuickSave;
 	import flash.display.Bitmap;
-	import flash.display.DisplayObject;
 	import flash.display.Loader;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -15,25 +15,28 @@ package com.szrapnel.games.quicksave
 	import flash.ui.MultitouchInputMode;
 	import so.cuo.platform.admob.Admob;
 	import so.cuo.platform.admob.AdmobPosition;
+	import so.cuo.platform.admob.AdmobSize;
 	import starling.core.Starling;
 	import starling.events.Event;
 	
 	/**
-	 * QuickSave document class
+	 * Project document class
 	 * @author SzRaPnEL
 	 */
-	public class Main extends Sprite 
+	public class Main extends Sprite
 	{
 		private var star:Starling;
 		private var admob:Admob;
 		private var preloaderOverlay:Sprite;
+		private var gameState:String;
 		
-		public function Main():void 
+		public function Main():void
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
-			stage.addEventListener(flash.events.Event.DEACTIVATE, deactivate);
 			stage.quality = StageQuality.LOW;
+			
+			gameState = QuickSave.INIT;
 			
 			Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
 			
@@ -60,7 +63,7 @@ package com.szrapnel.games.quicksave
 		{
 			admob = Admob.getInstance();
 			admob.setKeys("ca-app-pub-3669883303109473/6323752906");
-			admob.showBanner(Admob.BANNER, AdmobPosition.TOP_LEFT);
+			admob.showBanner(Admob.SMART_BANNER, AdmobPosition.TOP_LEFT);
 		}
 		
 		private function hideAdmob():void
@@ -71,7 +74,7 @@ package com.szrapnel.games.quicksave
 			}
 		}
 		
-		private function onLoaded(e:flash.events.Event):void 
+		private function onLoaded(e:flash.events.Event):void
 		{
 			var logo:Bitmap = e.target.content;
 			logo.smoothing = true;
@@ -82,42 +85,42 @@ package com.szrapnel.games.quicksave
 			preloaderOverlay.addChild(logo);
 		}
 		
-		private function onStarlingRootCreated(e:starling.events.Event):void 
+		private function onStarlingRootCreated(e:starling.events.Event):void
 		{
 			star.root.addEventListener(DisplayListEvent.HIDE_PRELOADER_OVERLAY, onHidePreloaderOverlay_handler);
 			star.root.addEventListener(DisplayListEvent.SHOW_ADMOB, onShowAdmob_handler);
 			star.root.addEventListener(DisplayListEvent.HIDE_ADMOB, onHideAdmob_handler);
+			star.root.addEventListener(DisplayListEvent.CHANGE_GAME_STATE, changeGameState_handler);
 		}
 		
-		private function onHideAdmob_handler(e:DisplayListEvent):void 
+		private function changeGameState_handler(e:DisplayListEvent):void
+		{
+			gameState = String(e.data);
+		}
+		
+		private function onHideAdmob_handler(e:DisplayListEvent):void
 		{
 			hideAdmob();
 		}
 		
-		private function onShowAdmob_handler(e:DisplayListEvent):void 
+		private function onShowAdmob_handler(e:DisplayListEvent):void
 		{
 			showAdmob();
 		}
 		
-		private function onHidePreloaderOverlay_handler(e:DisplayListEvent):void 
+		private function onHidePreloaderOverlay_handler(e:DisplayListEvent):void
 		{
 			hidePreloaderOverlay();
 		}
 		
-		private function hidePreloaderOverlay():void 
+		private function hidePreloaderOverlay():void
 		{
 			preloaderOverlay.visible = false;
 		}
 		
-		private function showPreloaderOverlay():void 
+		private function showPreloaderOverlay():void
 		{
 			preloaderOverlay.visible = true;
-		}
-		
-		private function deactivate(e:flash.events.Event):void 
-		{
-			// make sure the app behaves well (or exits) when in background
-			//NativeApplication.nativeApplication.exit();
 		}
 		
 	}

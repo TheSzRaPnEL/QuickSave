@@ -64,9 +64,6 @@ package com.szrapnel.games.quicksave.services {
 		
 		private function collision(collision:InteractionCallback):void 
 		{
-			//collision.int1.castBody.applyImpulse(Vec2.weak(0, 5000));
-			//collision.int2.castBody.applyImpulse(Vec2.weak(10000, 10000));
-			//trace(collision.int1.isBody);
 			if (Geom.intersectsBody(ball, leftWall))
 			{
 				ball.position.y = ball.position.y - 50;

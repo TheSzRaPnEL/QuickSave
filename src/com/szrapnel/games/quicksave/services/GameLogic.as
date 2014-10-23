@@ -34,6 +34,7 @@ package com.szrapnel.games.quicksave.services {
 			clickTime = 0;
 			lastMaxVelocity = -500;
 			
+			gameStage.playBtn.removeEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
 			gameStage.playBtn.addEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
 		}
 		
@@ -59,7 +60,11 @@ package com.szrapnel.games.quicksave.services {
 			score = 0;
 			level = 1;
 			gameStage.banner.savedTxtf.text = "" + score+"/" + (level * 10);
+			
+			removeEventListener(Event.ENTER_FRAME, onEFrame);
 			addEventListener(Event.ENTER_FRAME, onEFrame);
+			
+			stage.removeEventListener(TouchEvent.TOUCH, onTouch);
 			stage.addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 		
@@ -212,7 +217,7 @@ package com.szrapnel.games.quicksave.services {
 			symulation.dropNewCow();
 		}
 		
-		private function theend():void 
+		public function theend():void 
 		{
 			symulation.reset();
 			symulation.update(0.1);
@@ -224,6 +229,7 @@ package com.szrapnel.games.quicksave.services {
 			removeEventListener(Event.ENTER_FRAME, onEFrame);
 			removeEventListener(TouchEvent.TOUCH, onTouch);
 			
+			gameStage.playBtn.removeEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
 			gameStage.playBtn.addEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
 			gameStage.playBtn.alpha = 1;
 			gameStage.playBtn.touchable = true;
