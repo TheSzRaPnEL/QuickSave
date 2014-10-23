@@ -36,9 +36,6 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		public function enter():void
 		{
-			trace(gameStageReady);
-			trace(gameLogicReady);
-			
 			if (actor.gameStage == null)
 			{
 				actor.gameStage = new GameStage();
@@ -106,10 +103,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 		{
 			if (gameStageReady && gameLogicReady)
 			{
-				//if (tween == null)
-				//{
-					tween = new TweenLite(actor.selectionScreen, 0.3, {x: -actor.selectionScreen.width / 4, y: -actor.selectionScreen.height / 4, alpha: 0, scaleX: 1.5, scaleY: 1.5, onComplete: enterComplete_handler});
-				//}
+				tween = new TweenLite(actor.selectionScreen, 0.3, {x: actor.offset-actor.selectionScreen.width / 4, y: -actor.selectionScreen.height / 4, alpha: 0, scaleX: 1.5, scaleY: 1.5, onComplete: enterComplete_handler});
 				tween.delay = addingDelay;
 			}
 		}
