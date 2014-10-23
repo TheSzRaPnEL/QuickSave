@@ -1,8 +1,6 @@
-package com.szrapnel.games.quicksave.services
+package com.szrapnel.games.services
 {
-	import com.szrapnel.games.quicksave.events.DisplayListEvent;
 	import com.szrapnel.games.quicksave.states.IState;
-	import starling.core.Starling;
 	
 	/**
 	 * Objects state handling class
@@ -21,8 +19,6 @@ package com.szrapnel.games.quicksave.services
 		
 		public function setState(name:String):void
 		{
-			trace("STATE CHANGE: " + currState + " -> " + name);
-			
 			if (currState == null)
 			{
 				_currState = name;
@@ -40,7 +36,6 @@ package com.szrapnel.games.quicksave.services
 				states[currState].state.exit();
 				prevState = currState;
 				_currState = name;
-				Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.CHANGE_GAME_STATE, false, currState));
 				states[currState].state.enter();
 			}
 		}

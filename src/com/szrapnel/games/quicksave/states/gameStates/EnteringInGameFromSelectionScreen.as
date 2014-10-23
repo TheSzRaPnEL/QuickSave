@@ -1,16 +1,16 @@
 package com.szrapnel.games.quicksave.states.gameStates
 {
 	import com.greensock.TweenLite;
-	import com.szrapnel.games.quicksave.events.DisplayListEvent;
+	import com.szrapnel.games.events.DisplayListEvent;
 	import com.szrapnel.games.quicksave.QuickSave;
-	import com.szrapnel.games.quicksave.services.Assets;
 	import com.szrapnel.games.quicksave.services.GameLogic;
 	import com.szrapnel.games.quicksave.services.GameStage;
 	import com.szrapnel.games.quicksave.services.Symulation;
 	import com.szrapnel.games.quicksave.states.IState;
+	import com.szrapnel.games.services.Assets;
+	import flash.geom.Rectangle;
 	import starling.core.Starling;
 	import starling.events.Event;
-	import flash.geom.Rectangle;
 	
 	/**
 	 * Game MainMenu state definition

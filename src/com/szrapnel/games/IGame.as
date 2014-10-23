@@ -1,6 +1,6 @@
 package com.szrapnel.games 
 {
-	import com.szrapnel.games.quicksave.services.StateMachine;
+	import com.szrapnel.games.services.StateMachine;
 	
 	/**
 	 * ...

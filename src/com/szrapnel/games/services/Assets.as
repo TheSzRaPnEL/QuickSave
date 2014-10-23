@@ -1,4 +1,5 @@
-package com.szrapnel.games.quicksave.services {
+package com.szrapnel.games.services
+{
 	import starling.textures.Texture;
 	import starling.utils.AssetManager;
 	

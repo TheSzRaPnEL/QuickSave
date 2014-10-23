@@ -1,6 +1,6 @@
 package com.szrapnel.games.quicksave.items
 {
-	import com.szrapnel.games.quicksave.services.Assets;
+	import com.szrapnel.games.services.Assets;
 	import starling.core.Starling;
 	import starling.display.MovieClip;
 	import starling.display.Sprite;

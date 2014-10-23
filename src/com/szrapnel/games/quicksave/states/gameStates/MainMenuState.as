@@ -1,8 +1,7 @@
 package com.szrapnel.games.quicksave.states.gameStates 
 {
-	import com.szrapnel.games.quicksave.events.DisplayListEvent;
+	import com.szrapnel.games.events.DisplayListEvent;
 	import com.szrapnel.games.quicksave.events.IntroEvent;
-	import com.szrapnel.games.quicksave.intro.IntroMovie;
 	import com.szrapnel.games.quicksave.QuickSave;
 	import com.szrapnel.games.quicksave.states.IState;
 	import starling.core.Starling;

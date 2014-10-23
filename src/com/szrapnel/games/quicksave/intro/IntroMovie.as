@@ -4,7 +4,7 @@ package com.szrapnel.games.quicksave.intro
 	import com.greensock.TimelineLite;
 	import com.greensock.TweenLite;
 	import com.szrapnel.games.quicksave.events.IntroEvent;
-	import com.szrapnel.games.quicksave.services.Assets;
+	import com.szrapnel.games.services.Assets;
 	import starling.core.Starling;
 	import starling.display.Button;
 	import starling.display.Image;

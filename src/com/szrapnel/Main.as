@@ -1,7 +1,6 @@
 package com.szrapnel
 {
-	import com.szrapnel.games.quicksave.events.DisplayListEvent;
-	import com.szrapnel.games.quicksave.QuickSave;
+	import com.szrapnel.games.events.DisplayListEvent;
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.display.Sprite;
@@ -15,7 +14,6 @@ package com.szrapnel
 	import flash.ui.MultitouchInputMode;
 	import so.cuo.platform.admob.Admob;
 	import so.cuo.platform.admob.AdmobPosition;
-	import so.cuo.platform.admob.AdmobSize;
 	import starling.core.Starling;
 	import starling.events.Event;
 	
@@ -28,15 +26,12 @@ package com.szrapnel
 		private var star:Starling;
 		private var admob:Admob;
 		private var preloaderOverlay:Sprite;
-		private var gameState:String;
 		
 		public function Main():void
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			stage.quality = StageQuality.LOW;
-			
-			gameState = QuickSave.INIT;
 			
 			Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
 			
@@ -90,12 +85,6 @@ package com.szrapnel
 			star.root.addEventListener(DisplayListEvent.HIDE_PRELOADER_OVERLAY, onHidePreloaderOverlay_handler);
 			star.root.addEventListener(DisplayListEvent.SHOW_ADMOB, onShowAdmob_handler);
 			star.root.addEventListener(DisplayListEvent.HIDE_ADMOB, onHideAdmob_handler);
-			star.root.addEventListener(DisplayListEvent.CHANGE_GAME_STATE, changeGameState_handler);
-		}
-		
-		private function changeGameState_handler(e:DisplayListEvent):void
-		{
-			gameState = String(e.data);
 		}
 		
 		private function onHideAdmob_handler(e:DisplayListEvent):void

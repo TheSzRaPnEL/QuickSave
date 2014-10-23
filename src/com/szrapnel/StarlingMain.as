@@ -1,17 +1,11 @@
 package com.szrapnel
 {
 	import com.szrapnel.games.IGame;
-	import com.szrapnel.games.quicksave.events.DisplayListEvent;
-	import com.szrapnel.games.quicksave.intro.IntroMovie;
+	import com.szrapnel.games.events.DisplayListEvent;
 	import com.szrapnel.games.quicksave.QuickSave;
-	import com.szrapnel.games.quicksave.screens.SelectionScreen;
-	import com.szrapnel.games.quicksave.services.Assets;
-	import com.szrapnel.games.quicksave.services.GameLogic;
-	import com.szrapnel.games.quicksave.services.GameStage;
-	import com.szrapnel.games.quicksave.services.Symulation;
+	import com.szrapnel.games.services.Assets;
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
-	import starling.display.Quad;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.utils.AssetManager;
@@ -24,13 +18,6 @@ package com.szrapnel
 	{
 		private var game:IGame;
 		private var assetManager:AssetManager;
-		private var gameStage:GameStage;
-		private var symulation:Symulation;
-		private var gameLogic:GameLogic;
-		private var gameBackground:Quad;
-		private var introMovie:IntroMovie;
-		private var offset:int;
-		private var selectionScreen:SelectionScreen;
 		
 		public function StarlingMain()
 		{

@@ -1,7 +1,7 @@
 package com.szrapnel.games.quicksave.screens
 {
 	import com.szrapnel.games.quicksave.components.SimpleButton;
-	import com.szrapnel.games.quicksave.services.Assets;
+	import com.szrapnel.games.services.Assets;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;

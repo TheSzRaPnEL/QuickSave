@@ -1,4 +1,4 @@
-package com.szrapnel.games.quicksave.events 
+package com.szrapnel.games.events
 {
 	import starling.events.Event;
 	

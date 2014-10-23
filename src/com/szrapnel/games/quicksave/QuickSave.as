@@ -5,7 +5,7 @@ package com.szrapnel.games.quicksave
 	import com.szrapnel.games.quicksave.screens.SelectionScreen;
 	import com.szrapnel.games.quicksave.services.GameLogic;
 	import com.szrapnel.games.quicksave.services.GameStage;
-	import com.szrapnel.games.quicksave.services.StateMachine;
+	import com.szrapnel.games.services.StateMachine;
 	import com.szrapnel.games.quicksave.services.Symulation;
 	import com.szrapnel.games.quicksave.states.gameStates.EnteringInGameFromSelectionScreen;
 	import com.szrapnel.games.quicksave.states.gameStates.EnteringMainMenuFromSelectionScreen;
