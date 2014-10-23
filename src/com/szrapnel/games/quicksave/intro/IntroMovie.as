@@ -1,4 +1,4 @@
-package com.szrapnel.games.quicksave.intro 
+package com.szrapnel.games.quicksave.intro
 {
 	import com.greensock.easing.Bounce;
 	import com.greensock.TimelineLite;
@@ -31,7 +31,7 @@ package com.szrapnel.games.quicksave.intro
 		private var _isPlaying:Boolean;
 		private var timelineAnimation:TimelineLite;
 		
-		public function IntroMovie() 
+		public function IntroMovie()
 		{
 			_isPlaying = false;
 			
@@ -90,7 +90,7 @@ package com.szrapnel.games.quicksave.intro
 			playBtn.visible = false;
 		}
 		
-		private function onPlayBtnTriggered_handler(e:Event):void 
+		private function onPlayBtnTriggered_handler(e:Event):void
 		{
 			touchable = false;
 			dispatchEvent(new IntroEvent(IntroEvent.START_BTN_CLICKED));
@@ -101,28 +101,78 @@ package com.szrapnel.games.quicksave.intro
 			_isPlaying = true;
 			
 			timelineAnimation = new TimelineLite();
-			timelineAnimation.append(TweenLite.delayedCall(0.5, function():void { eyes.visible = true; eyes.alpha = 0 } ));
-			timelineAnimation.append(TweenLite.to(eyes, 1, { alpha:1 } ), 0.5);
-			timelineAnimation.append(TweenLite.delayedCall(0.2, function():void { eyes.texture = Assets.getTexture("CowFall_INTRO_eye2") } ));
-			timelineAnimation.append(TweenLite.to(eyes, 0.2, { alpha:0 } ));
-			timelineAnimation.append(TweenLite.to(eyes, 0.1, { alpha:1 } ));
-			timelineAnimation.append(TweenLite.delayedCall(0, function():void { eyes.texture = Assets.getTexture("CowFall_INTRO_eye1") } ));
-			timelineAnimation.append(TweenLite.delayedCall(0.5, function():void { cloud.visible = true; cloud.alpha = 0 } ));
-			timelineAnimation.append(TweenLite.to(cloud, 0.2, { alpha:1 } ));
-			timelineAnimation.append(TweenLite.delayedCall(0.2, function():void { cloudText.visible = true; cloudText.alpha = 0; } ));
-			timelineAnimation.append(TweenLite.to(cloudText, 0.2, { alpha:1 } ));
-			timelineAnimation.appendMultiple([TweenLite.to(eyes, 0.5, { alpha:0 } ), TweenLite.to(cloud, 0.5, { alpha:0 } ), TweenLite.to(cloudText, 0.5, { alpha:0 } )], 1);
-			timelineAnimation.append(TweenLite.delayedCall(0, function():void { eyes.visible = false; cloud.visible = false; cloudText.visible = false; } ));
-			timelineAnimation.append(TweenLite.delayedCall(0, function():void { cow.visible = true; cow.x = 75; cow.y = -100; cow.rotation = 6 * Math.PI / 180; } ));
-			timelineAnimation.append(TweenLite.to(cow, 0.6, { x:55, y:305, rotation: -6 * Math.PI / 180, ease:Bounce.easeOut } ));
-			timelineAnimation.append(TweenLite.delayedCall(0.2, function():void { cowFallLogo.visible = true; cowFallLogo.alpha = 0; cowFallLogo.scaleX = 1.5; cowFallLogo.scaleY = cowFallLogo.scaleX;  } ));
-			timelineAnimation.append(TweenLite.to(cowFallLogo, 0.6, { scaleX:1, scaleY:1, alpha:1, ease:Bounce.easeOut } ));
-			timelineAnimation.appendMultiple([TweenLite.to(cow, 0.5, { y:cow.y - 200 } ), TweenLite.to(cowFallLogo, 0.5, { y:cowFallLogo.y - 200 } )], 0.5);
-			timelineAnimation.append(TweenLite.delayedCall(0.1, function():void { background2 = new Image(Assets.getTexture("CowFall_bckg_U")); container.addChildAt(background2, 0); } ));
-			timelineAnimation.append(TweenLite.to(background, 0.4, { alpha:0 } ));
-			timelineAnimation.append(TweenLite.delayedCall(0, function():void { playBtn.visible = true; playBtn.alpha = 0 } ));
-			timelineAnimation.append(TweenLite.to(playBtn, 0.2, { alpha:1 } ));
-			timelineAnimation.append(TweenLite.delayedCall(0, function():void { dispatchEvent(new IntroEvent(IntroEvent.INTRO_FINISHED)); } ));
+			timelineAnimation.append(TweenLite.delayedCall(3 / 4, function():void
+				{
+					eyes.visible = true;
+					eyes.alpha = 0
+				}));
+			timelineAnimation.append(TweenLite.to(eyes, 3 / 30, {alpha: 1}));
+			timelineAnimation.append(TweenLite.delayedCall(3 / 20, function():void
+				{
+					cloud.visible = true;
+					cloud.alpha = 0
+				}));
+			timelineAnimation.append(TweenLite.to(cloud, 3 / 20, {alpha: 1}));
+			timelineAnimation.append(TweenLite.delayedCall(0, function():void
+				{
+					eyes.texture = Assets.getTexture("CowFall_INTRO_eye2");
+					cloudText.visible = true;
+					cloudText.alpha = 0;
+				}));
+			timelineAnimation.appendMultiple([TweenLite.to(eyes, 3 / 60, {alpha: 1}), TweenLite.delayedCall(3 / 60, function():void
+				{
+					TweenLite.to(eyes, 3 / 60, {alpha: 0})
+				}), TweenLite.delayedCall(6 / 60, function():void
+				{
+					eyes.texture = Assets.getTexture("CowFall_INTRO_eye1");
+				}), TweenLite.delayedCall(7 / 60, function():void
+				{
+					TweenLite.to(eyes, 3 / 60, {alpha: 1})
+				}), TweenLite.to(cloudText, 3 / 10, {alpha: 1})]);
+			timelineAnimation.appendMultiple([TweenLite.to(eyes, 24 / 60, {alpha: 0}), TweenLite.to(cloud, 24 / 60, {alpha: 0}), TweenLite.to(cloudText, 24 / 60, {alpha: 0})], 33 / 60);
+			
+			timelineAnimation.append(TweenLite.delayedCall(0, function():void
+				{
+					eyes.visible = false;
+					cloud.visible = false;
+					cloudText.visible = false;
+					cow.visible = true;
+					cow.x = 55;
+					cow.y = -100;
+					cow.rotation = 14 * Math.PI / 180;
+				}));
+			timelineAnimation.append(TweenLite.to(cow, 15 / 60, {rotation: -6 * Math.PI / 180, y: 375}));
+			timelineAnimation.appendMultiple([TweenLite.to(cow, 6 / 60, {y: 300}), TweenLite.delayedCall(7 / 60, function():void
+				{
+					TweenLite.to(cow, 6 / 60, {y: 340})
+				}), TweenLite.delayedCall(0, function():void
+				{
+					cowFallLogo.visible = true;
+					cowFallLogo.alpha = 0;
+					cowFallLogo.scaleX = 1.5;
+					cowFallLogo.scaleY = cowFallLogo.scaleX;
+				}), TweenLite.delayedCall(1 / 60, function():void
+				{
+					TweenLite.to(cowFallLogo, 0.6, {scaleX: 1, scaleY: 1, alpha: 1, ease: Bounce.easeOut})
+				})]);
+			timelineAnimation.appendMultiple([TweenLite.to(cow, 15 / 60, {y: cow.y - 180}), TweenLite.to(cowFallLogo, 15 / 60, {y: cowFallLogo.y - 200})], 30 / 60);
+			
+			timelineAnimation.append(TweenLite.delayedCall(0, function():void
+				{
+					background2 = new Image(Assets.getTexture("CowFall_bckg_U"));
+					container.addChildAt(background2, 0);
+				}));
+			timelineAnimation.append(TweenLite.to(background, 30 / 60, {alpha: 0}));
+			timelineAnimation.append(TweenLite.delayedCall(0, function():void
+				{
+					playBtn.visible = true;
+					playBtn.alpha = 0
+				}));
+			timelineAnimation.append(TweenLite.to(playBtn, 15 / 60, {alpha: 1}));
+			timelineAnimation.append(TweenLite.delayedCall(0, function():void
+				{
+					dispatchEvent(new IntroEvent(IntroEvent.INTRO_FINISHED));
+				}));
 			
 			timelineAnimation.play();
 		}
@@ -154,7 +204,7 @@ package com.szrapnel.games.quicksave.intro
 				cow.alpha = 1;
 				cow.rotation = -6 * Math.PI / 180;
 				cow.x = 55;
-				cow.y = 105;
+				cow.y = 125;
 				
 				cowFallLogo.visible = true;
 				cowFallLogo.alpha = 1;
@@ -172,7 +222,7 @@ package com.szrapnel.games.quicksave.intro
 			}
 		}
 		
-		public function get isPlaying():Boolean 
+		public function get isPlaying():Boolean
 		{
 			return _isPlaying;
 		}

@@ -32,9 +32,9 @@ package com.szrapnel.games.quicksave.states.gameStates
 				actor.introMovie = new IntroMovie();
 				actor.introMovie.touchable = false;
 				actor.addChild(actor.introMovie);
+				actor.introMovie.generate();
 			}
 			
-			actor.introMovie.generate();
 			actor.introMovie.x = actor.offset;
 			actor.introMovie.removeEventListener(IntroEvent.INTRO_FINISHED, onIntroFinished_handler);
 			actor.introMovie.addEventListener(IntroEvent.INTRO_FINISHED, onIntroFinished_handler);
