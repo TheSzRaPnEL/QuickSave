@@ -184,6 +184,8 @@ package com.szrapnel.games.quicksave.intro
 				timelineAnimation.stop();
 			}
 			_isPlaying = false;
+			
+			dispatchEvent(new IntroEvent(IntroEvent.INTRO_FINISHED));
 		}
 		
 		public function end():void

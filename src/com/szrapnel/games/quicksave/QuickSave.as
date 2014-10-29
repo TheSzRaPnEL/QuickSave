@@ -2,6 +2,9 @@ package com.szrapnel.games.quicksave
 {
 	import com.szrapnel.games.IGame;
 	import com.szrapnel.games.quicksave.intro.IntroMovie;
+	import com.szrapnel.games.quicksave.levels.Level1;
+	import com.szrapnel.games.quicksave.levels.Level2;
+	import com.szrapnel.games.quicksave.levels.LevelPool;
 	import com.szrapnel.games.quicksave.screens.SelectionScreen;
 	import com.szrapnel.games.quicksave.services.GameLogic;
 	import com.szrapnel.games.quicksave.services.GameStage;
@@ -41,9 +44,7 @@ package com.szrapnel.games.quicksave
 		private var _fsm:StateMachine;
 		private var _assetsList:Vector.<String>;
 		private var _introMovie:IntroMovie;
-		private var _gameStage:GameStage;
-		private var _symulation:Symulation;
-		private var _gameLogic:GameLogic;
+		private var _levelPool:LevelPool;
 		private var _selectionScreen:SelectionScreen;
 		private var _gameBackground:Quad;
 		private var _offset:int;
@@ -52,6 +53,10 @@ package com.szrapnel.games.quicksave
 		public function QuickSave()
 		{
 			_fsm = new StateMachine();
+			
+			_levelPool = new LevelPool();
+			levelPool.addLevel(new Level1());
+			levelPool.addLevel(new Level2());
 			
 			stateMachine.addState(INIT, new InitState(this), new <String>[]);
 			stateMachine.addState(INTRO, new IntroState(this), new <String>[INIT]);
@@ -65,7 +70,7 @@ package com.szrapnel.games.quicksave
 			
 			stateMachine.setState(INIT);
 			
-			_assetsList = new <String>["SS0.xml", "SS0.png", "SS1.xml", "SS1.png", "font.fnt", "font.png"];
+			_assetsList = new <String>["SS0.xml", "SS0.png", "SS1.xml", "SS1.png", "font.fnt", "font.png", "music.mp3", "bounce.mp3"];
 			
 			_offset = int(Starling.current.stage.stageWidth - 540) / 2;
 			
@@ -111,21 +116,6 @@ package com.szrapnel.games.quicksave
 			return _introMovie;
 		}
 		
-		public function get gameStage():GameStage
-		{
-			return _gameStage;
-		}
-		
-		public function get symulation():Symulation
-		{
-			return _symulation;
-		}
-		
-		public function get gameLogic():GameLogic
-		{
-			return _gameLogic;
-		}
-		
 		public function get selectionScreen():SelectionScreen
 		{
 			return _selectionScreen;
@@ -166,19 +156,14 @@ package com.szrapnel.games.quicksave
 			_currentLevel = value;
 		}
 		
-		public function set gameStage(value:GameStage):void
+		public function get levelPool():LevelPool 
 		{
-			_gameStage = value;
+			return _levelPool;
 		}
 		
-		public function set symulation(value:Symulation):void
+		public function set levelPool(value:LevelPool):void 
 		{
-			_symulation = value;
-		}
-		
-		public function set gameLogic(value:GameLogic):void
-		{
-			_gameLogic = value;
+			_levelPool = value;
 		}
 		
 	}

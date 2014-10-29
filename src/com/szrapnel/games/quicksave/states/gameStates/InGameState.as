@@ -1,6 +1,9 @@
 package com.szrapnel.games.quicksave.states.gameStates 
 {
 	import com.szrapnel.games.quicksave.states.IState;
+	import com.szrapnel.games.services.Assets;
+	import com.szrapnel.games.services.SoundController;
+	import flash.media.Sound;
 	
 	/**
 	 * Game MainMenu state definition
@@ -19,8 +22,8 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		public function enter():void 
 		{
-			actor.gameStage.touchable = true;
-			actor.gameLogic.theend();
+			actor.levelPool.getLevel(actor.currentLevel).gameLogic.theend();
+			SoundController.playMusic(Assets.assetManager.getSound("music"));
 		}
 		
 		public function update():void 
@@ -30,7 +33,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		public function exit():void 
 		{
-			
+			SoundController.stopMusic(Assets.assetManager.getSound("music"));
 		}
 		
 		public function get name():String 

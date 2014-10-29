@@ -24,8 +24,8 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		public function enter():void
 		{
-			actor.gameStage.touchable = false;
-			actor.gameLogic.theend();
+			actor.levelPool.getLevel(actor.currentLevel).gameLogic.theend();
+			actor.levelPool.getLevel(actor.currentLevel).gameLogic.touchable = false;
 			
 			actor.selectionScreen.visible = true;
 			actor.selectionScreen.alpha = 0;
