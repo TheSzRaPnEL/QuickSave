@@ -58,8 +58,8 @@ package com.szrapnel.games.services
 			musics.push(music);
 			musicChannels.push(soundChannel);
 			
-			soundChannel.removeEventListener(Event.SOUND_COMPLETE, onMusicComplete);
-			soundChannel.addEventListener(Event.SOUND_COMPLETE, onMusicComplete);
+			musicChannels[musicChannels.length - 1].removeEventListener(Event.SOUND_COMPLETE, onMusicComplete);
+			musicChannels[musicChannels.length - 1].addEventListener(Event.SOUND_COMPLETE, onMusicComplete);
 		}
 		
 		public static function stopMusic(music:Sound):void
@@ -77,9 +77,15 @@ package com.szrapnel.games.services
 		{
 			var soundChannel:SoundChannel = SoundChannel(e.target);
 			soundChannel.removeEventListener(Event.SOUND_COMPLETE, onMusicComplete);
-			soundChannel = musics[musicChannels.indexOf(soundChannel)].play();
-			soundChannel.soundTransform = soundChannel.soundTransform;
-			soundChannel.addEventListener(Event.SOUND_COMPLETE, onMusicComplete);
+			var indexofSoundChannel:int = musicChannels.indexOf(soundChannel);
+			var music:Sound = musics[indexofSoundChannel];
+			soundChannel = music.play();
+			musicChannels.splice(indexofSoundChannel, 1);
+			musicChannels.push(soundChannel);
+			musics.splice(indexofSoundChannel, 1);
+			musics.push(music);
+			musicChannels[musicChannels.length - 1].soundTransform = soundChannel.soundTransform;
+			musicChannels[musicChannels.length - 1].addEventListener(Event.SOUND_COMPLETE, onMusicComplete);
 		}
 		
 	}
