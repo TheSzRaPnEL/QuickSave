@@ -1,8 +1,5 @@
 package com.szrapnel.games.quicksave.services
 {
-	import com.greensock.TweenLite;
-	import flash.utils.clearTimeout;
-	import flash.utils.setTimeout;
 	import nape.geom.Vec2;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -22,20 +19,11 @@ package com.szrapnel.games.quicksave.services
 		private var score:int;
 		private var level:int;
 		private var now:Number;
-		private var now2:Number;
-		private var clickTime:Number;
-		private var clickTime2:Number;
-		private var lastMaxVelocity:Number;
-		private var lastMaxVelocity2:Number;
-		private var timerId:uint;
-		private var timerId2:uint;
 		
 		public function GameLogic(gameStage:GameStage, symulation:Symulation)
 		{
 			this.gameStage = gameStage;
 			this.symulation = symulation;
-			clickTime = 0;
-			lastMaxVelocity = -500;
 			
 			gameStage.playBtn.removeEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
 			gameStage.playBtn.addEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
@@ -75,57 +63,18 @@ package com.szrapnel.games.quicksave.services
 		{
 			if (e.getTouch(stage))
 			{
-				var touches:Vector.<Touch> = e.getTouches(stage);
-				for each (var touch:Touch in touches)
+				var touch:Touch = e.getTouch(stage);
+				if (touch.phase == TouchPhase.BEGAN)
 				{
-					if (touch.phase == TouchPhase.BEGAN)
+					if (symulation.platform.velocity.x > -500)
 					{
-						stopResetVelocityTimer();
-						
-						var now:Number = new Date().time;
-						if (clickTime == 0)
-						{
-							clickTime = now;
-						}
-						
-						if (now - clickTime < 250)
-						{
-							lastMaxVelocity -= 300;
-							symulation.platform.velocity.x = lastMaxVelocity;
-						}
-						else if (symulation.platform.velocity.x > -500)
-						{
-							symulation.platform.velocity.x = -500;
-							lastMaxVelocity = -500;
-						}
-						
-						clickTime = now;
+						symulation.platform.velocity.x = -500;
 					}
-					else if (touch.phase == TouchPhase.ENDED)
+					else
 					{
-						startResetVelocityTimer();
+						symulation.platform.velocity.x -= 100;
 					}
 				}
-			}
-		}
-		
-		private function startResetVelocityTimer():void
-		{
-			clearTimeout(timerId)
-			timerId = setTimeout(resetVelocityTimer, 300);
-		}
-		
-		private function stopResetVelocityTimer():void
-		{
-			clearTimeout(timerId);
-		}
-		
-		private function resetVelocityTimer():void
-		{
-			if (symulation.platform.velocity.x <= -500)
-			{
-				symulation.platform.velocity.x = -500;
-				lastMaxVelocity = -500;
 			}
 		}
 		
@@ -148,8 +97,12 @@ package com.szrapnel.games.quicksave.services
 			else
 			{
 				now = new Date().time;
-				symulation.update((now - startTime + 1) / 1000);
-				//symulation.update(1/60);
+				var delta:Number = now - startTime;
+				if (delta <= 0)
+				{
+					delta = 1;
+				}
+				symulation.update(delta / 1000);
 				startTime = now;
 			}
 		}
@@ -184,7 +137,6 @@ package com.szrapnel.games.quicksave.services
 			gameStage.playBtn.alpha = 1;
 			gameStage.playBtn.touchable = true;
 		}
-	
+		
 	}
-
 }
