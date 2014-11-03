@@ -3,7 +3,6 @@ Run.bat
 PackageApp.bat
 QuickSave.as3proj
 bat/
-bin/QuickSave.swf
 cert/
 dist/
 gfx/CowFall_pack1/
