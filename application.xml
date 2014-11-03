@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <application xmlns="http://ns.adobe.com/air/application/14.0">
-  <id>com.szrapnel.BrazilTikiTaka</id>
+  <id>com.szrapnel.CowFall</id>
   <versionNumber>0.1</versionNumber>
   <supportedProfiles>mobileDevice</supportedProfiles>
-  <filename>BrazilTikiTaka</filename>
-  <name>BrazilTikiTaka</name>
+  <filename>CowFall</filename>
+  <name>CowFall</name>
   <android>
     <manifestAdditions><![CDATA[<manifest android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="8" />
@@ -37,8 +37,8 @@
     <requestedDisplayResolution>high</requestedDisplayResolution>
   </iPhone>
   <initialWindow>
-    <title>BrazilTikiTaka</title>
-    <content>QuickSave.swf</content>
+    <title>CowFall</title>
+    <content>CowFall.swf</content>
     <visible>false</visible>
     <fullScreen>true</fullScreen>
     <!--<autoOrients>false</autoOrients>-->
