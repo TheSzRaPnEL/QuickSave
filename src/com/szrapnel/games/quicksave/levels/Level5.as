@@ -7,9 +7,9 @@ package com.szrapnel.games.quicksave.levels
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class Level2 extends Level1
+	public class Level5 extends Level1
 	{
-		public function Level2()
+		public function Level5()
 		{
 			super();
 		}

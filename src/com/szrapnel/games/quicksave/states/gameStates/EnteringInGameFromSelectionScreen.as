@@ -5,12 +5,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.quicksave.levels.ILevel;
 	import com.szrapnel.games.quicksave.QuickSave;
-	import com.szrapnel.games.quicksave.services.GameLogic;
-	import com.szrapnel.games.quicksave.services.GameStage;
-	import com.szrapnel.games.quicksave.services.Symulation;
 	import com.szrapnel.games.quicksave.states.IState;
-	import com.szrapnel.games.services.Assets;
-	import flash.geom.Rectangle;
 	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.events.Event;
@@ -52,19 +47,19 @@ package com.szrapnel.games.quicksave.states.gameStates
 			level.generate();
 		}
 		
-		private function levelReady_handler(e:Event):void 
+		private function levelReady_handler(e:Event):void
 		{
 			checkStateReady();
 		}
 		
-		private function checkStateReady():void 
+		private function checkStateReady():void
 		{
-			tween = new TweenLite(actor.selectionScreen, 0.3, {x: actor.offset-actor.selectionScreen.width / 4, y: -actor.selectionScreen.height / 4, alpha: 0, scaleX: 1.5, scaleY: 1.5, onComplete: enterComplete_handler});
+			tween = new TweenLite(actor.selectionScreen, 0.3, {x: actor.offset - actor.selectionScreen.width / 4, y: -actor.selectionScreen.height / 4, alpha: 0, scaleX: 1.5, scaleY: 1.5, onComplete: enterComplete_handler});
 			tween.delay = addingDelay;
 		}
 		
 		public function update():void
-		{   
+		{
 		
 		}
 		
@@ -92,7 +87,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 			actor.selectionScreen.touchable = false;
 		}
 		
-		private function dispatchHideAdmobRequest():void 
+		private function dispatchHideAdmobRequest():void
 		{
 			Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.HIDE_ADMOB));
 		}

@@ -4,12 +4,13 @@ package com.szrapnel.games.quicksave
 	import com.szrapnel.games.quicksave.intro.IntroMovie;
 	import com.szrapnel.games.quicksave.levels.Level1;
 	import com.szrapnel.games.quicksave.levels.Level2;
+	import com.szrapnel.games.quicksave.levels.Level3;
+	import com.szrapnel.games.quicksave.levels.Level4;
+	import com.szrapnel.games.quicksave.levels.Level5;
+	import com.szrapnel.games.quicksave.levels.Level6;
+	import com.szrapnel.games.quicksave.levels.Level7;
 	import com.szrapnel.games.quicksave.levels.LevelPool;
 	import com.szrapnel.games.quicksave.screens.SelectionScreen;
-	import com.szrapnel.games.quicksave.services.GameLogic;
-	import com.szrapnel.games.quicksave.services.GameStage;
-	import com.szrapnel.games.services.StateMachine;
-	import com.szrapnel.games.quicksave.services.Symulation;
 	import com.szrapnel.games.quicksave.states.gameStates.EnteringInGameFromSelectionScreen;
 	import com.szrapnel.games.quicksave.states.gameStates.EnteringMainMenuFromSelectionScreen;
 	import com.szrapnel.games.quicksave.states.gameStates.EnteringSelectionScreenFromInGame;
@@ -19,8 +20,10 @@ package com.szrapnel.games.quicksave
 	import com.szrapnel.games.quicksave.states.gameStates.IntroState;
 	import com.szrapnel.games.quicksave.states.gameStates.MainMenuState;
 	import com.szrapnel.games.quicksave.states.gameStates.SelectionScreenState;
+	import com.szrapnel.games.services.StateMachine;
 	import flash.desktop.NativeApplication;
 	import flash.events.KeyboardEvent;
+	import flash.net.SharedObject;
 	import starling.core.Starling;
 	import starling.display.Quad;
 	import starling.display.Sprite;
@@ -49,14 +52,27 @@ package com.szrapnel.games.quicksave
 		private var _gameBackground:Quad;
 		private var _offset:int;
 		private var _currentLevel:int;
+		private var _sharedObject:SharedObject;
 		
 		public function QuickSave()
 		{
+			_sharedObject = SharedObject.getLocal("CowFallSO", "/");
+			if (sharedObject.data.levels == null)
+			{
+				sharedObject.data.levels = new <Boolean>[true,false,false,false,false,false,false];
+				sharedObject.flush();
+			}
+			
 			_fsm = new StateMachine();
 			
 			_levelPool = new LevelPool();
 			levelPool.addLevel(new Level1());
 			levelPool.addLevel(new Level2());
+			levelPool.addLevel(new Level3());
+			levelPool.addLevel(new Level4());
+			levelPool.addLevel(new Level5());
+			levelPool.addLevel(new Level6());
+			levelPool.addLevel(new Level7());
 			
 			stateMachine.addState(INIT, new InitState(this), new <String>[]);
 			stateMachine.addState(INTRO, new IntroState(this), new <String>[INIT]);
@@ -156,14 +172,19 @@ package com.szrapnel.games.quicksave
 			_currentLevel = value;
 		}
 		
-		public function get levelPool():LevelPool 
+		public function get levelPool():LevelPool
 		{
 			return _levelPool;
 		}
 		
-		public function set levelPool(value:LevelPool):void 
+		public function set levelPool(value:LevelPool):void
 		{
 			_levelPool = value;
+		}
+		
+		public function get sharedObject():SharedObject 
+		{
+			return _sharedObject;
 		}
 		
 	}

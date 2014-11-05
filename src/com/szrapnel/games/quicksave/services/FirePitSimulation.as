@@ -7,11 +7,9 @@ package com.szrapnel.games.quicksave.services
 	import nape.shape.Polygon;
 	import nape.space.Space;
 	
-	public class Symulation
+	public class FirePitSimulation implements ISimulation
 	{
 		private var _space:Space;
-		private var _ball:Body;
-		private var _platform:Body;
 		private var leftWall:Body;
 		private var rightWall:Body;
 		private var rightWallBot:Body;
@@ -21,14 +19,15 @@ package com.szrapnel.games.quicksave.services
 		private var glueMaterial:Material;
 		private var antiGlitch:Body;
 		
-		public function Symulation():void
+		private var bodies:Vector.<Body>;
+		
+		public function FirePitSimulation():void
 		{
+			bodies = new Vector.<Body>;
 			super();
-			
-			generate();
 		}
 		
-		private function generate():void
+		public function generate():void
 		{
 			var gravity:Vec2 = Vec2.weak(0, 400);
 			space = new Space(gravity);
@@ -46,7 +45,9 @@ package com.szrapnel.games.quicksave.services
 			var w:int = 540;
 			var h:int = 960;
 			
-			_ball = new Body(BodyType.DYNAMIC);
+			var ball:Body = new Body(BodyType.DYNAMIC);
+			ball.userData.name = "Ball";
+			bodies.push(ball);
 			ball.shapes.add(new Polygon(Polygon.box(50, 50)));
 			ball.shapes.at(0).fluidEnabled = false;
 			ball.shapes.at(0).sensorEnabled = false;
@@ -61,7 +62,9 @@ package com.szrapnel.games.quicksave.services
 			antiGlitch.position.setxy(w / 2, -109);
 			antiGlitch.space = space;
 			
-			_platform = new Body(BodyType.KINEMATIC);
+			var platform:Body = new Body(BodyType.KINEMATIC);
+			platform.userData.name = "Platform";
+			bodies.push(platform);
 			platform.allowRotation = false;
 			platform.shapes.add(new Polygon(Polygon.rect(10, -5, 125, 25)));
 			platform.shapes.add(new Polygon(Polygon.rect(10, -40, 15, 40)));
@@ -108,17 +111,20 @@ package com.szrapnel.games.quicksave.services
 		
 		public function reset():void
 		{
+			var ball:Body = getBody("Ball");
 			ball.position.setxy(270, -100);
 			ball.velocity = Vec2.weak(0, 0);
 			ball.angularVel = 0;
 			ball.rotation = 0;
 			
+			var platform:Body = getBody("Platform");
 			platform.position.setxy(100, 480);
 			platform.velocity.x = 0;
 		}
 		
 		public function dropNewCow():void
 		{
+			var ball:Body = getBody("Ball");
 			ball.position.setxy((540 - 90) * Math.random(), -100);
 			ball.angularVel = 0;
 			ball.rotation = 0;
@@ -137,12 +143,14 @@ package com.szrapnel.games.quicksave.services
 		
 		private function illegalCollisions():void
 		{
+			var platform:Body = getBody("Platform");
 			if (platform.position.x < 0)
 			{
 				platform.position.x = 0;
 				platform.velocity.x = 0;
 			}
-			if (ball.position.x < 24 && platform.position.x < 24)
+			
+			if (getBody("Ball").position.x < 24 && platform.position.x < 24)
 			{
 				platform.position.x = 25;
 				platform.velocity.x = 0;
@@ -151,6 +159,7 @@ package com.szrapnel.games.quicksave.services
 		
 		private function lowerForces():void
 		{
+			var platform:Body = getBody("Platform");
 			if (platform.position.x < 520)
 			{
 				platform.velocity.x += 35;
@@ -162,14 +171,16 @@ package com.szrapnel.games.quicksave.services
 			}
 		}
 		
-		public function get ball():Body
+		public function getBody(name:String):Body
 		{
-			return _ball;
-		}
-		
-		public function get platform():Body
-		{
-			return _platform;
+			for each (var body:Body in bodies)
+			{
+				if (body.userData.name == name)
+				{
+					return body;
+				}
+			}
+			return null;
 		}
 		
 		public function get space():Space

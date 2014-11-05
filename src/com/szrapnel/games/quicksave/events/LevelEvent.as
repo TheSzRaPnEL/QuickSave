@@ -9,6 +9,7 @@ package com.szrapnel.games.quicksave.events
 	public class LevelEvent extends Event 
 	{
 		public static const READY:String = "levelReady";
+		public static const WON:String = "levelWon";
 		
 		public function LevelEvent(type:String, bubbles:Boolean=false, data:Object=null) 
 		{

@@ -1,10 +1,8 @@
-package com.szrapnel.games.quicksave.levels 
+package com.szrapnel.games.quicksave.levels
 {
-	import com.szrapnel.games.quicksave.services.GameLogic;
-	import com.szrapnel.games.quicksave.services.GameStage;
-	import com.szrapnel.games.quicksave.services.Symulation;
-	import flash.events.IEventDispatcher;
-	import starling.events.Event;
+	import com.szrapnel.games.quicksave.services.IGameLogic;
+	import com.szrapnel.games.quicksave.services.IGameStage;
+	import com.szrapnel.games.quicksave.services.ISimulation;
 	
 	/**
 	 * ...
@@ -16,10 +14,10 @@ package com.szrapnel.games.quicksave.levels
 		
 		function dispose():void
 		
-		function get gameStage():GameStage 
+		function get gameStage():IGameStage
 		
-		function get symulation():Symulation 
+		function get symulation():ISimulation
 		
-		function get gameLogic():GameLogic 
+		function get gameLogic():IGameLogic
 	}
 }
