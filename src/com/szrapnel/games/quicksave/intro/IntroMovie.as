@@ -3,10 +3,11 @@ package com.szrapnel.games.quicksave.intro
 	import com.greensock.easing.Bounce;
 	import com.greensock.TimelineLite;
 	import com.greensock.TweenLite;
+	import com.szrapnel.games.quicksave.components.SimpleButton;
 	import com.szrapnel.games.quicksave.events.IntroEvent;
 	import com.szrapnel.games.services.Assets;
+	import flash.net.SharedObject;
 	import starling.core.Starling;
-	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -22,12 +23,12 @@ package com.szrapnel.games.quicksave.intro
 		private var background:Image;
 		private var background2:Image;
 		private var eyes:Image;
-		private var logo:Image;
+		private var logo:SimpleButton;
 		private var cloud:Image;
 		private var cloudText:Image;
 		private var cow:Image;
 		private var cowFallLogo:Image;
-		private var playBtn:Button;
+		private var playBtn:SimpleButton;
 		private var _isPlaying:Boolean;
 		private var timelineAnimation:TimelineLite;
 		
@@ -77,17 +78,23 @@ package com.szrapnel.games.quicksave.intro
 			container.addChild(cowFallLogo);
 			cowFallLogo.visible = false;
 			
-			logo = new Image(Assets.getTexture("CowFall_szrapnel"));
+			logo = new SimpleButton(Assets.getTexture("CowFall_szrapnel"));
 			logo.x = 136;
 			logo.y = 880;
 			container.addChild(logo);
 			
-			playBtn = new Button(Assets.getTexture("CowFall_button_PLAY"));
-			playBtn.addEventListener(Event.TRIGGERED, onPlayBtnTriggered_handler);
+			playBtn = new SimpleButton(Assets.getTexture("CowFall_button_PLAY"));
 			playBtn.x = 193;
 			playBtn.y = 567;
 			container.addChild(playBtn);
 			playBtn.visible = false;
+		}
+		
+		private function onLogoTriggered_handler(e:Event):void
+		{
+			var sharedObject:SharedObject = SharedObject.getLocal("CowFallSO", "/");
+			sharedObject.data.levels = new <Boolean>[true, false, false, false, false, false, false];
+			sharedObject.flush();
 		}
 		
 		private function onPlayBtnTriggered_handler(e:Event):void
@@ -171,6 +178,10 @@ package com.szrapnel.games.quicksave.intro
 			timelineAnimation.append(TweenLite.to(playBtn, 15 / 60, {alpha: 1}));
 			timelineAnimation.append(TweenLite.delayedCall(0, function():void
 				{
+					logo.removeEventListener(Event.TRIGGERED, onLogoTriggered_handler);
+					logo.addEventListener(Event.TRIGGERED, onLogoTriggered_handler);
+					playBtn.removeEventListener(Event.TRIGGERED, onPlayBtnTriggered_handler);
+					playBtn.addEventListener(Event.TRIGGERED, onPlayBtnTriggered_handler);
 					dispatchEvent(new IntroEvent(IntroEvent.INTRO_FINISHED));
 				}));
 			
@@ -185,6 +196,10 @@ package com.szrapnel.games.quicksave.intro
 			}
 			_isPlaying = false;
 			
+			logo.removeEventListener(Event.TRIGGERED, onLogoTriggered_handler);
+			logo.addEventListener(Event.TRIGGERED, onLogoTriggered_handler);
+			playBtn.removeEventListener(Event.TRIGGERED, onPlayBtnTriggered_handler);
+			playBtn.addEventListener(Event.TRIGGERED, onPlayBtnTriggered_handler);
 			dispatchEvent(new IntroEvent(IntroEvent.INTRO_FINISHED));
 		}
 		
@@ -220,6 +235,10 @@ package com.szrapnel.games.quicksave.intro
 				playBtn.x = 193;
 				playBtn.y = 567;
 				
+				logo.removeEventListener(Event.TRIGGERED, onLogoTriggered_handler);
+				logo.addEventListener(Event.TRIGGERED, onLogoTriggered_handler);
+				playBtn.removeEventListener(Event.TRIGGERED, onPlayBtnTriggered_handler);
+				playBtn.addEventListener(Event.TRIGGERED, onPlayBtnTriggered_handler);
 				dispatchEvent(new IntroEvent(IntroEvent.INTRO_FINISHED));
 			}
 		}

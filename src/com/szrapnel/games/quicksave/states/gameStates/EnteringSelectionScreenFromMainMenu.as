@@ -31,6 +31,19 @@ package com.szrapnel.games.quicksave.states.gameStates
 				actor.selectionScreen.x = actor.offset;
 			}
 			
+			var levelActiveListLength:int = actor.sharedObject.data.levels != null ? actor.sharedObject.data.levels.length : 0;
+			for (var i:int = 0; i < levelActiveListLength; i++)
+			{
+				if (actor.sharedObject.data.levels[i])
+				{
+					actor.selectionScreen.activateLevel(i);
+				}
+				else
+				{
+					actor.selectionScreen.deactivateLevel(i);
+				}
+			}
+			
 			actor.selectionScreen.visible = true;
 			
 			tween = new TweenLite(actor.introMovie, 0.3, {x: actor.offset-actor.introMovie.width / 4, y: -actor.introMovie.height / 4, alpha: 0, scaleX: 1.5, scaleY: 1.5, onComplete: enterComplete_handler});

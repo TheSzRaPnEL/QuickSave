@@ -24,19 +24,6 @@ package com.szrapnel.games.quicksave.states.gameStates
 			actor.selectionScreen.touchable = true;
 			actor.selectionScreen.removeEventListener(Event.TRIGGERED, onSelectionScreenTriggered_handler);
 			actor.selectionScreen.addEventListener(Event.TRIGGERED, onSelectionScreenTriggered_handler);
-			
-			var levelActiveList:Vector.<Object> = actor.sharedObject.data.levels;
-			for (var i:int = 0; i < levelActiveList.length; i++)
-			{
-				if (levelActiveList[i])
-				{
-					actor.selectionScreen.activateLevel(i);
-				}
-				else
-				{
-					actor.selectionScreen.deactivateLevel(i);
-				}
-			}
 		}
 		
 		public function update():void 
