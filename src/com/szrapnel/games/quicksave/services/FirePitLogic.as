@@ -2,8 +2,9 @@ package com.szrapnel.games.quicksave.services
 {
 	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.quicksave.items.Banner;
+	import flash.utils.clearTimeout;
+	import flash.utils.setTimeout;
 	import nape.geom.Vec2;
-	import nape.phys.Body;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.Touch;
@@ -23,11 +24,16 @@ package com.szrapnel.games.quicksave.services
 		private var level:int;
 		private var now:Number;
 		private var playBtn:Sprite;
+		private var clickTime:Number;
+		private var lastMaxVelocity:Number;
+		private var timerId:uint;
 		
 		public function FirePitLogic(gameStage:IGameStage, symulation:ISimulation)
 		{
 			this.gameStage = gameStage;
 			this.symulation = symulation;
+			clickTime = 0;
+			lastMaxVelocity = -500;
 			
 			playBtn = gameStage.getObject("PlayBtn");
 			playBtn.removeEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
@@ -64,23 +70,57 @@ package com.szrapnel.games.quicksave.services
 			stage.addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 		
-		private function onTouch(e:TouchEvent):void
+		private function onTouch(e:TouchEvent):void 
 		{
 			if (e.getTouch(stage))
 			{
 				var touch:Touch = e.getTouch(stage);
 				if (touch.phase == TouchPhase.BEGAN)
 				{
-					var platform:Body = symulation.getBody("Platform");
-					if (platform.velocity.x > -500)
+					stopResetVelocityTimer();
+					
+					var now:Number = new Date().time;
+					if (clickTime == 0)
 					{
-						platform.velocity.x = -500;
+						clickTime = now;
 					}
-					else
+					
+					if (now - clickTime < 250)
 					{
-						platform.velocity.x -= 100;
+						lastMaxVelocity -= 300;
+						symulation.getBody("Platform").velocity.x = lastMaxVelocity;
 					}
+					else if (symulation.getBody("Platform").velocity.x > -500)
+					{
+						symulation.getBody("Platform").velocity.x = -500;
+						lastMaxVelocity = -500;
+					}
+					
+					clickTime = now;
 				}
+				else if (touch.phase == TouchPhase.ENDED)
+				{
+					startResetVelocityTimer();
+				}
+			}
+		}
+		
+		private function startResetVelocityTimer():void 
+		{
+			timerId = setTimeout(resetVelocityTimer, 250);
+		}
+		
+		private function stopResetVelocityTimer():void 
+		{
+			clearTimeout(timerId);
+		}
+		
+		private function resetVelocityTimer():void 
+		{
+			if (symulation.getBody("Platform").velocity.x <= -500)
+			{
+				symulation.getBody("Platform").velocity.x = -500;
+				lastMaxVelocity = -500;
 			}
 		}
 		
