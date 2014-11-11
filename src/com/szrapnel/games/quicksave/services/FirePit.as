@@ -78,6 +78,7 @@ package com.szrapnel.games.quicksave.services
 			addObject(playBtn);
 			
 			var hand:Sprite = new TelescopicSpring();
+			TelescopicSpring(hand).generate();
 			hand.x = 600;
 			hand.y = 480;
 			addChild(hand);

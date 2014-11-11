@@ -47,7 +47,6 @@ package com.szrapnel.games.quicksave.items
 		public function setWidth(value:Number):void
 		{
 			var angleToFitWidth:Number = Math.acos((value / topSticks.length) / stickWidth) - Math.PI;
-			trace(angleToFitWidth);
 			topSticks[0].rotation = angleToFitWidth;
 			botSticks[0].rotation = -topSticks[0].rotation;
 			update();

@@ -67,11 +67,11 @@ package com.szrapnel.games.quicksave.services
 			platform.userData.name = "Platform";
 			bodies.push(platform);
 			platform.allowRotation = false;
-			platform.shapes.add(new Polygon(Polygon.rect(10, -5, 175, 25)));
+			platform.shapes.add(new Polygon(Polygon.rect(10, -5, 125, 25)));
 			//platform.shapes.add(new Polygon(Polygon.rect(25, -40, 10, 40)));
 			//platform.shapes.add(new Polygon(Polygon.rect(145, -40, 10, 40)));
 			platform.shapes.add(new Polygon(Polygon.rect(10, -40, 15, 40)));
-			platform.shapes.add(new Polygon(Polygon.rect(170, -40, 15, 40)));
+			platform.shapes.add(new Polygon(Polygon.rect(120, -40, 15, 40)));
 			platform.setShapeMaterials(superGlueMaterial);
 			platform.shapes.at(0).material = superGlueMaterial;
 			platform.shapes.at(1).material = superGlueMaterial;
