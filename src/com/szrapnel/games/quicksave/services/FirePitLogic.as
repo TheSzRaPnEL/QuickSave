@@ -2,9 +2,9 @@ package com.szrapnel.games.quicksave.services
 {
 	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.quicksave.items.Banner;
+	import com.szrapnel.games.quicksave.items.TelescopicSpring;
 	import flash.utils.clearTimeout;
 	import flash.utils.setTimeout;
-	import nape.geom.Vec2;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.Touch;
@@ -21,7 +21,6 @@ package com.szrapnel.games.quicksave.services
 		private var symulation:ISimulation;
 		private var startTime:Number;
 		private var score:int;
-		private var level:int;
 		private var now:Number;
 		private var playBtn:Sprite;
 		private var clickTime:Number;
@@ -60,8 +59,7 @@ package com.szrapnel.games.quicksave.services
 		{
 			startTime = new Date().time;
 			score = 0;
-			level = 1;
-			Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/" + (level * 10);
+			Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/10";
 			
 			removeEventListener(Event.ENTER_FRAME, onEFrame);
 			addEventListener(Event.ENTER_FRAME, onEFrame);
@@ -70,7 +68,7 @@ package com.szrapnel.games.quicksave.services
 			stage.addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 		
-		private function onTouch(e:TouchEvent):void 
+		private function onTouch(e:TouchEvent):void
 		{
 			if (e.getTouch(stage))
 			{
@@ -105,17 +103,17 @@ package com.szrapnel.games.quicksave.services
 			}
 		}
 		
-		private function startResetVelocityTimer():void 
+		private function startResetVelocityTimer():void
 		{
 			timerId = setTimeout(resetVelocityTimer, 250);
 		}
 		
-		private function stopResetVelocityTimer():void 
+		private function stopResetVelocityTimer():void
 		{
 			clearTimeout(timerId);
 		}
 		
-		private function resetVelocityTimer():void 
+		private function resetVelocityTimer():void
 		{
 			if (symulation.getBody("Platform").velocity.x <= -500)
 			{
@@ -134,13 +132,25 @@ package com.szrapnel.games.quicksave.services
 			var platform:Sprite = gameStage.getObject("Platform");
 			platform.x = symulation.getBody("Platform").position.x;
 			
+			var hand:Sprite = gameStage.getObject("Hand");
+			TelescopicSpring(hand).setWidth(470 - platform.x);
+			
+			if (cow.y < 0)
+			{
+				gameStage.getObject("Indicator").visible = true;
+				gameStage.getObject("Indicator").x = cow.x;
+			}
+			else
+			{
+				gameStage.getObject("Indicator").visible = false;
+			}
+			
 			if (cow.y > 960)
 			{
 				theend();
 			}
 			else if (cow.x > 540 || cow.x < -110)
 			{
-				dispatchEvent(new LevelEvent(LevelEvent.WON));
 				dropNewCow();
 			}
 			else
@@ -161,12 +171,13 @@ package com.szrapnel.games.quicksave.services
 			score++;
 			if (score >= 10)
 			{
-				level++;
-				symulation.space.gravity = Vec2.weak(0, 500 + 100 * level);
+				dispatchEvent(new LevelEvent(LevelEvent.WON));
 			}
-			Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/" + (level * 10);
-			
-			symulation.dropNewCow();
+			else
+			{
+				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/10";
+				symulation.dropNewCow();
+			}
 		}
 		
 		public function theend():void

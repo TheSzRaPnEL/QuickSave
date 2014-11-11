@@ -7,6 +7,8 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.items.Fire;
 	import com.szrapnel.games.quicksave.items.Platform;
 	import com.szrapnel.games.quicksave.items.PlayBtn;
+	import com.szrapnel.games.quicksave.items.TelescopicSpring;
+	import starling.display.Quad;
 	import starling.display.Sprite;
 	
 	/**
@@ -74,6 +76,24 @@ package com.szrapnel.games.quicksave.services
 			addChild(playBtn);
 			playBtn.name = "PlayBtn";
 			addObject(playBtn);
+			
+			var hand:Sprite = new TelescopicSpring();
+			hand.x = 600;
+			hand.y = 480;
+			addChild(hand);
+			hand.name = "Hand";
+			addObject(hand);
+			TelescopicSpring(hand).setWidth(10);
+			
+			var indicator:Sprite = new Sprite();
+			var quad:Quad = new Quad(20, 20, 0xFF0000);
+			indicator.addChild(quad);
+			indicator.pivotX = 10;
+			indicator.visible = false;
+			indicator.y = 0;
+			addChild(indicator);
+			indicator.name = "Indicator";
+			addObject(indicator);
 		}
 		
 		public function addObject(object:Sprite):void

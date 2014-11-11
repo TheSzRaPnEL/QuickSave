@@ -10,6 +10,7 @@ package com.szrapnel.games.quicksave.services
 	public class FirePitSimulation implements ISimulation
 	{
 		private var _space:Space;
+		private var topWall:Body;
 		private var leftWall:Body;
 		private var rightWall:Body;
 		private var rightWallBot:Body;
@@ -17,8 +18,8 @@ package com.szrapnel.games.quicksave.services
 		private var dockWallBot:Body;
 		private var bouncyMaterial:Material;
 		private var glueMaterial:Material;
+		private var superGlueMaterial:Material;
 		private var antiGlitch:Body;
-		
 		private var bodies:Vector.<Body>;
 		
 		public function FirePitSimulation():void
@@ -35,7 +36,8 @@ package com.szrapnel.games.quicksave.services
 			space.worldLinearDrag = 0.001;
 			
 			bouncyMaterial = new Material(1, 0.5, 0.5, 1);
-			glueMaterial = new Material(0, 5, 5, 1, 1);
+			glueMaterial = new Material(0, 5, 5, 0.01, 1);
+			superGlueMaterial = new Material(0, 15, 15, 0.01, 5);
 			
 			setUp();
 		}
@@ -55,7 +57,6 @@ package com.szrapnel.games.quicksave.services
 			ball.setShapeMaterials(bouncyMaterial);
 			ball.angularVel = 10;
 			ball.space = space;
-			ball.disableCCD = true;
 			
 			antiGlitch = new Body(BodyType.KINEMATIC);
 			antiGlitch.shapes.add(new Polygon(Polygon.box(50, 50)));
@@ -66,28 +67,43 @@ package com.szrapnel.games.quicksave.services
 			platform.userData.name = "Platform";
 			bodies.push(platform);
 			platform.allowRotation = false;
-			platform.shapes.add(new Polygon(Polygon.rect(10, -5, 125, 25)));
+			platform.shapes.add(new Polygon(Polygon.rect(10, -5, 175, 25)));
+			//platform.shapes.add(new Polygon(Polygon.rect(25, -40, 10, 40)));
+			//platform.shapes.add(new Polygon(Polygon.rect(145, -40, 10, 40)));
 			platform.shapes.add(new Polygon(Polygon.rect(10, -40, 15, 40)));
-			platform.shapes.add(new Polygon(Polygon.rect(120, -40, 15, 40)));
-			platform.setShapeMaterials(glueMaterial);
+			platform.shapes.add(new Polygon(Polygon.rect(170, -40, 15, 40)));
+			platform.setShapeMaterials(superGlueMaterial);
+			platform.shapes.at(0).material = superGlueMaterial;
+			platform.shapes.at(1).material = superGlueMaterial;
+			platform.shapes.at(2).material = superGlueMaterial;
+			//platform.shapes.at(3).material = glueMaterial;
+			//platform.shapes.at(4).material = glueMaterial;
 			platform.shapes.at(0).fluidEnabled = false;
 			platform.shapes.at(0).sensorEnabled = false;
 			platform.shapes.at(1).fluidEnabled = false;
 			platform.shapes.at(1).sensorEnabled = false;
 			platform.shapes.at(2).fluidEnabled = false;
 			platform.shapes.at(2).sensorEnabled = false;
+			//platform.shapes.at(3).sensorEnabled = false;
+			//platform.shapes.at(3).sensorEnabled = false;
+			//platform.shapes.at(4).sensorEnabled = false;
+			//platform.shapes.at(4).sensorEnabled = false;
 			platform.position.setxy(100, h / 2);
 			platform.velocity.x = 0;
 			platform.space = space;
-			platform.disableCCD = true;
+			
+			topWall = new Body(BodyType.STATIC);
+			topWall.shapes.add(new Polygon(Polygon.rect(-50, -400, 640, 40)));
+			topWall.setShapeMaterials(glueMaterial);
+			topWall.space = space;
 			
 			leftWall = new Body(BodyType.STATIC);
-			leftWall.shapes.add(new Polygon(Polygon.rect(-50, -100, 55, h + 200)));
+			leftWall.shapes.add(new Polygon(Polygon.rect(-50, -400, 55, h + 500)));
 			leftWall.setShapeMaterials(glueMaterial);
 			leftWall.space = space;
 			
 			rightWall = new Body(BodyType.STATIC);
-			rightWall.shapes.add(new Polygon(Polygon.rect(w - 5, -100, 35, 475)));
+			rightWall.shapes.add(new Polygon(Polygon.rect(w - 5, -400, 35, 775)));
 			rightWall.setShapeMaterials(glueMaterial);
 			rightWall.space = space;
 			
