@@ -57,7 +57,8 @@ package com.szrapnel.games.quicksave.intro
 			container.addChild(cloud);
 			cloud.visible = false;
 			
-			cloudText = new Image(Assets.getTexture("CowFall_INTRO_myNAME"));
+			var texturesNames:Vector.<String> = new < String > ["CowFall_INTRO_myNAME", "CowFall_INTRO_yoloYolt", "CowFall_INTRO_brasNeverDies"];
+			cloudText = new Image(Assets.getTexture(texturesNames[int(3*Math.random())]));
 			cloudText.x = 141;
 			cloudText.y = 112;
 			container.addChild(cloudText);

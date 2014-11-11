@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.5.2</string>
+        <string>3.5.3</string>
         <key>fileName</key>
         <string>E:/Projects/QuickSave/gfx/CowFallSS1.tps</string>
         <key>autoSDSettings</key>
@@ -221,6 +221,17 @@
             <filename>CowFall_pack1/CowFall_doc.png</filename>
             <filename>CowFall_pack1/CowFall_hurdle.png</filename>
             <filename>CowFall_pack1/CowFall_platform.png</filename>
+            <filename>CowFall_pack4/CowFall_bckg_U.jpg</filename>
+            <filename>CowFall_pack4/CowFall_button_taptap.png</filename>
+            <filename>CowFall_pack4/CowFall_CowDEATH_001.png</filename>
+            <filename>CowFall_pack4/CowFall_CowDEATH_002.png</filename>
+            <filename>CowFall_pack4/CowFall_CowDEATH_003.png</filename>
+            <filename>CowFall_pack4/CowFall_CowDEATH_004.png</filename>
+            <filename>CowFall_pack4/CowFall_failed.png</filename>
+            <filename>CowFall_pack4/CowFall_INTRO_myNAME.png</filename>
+            <filename>CowFall_pack4/CowFall_skull.png</filename>
+            <filename>CowFall_pack4/CowFall_INTRO_brasNeverDies.png</filename>
+            <filename>CowFall_pack4/CowFall_INTRO_yoloYolt.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
