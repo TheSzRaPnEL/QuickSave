@@ -2,6 +2,7 @@ package com.szrapnel.games.quicksave.services
 {
 	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.quicksave.items.Banner;
+	import com.szrapnel.games.quicksave.items.CowDeath;
 	import com.szrapnel.games.quicksave.items.TelescopicSpring;
 	import flash.utils.clearTimeout;
 	import flash.utils.setTimeout;
@@ -35,8 +36,6 @@ package com.szrapnel.games.quicksave.services
 			lastMaxVelocity = -500;
 			
 			playBtn = gameStage.getObject("PlayBtn");
-			playBtn.removeEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
-			playBtn.addEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
 		}
 		
 		private function onPlayBtnTouch(e:TouchEvent):void
@@ -50,7 +49,7 @@ package com.szrapnel.games.quicksave.services
 					playBtn.alpha = 0;
 					playBtn.touchable = false;
 					
-					init();
+					start();
 				}
 			}
 		}
@@ -61,11 +60,12 @@ package com.szrapnel.games.quicksave.services
 			score = 0;
 			Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/10";
 			
-			removeEventListener(Event.ENTER_FRAME, onEFrame);
-			addEventListener(Event.ENTER_FRAME, onEFrame);
+			symulation.reset();
 			
-			stage.removeEventListener(TouchEvent.TOUCH, onTouch);
-			stage.addEventListener(TouchEvent.TOUCH, onTouch);
+			playBtn.removeEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
+			playBtn.addEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
+			playBtn.alpha = 1;
+			playBtn.touchable = true;
 		}
 		
 		private function onTouch(e:TouchEvent):void
@@ -145,11 +145,11 @@ package com.szrapnel.games.quicksave.services
 				gameStage.getObject("Indicator").visible = false;
 			}
 			
-			if (cow.y > 960)
+			if (cow.y > 900)
 			{
 				theend();
 			}
-			else if (cow.x > 540 || cow.x < -110)
+			else if (cow.x > 580 || cow.x < -110)
 			{
 				dropNewCow();
 			}
@@ -169,8 +169,9 @@ package com.szrapnel.games.quicksave.services
 		private function dropNewCow():void
 		{
 			score++;
-			if (score >= 10)
+			if (score >= 1)
 			{
+				removeEventListener(Event.ENTER_FRAME, onEFrame);
 				dispatchEvent(new LevelEvent(LevelEvent.WON));
 			}
 			else
@@ -180,22 +181,47 @@ package com.szrapnel.games.quicksave.services
 			}
 		}
 		
-		public function theend():void
+		public function stop():void
 		{
-			symulation.reset();
-			symulation.update(0.1);
-			
-			gameStage.getObject("Cow").x = symulation.getBody("Ball").position.x;
-			gameStage.getObject("Cow").y = symulation.getBody("Ball").position.y;
-			gameStage.getObject("Platform").x = symulation.getBody("Platform").position.x;
-			
 			removeEventListener(Event.ENTER_FRAME, onEFrame);
 			removeEventListener(TouchEvent.TOUCH, onTouch);
+		}
+		
+		public function start():void
+		{
+			removeEventListener(Event.ENTER_FRAME, onEFrame);
+			addEventListener(Event.ENTER_FRAME, onEFrame);
 			
-			playBtn.removeEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
-			playBtn.addEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
-			playBtn.alpha = 1;
-			playBtn.touchable = true;
+			stage.removeEventListener(TouchEvent.TOUCH, onTouch);
+			stage.addEventListener(TouchEvent.TOUCH, onTouch);
+			
+			gameStage.getObject("Cow").visible = true;
+			startTime = new Date().time;
+		}
+		
+		public function theend():void
+		{
+			stop();
+			
+			gameStage.getObject("Death").x = gameStage.getObject("Cow").x;
+			gameStage.getObject("Death").y = gameStage.getObject("Cow").y;
+			gameStage.getObject("Death").rotation = gameStage.getObject("Cow").rotation;
+			gameStage.getObject("Death").visible = true;
+			gameStage.getObject("Death").removeEventListener(Event.COMPLETE, onDeathComplete_handler);
+			gameStage.getObject("Death").addEventListener(Event.COMPLETE, onDeathComplete_handler);
+			CowDeath(gameStage.getObject("Death")).play();
+			
+			gameStage.getObject("Cow").visible = false;
+			
+			TelescopicSpring(gameStage.getObject("Hand")).setWidth(470 - gameStage.getObject("Platform").x);
+		}
+		
+		private function onDeathComplete_handler(e:Event):void 
+		{
+			gameStage.getObject("Death").visible = false;
+			gameStage.getObject("Death").removeEventListener(Event.COMPLETE, onDeathComplete_handler);
+			
+			init();
 		}
 		
 	}

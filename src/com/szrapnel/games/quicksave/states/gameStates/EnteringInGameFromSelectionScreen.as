@@ -37,10 +37,15 @@ package com.szrapnel.games.quicksave.states.gameStates
 			
 			if (DisplayObject(level).parent == null)
 			{
-				DisplayObject(level).x = actor.offset;
 				actor.addChildAt(level, actor.getChildIndex(actor.selectionScreen));
 			}
 			
+			DisplayObject(level).visible = true;
+			DisplayObject(level).alpha = 1;
+			DisplayObject(level).scaleX = 1;
+			DisplayObject(level).scaleY = 1;
+			DisplayObject(level).x = actor.offset;
+			DisplayObject(level).y = actor.y;
 			DisplayObject(level).removeEventListener(LevelEvent.READY, levelReady_handler);
 			DisplayObject(level).addEventListener(LevelEvent.READY, levelReady_handler);
 			

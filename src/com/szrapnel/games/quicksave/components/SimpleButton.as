@@ -14,8 +14,8 @@ package com.szrapnel.games.quicksave.components
 	 */
 	public class SimpleButton extends DisplayObjectContainer
 	{
-		private var upState:Texture;
-		private var downState:Texture;
+		private var _upState:Texture;
+		private var _downState:Texture;
 		private var image:Image;
 		private var onBtn:Boolean;
 		
@@ -75,6 +75,30 @@ package com.szrapnel.games.quicksave.components
 				}
 			}
 		}
-	
+		
+		public function set upState(value:Texture):void 
+		{
+			_upState = value;
+			if (image != null)
+			{
+				image.texture = upState;
+			}
+		}
+		
+		public function get upState():Texture 
+		{
+			return _upState;
+		}
+		
+		public function get downState():Texture 
+		{
+			return _downState;
+		}
+		
+		public function set downState(value:Texture):void 
+		{
+			_downState = value;
+		}
+		
 	}
 }

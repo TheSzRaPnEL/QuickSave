@@ -195,7 +195,6 @@
             <filename>CowFall_pack2/CowFall_INTRO_eye1.jpg</filename>
             <filename>CowFall_pack2/CowFall_INTRO_eye2.jpg</filename>
             <filename>CowFall_pack2/CowFall_INTRO_logo.png</filename>
-            <filename>CowFall_pack2/CowFall_INTRO_myNAME.jpg</filename>
             <filename>CowFall_pack3/CowFall_szrapnel.png</filename>
             <filename>CowFall_pack3/CowFall_bckg3.jpg</filename>
             <filename>CowFall_pack3/CowFall_bckg3_anim_000.jpg</filename>
@@ -204,15 +203,12 @@
             <filename>CowFall_pack3/CowFall_bckg3_anim_003.jpg</filename>
             <filename>CowFall_pack3/CowFall_Bull.png</filename>
             <filename>CowFall_pack3/CowFall_banner.png</filename>
-            <filename>CowFall_pack3/CowFall_bckg_U.jpg</filename>
             <filename>CowFall_pack3/CowFall_bckg3_button_off.png</filename>
             <filename>CowFall_pack3/CowFall_bckg3_button_on.png</filename>
             <filename>CowFall_pack3/CowFall_bckg3_doc.png</filename>
             <filename>CowFall_pack3/CowFall_bckg3_door.png</filename>
             <filename>CowFall_pack3/CowFall_bckg3_platform.png</filename>
             <filename>CowFall_pack3/CowFall_button_pouse.png</filename>
-            <filename>CowFall_pack3/CowFall_button_taptap.png</filename>
-            <filename>CowFall_pack3/CowFall_skull.png</filename>
             <filename>CowFall_pack3/CowFall_lock.png</filename>
             <filename>CowFall_pack3/CowFall_SScreen_level1.png</filename>
             <filename>CowFall_pack3/CowFall_SScreen_level3.png</filename>

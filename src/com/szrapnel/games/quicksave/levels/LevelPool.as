@@ -30,5 +30,10 @@ package com.szrapnel.games.quicksave.levels
 			}
 		}
 		
+		public function get length():int
+		{
+			return levels.length;
+		}
+		
 	}
 }

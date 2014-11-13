@@ -45,21 +45,5 @@ package com.szrapnel.games.quicksave.levels
 			TweenLite.delayedCall(delay, dispatchLevelReady);
 		}
 		
-		public override function dispose():void
-		{
-			TweenLite.killDelayedCallsTo = dispatchLevelReady;
-			
-			if (gameLogic != null)
-			{
-				gameLogic.theend();
-			}
-		}
-		
-		private function dispatchLevelReady():void
-		{
-			isGenerated = true;
-			dispatchEvent(new LevelEvent(LevelEvent.READY));
-		}
-		
 	}
 }

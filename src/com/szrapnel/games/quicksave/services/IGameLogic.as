@@ -10,5 +10,9 @@ package com.szrapnel.games.quicksave.services
 		function init():void
 		
 		function theend():void
+		
+		function stop():void
+		
+		function start():void
 	}
 }

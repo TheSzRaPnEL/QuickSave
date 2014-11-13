@@ -5,10 +5,11 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.items.Cow;
 	import com.szrapnel.games.quicksave.items.CowDeath;
 	import com.szrapnel.games.quicksave.items.Dock;
-	import com.szrapnel.games.quicksave.items.Fire;
+	import com.szrapnel.games.quicksave.items.LaserField;
 	import com.szrapnel.games.quicksave.items.Platform;
 	import com.szrapnel.games.quicksave.items.PlayBtn;
 	import com.szrapnel.games.quicksave.items.TelescopicSpring;
+	import com.szrapnel.games.services.Assets;
 	import starling.display.Quad;
 	import starling.display.Sprite;
 	
@@ -16,11 +17,11 @@ package com.szrapnel.games.quicksave.services
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class FirePit extends Sprite implements IGameStage
+	public class RocketSilo extends Sprite implements IGameStage
 	{
 		private var elements:Vector.<Sprite>;
 		
-		public function FirePit()
+		public function RocketSilo()
 		{
 			elements = new Vector.<Sprite>;
 			super();
@@ -29,19 +30,20 @@ package com.szrapnel.games.quicksave.services
 		public function generate():void
 		{
 			var background:Sprite = new Background();
+			Background(background).image.texture = Assets.getTexture("CowFall_bckg3");
 			background.x = 0;
 			background.y = 0;
 			addChild(background);
 			background.name = "Background";
 			addObject(background);
 			
-			var fire:Sprite = new Fire();
-			fire.x = 0;
-			fire.y = background.height - fire.height;
-			addChild(fire);
-			Fire(fire).play();
-			fire.name = "Animation";
-			addObject(fire);
+			var lasers:Sprite = new LaserField();
+			lasers.x = 0;
+			lasers.y = background.height - lasers.height;
+			addChild(lasers);
+			LaserField(lasers).play();
+			lasers.name = "Animation";
+			addObject(lasers);
 			
 			var cow:Sprite = new Cow();
 			cow.x = 0;

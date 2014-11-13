@@ -44,6 +44,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 		private function onSelectionScreenTriggered_handler(e:Event):void 
 		{
 			actor.currentLevel = e.data;
+			trace(actor.currentLevel);
 			actor.stateMachine.setState(QuickSave.ENTERING_IN_GAME_FROM_SELECTION_SCREEN);
 		}
 		

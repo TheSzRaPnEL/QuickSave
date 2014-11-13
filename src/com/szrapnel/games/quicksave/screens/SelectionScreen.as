@@ -27,14 +27,7 @@ package com.szrapnel.games.quicksave.screens
 				for (var j:int = 0; j < 3; j++)
 				{
 					var miniature:SimpleButton;
-					if (i == 0 && j == 0)
-					{
-						miniature = new SimpleButton(Assets.getTexture("CowFall_SScreen_level1"));
-					}
-					else
-					{
-						miniature = new SimpleButton(Assets.getTexture("CowFall_SScreen_level3_lock"));
-					}
+					miniature = new SimpleButton(Assets.getTexture("CowFall_SScreen_level" + (i * 3 + j + 1) + "_lock"));
 					miniature.x = j * background.width / 3;
 					miniature.y = (2*i+1) * background.height / 7;
 					miniature.addEventListener(Event.TRIGGERED, onMiniatureTriggered_handler);
@@ -43,7 +36,7 @@ package com.szrapnel.games.quicksave.screens
 				}
 			}
 			
-			miniature = new SimpleButton(Assets.getTexture("CowFall_SScreen_level3_lock"));
+			miniature = new SimpleButton(Assets.getTexture("CowFall_SScreen_level7_lock"));
 			miniature.x = background.width / 3;
 			miniature.y = 7 * background.height / 10;
 			miniature.addEventListener(Event.TRIGGERED, onMiniatureTriggered_handler);
@@ -60,7 +53,8 @@ package com.szrapnel.games.quicksave.screens
 		{
 			levelMiniatures[value].removeEventListener(Event.TRIGGERED, onMiniatureTriggered_handler);
 			levelMiniatures[value].touchable = false;
-			levelMiniatures[value].alpha = 0.2;
+			levelMiniatures[value].upState = Assets.getTexture("CowFall_SScreen_level" + (value+1) + "_lock");
+			levelMiniatures[value].downState = levelMiniatures[value].upState;
 		}
 		
 		public function activateLevel(value:int):void
@@ -68,7 +62,8 @@ package com.szrapnel.games.quicksave.screens
 			levelMiniatures[value].removeEventListener(Event.TRIGGERED, onMiniatureTriggered_handler);
 			levelMiniatures[value].addEventListener(Event.TRIGGERED, onMiniatureTriggered_handler);
 			levelMiniatures[value].touchable = true;
-			levelMiniatures[value].alpha = 1;
+			levelMiniatures[value].upState = Assets.getTexture("CowFall_SScreen_level" + (value+1));
+			levelMiniatures[value].downState = levelMiniatures[value].upState;
 		}
 		
 	}

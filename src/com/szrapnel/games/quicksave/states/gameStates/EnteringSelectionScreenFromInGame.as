@@ -2,9 +2,11 @@ package com.szrapnel.games.quicksave.states.gameStates
 {
 	import com.greensock.TweenLite;
 	import com.szrapnel.games.events.DisplayListEvent;
+	import com.szrapnel.games.quicksave.levels.ILevel;
 	import com.szrapnel.games.quicksave.QuickSave;
 	import com.szrapnel.games.quicksave.states.IState;
 	import starling.core.Starling;
+	import starling.display.DisplayObject;
 	
 	/**
 	 * Game MainMenu state definition
@@ -24,8 +26,8 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		public function enter():void
 		{
-			actor.levelPool.getLevel(actor.currentLevel).gameLogic.theend();
-			actor.levelPool.getLevel(actor.currentLevel).gameLogic.touchable = false;
+			var currLevel:ILevel = actor.levelPool.getLevel(actor.currentLevel);
+			currLevel.gameLogic.stop();
 			
 			actor.selectionScreen.visible = true;
 			actor.selectionScreen.alpha = 0;
@@ -57,6 +59,8 @@ package com.szrapnel.games.quicksave.states.gameStates
 		{
 			tween.complete(true, true);
 			tween = null;
+			
+			DisplayObject(actor.levelPool.getLevel(actor.currentLevel)).removeFromParent();
 			
 			dispatchShowAdmobRequest();
 		}

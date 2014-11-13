@@ -28,7 +28,6 @@ package com.szrapnel.games.quicksave.states.gameStates
 				actor.selectionScreen = new SelectionScreen();
 				actor.addChildAt(actor.selectionScreen, 1);
 				actor.selectionScreen.touchable = false;
-				actor.selectionScreen.x = actor.offset;
 			}
 			
 			var levelActiveListLength:int = actor.sharedObject.data.levels != null ? actor.sharedObject.data.levels.length : 0;
@@ -45,6 +44,11 @@ package com.szrapnel.games.quicksave.states.gameStates
 			}
 			
 			actor.selectionScreen.visible = true;
+			actor.selectionScreen.alpha = 1;
+			actor.selectionScreen.scaleX = 1;
+			actor.selectionScreen.scaleY = 1;
+			actor.selectionScreen.x = actor.offset;
+			actor.selectionScreen.y = actor.y;
 			
 			tween = new TweenLite(actor.introMovie, 0.3, {x: actor.offset-actor.introMovie.width / 4, y: -actor.introMovie.height / 4, alpha: 0, scaleX: 1.5, scaleY: 1.5, onComplete: enterComplete_handler});
 			tween.play();

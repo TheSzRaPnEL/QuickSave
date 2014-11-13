@@ -11,7 +11,9 @@ package com.szrapnel.games.quicksave
 	import com.szrapnel.games.quicksave.levels.Level7;
 	import com.szrapnel.games.quicksave.levels.LevelPool;
 	import com.szrapnel.games.quicksave.screens.SelectionScreen;
+	import com.szrapnel.games.quicksave.states.gameStates.ChangingLevel;
 	import com.szrapnel.games.quicksave.states.gameStates.EnteringInGameFromSelectionScreen;
+	import com.szrapnel.games.quicksave.states.gameStates.EnteringMainMenuFromInGame;
 	import com.szrapnel.games.quicksave.states.gameStates.EnteringMainMenuFromSelectionScreen;
 	import com.szrapnel.games.quicksave.states.gameStates.EnteringSelectionScreenFromInGame;
 	import com.szrapnel.games.quicksave.states.gameStates.EnteringSelectionScreenFromMainMenu;
@@ -40,8 +42,10 @@ package com.szrapnel.games.quicksave
 		public static const ENTERING_SELECTION_SCREEN_FROM_MAIN_MENU:String = "enteringSelectionScreenFromMainMenu";
 		public static const SELECTION_SCREEN:String = "selectionScreen";
 		public static const ENTERING_MAIN_MENU_FROM_SELECTION_SCREEN:String = "enteringMainMenuFromSelectionScreen";
+		public static const ENTERING_MAIN_MENU_FROM_IN_GAME:String = "enteringMainMenuFromInGame";
 		public static const ENTERING_IN_GAME_FROM_SELECTION_SCREEN:String = "enteringInGameFromSelectionScreen";
 		public static const IN_GAME:String = "inGame";
+		public static const CHANGING_LEVEL:String = "changingLevel";
 		public static const ENTERING_SELECTION_SCREEN_FROM_IN_GAME:String = "enteringSelectionScreenFromInGame";
 		
 		private var _fsm:StateMachine;
@@ -76,12 +80,14 @@ package com.szrapnel.games.quicksave
 			
 			stateMachine.addState(INIT, new InitState(this), new <String>[]);
 			stateMachine.addState(INTRO, new IntroState(this), new <String>[INIT]);
-			stateMachine.addState(MAIN_MENU, new MainMenuState(this), new <String>[INTRO, ENTERING_MAIN_MENU_FROM_SELECTION_SCREEN]);
+			stateMachine.addState(MAIN_MENU, new MainMenuState(this), new <String>[INTRO, ENTERING_MAIN_MENU_FROM_SELECTION_SCREEN, ENTERING_MAIN_MENU_FROM_IN_GAME]);
 			stateMachine.addState(ENTERING_SELECTION_SCREEN_FROM_MAIN_MENU, new EnteringSelectionScreenFromMainMenu(this), new <String>[MAIN_MENU]);
 			stateMachine.addState(SELECTION_SCREEN, new SelectionScreenState(this), new <String>[ENTERING_SELECTION_SCREEN_FROM_MAIN_MENU, ENTERING_SELECTION_SCREEN_FROM_IN_GAME]);
 			stateMachine.addState(ENTERING_MAIN_MENU_FROM_SELECTION_SCREEN, new EnteringMainMenuFromSelectionScreen(this), new <String>[SELECTION_SCREEN]);
+			stateMachine.addState(ENTERING_MAIN_MENU_FROM_IN_GAME, new EnteringMainMenuFromInGame(this), new <String>[IN_GAME]);
 			stateMachine.addState(ENTERING_IN_GAME_FROM_SELECTION_SCREEN, new EnteringInGameFromSelectionScreen(this), new <String>[SELECTION_SCREEN]);
-			stateMachine.addState(IN_GAME, new InGameState(this), new <String>[ENTERING_IN_GAME_FROM_SELECTION_SCREEN]);
+			stateMachine.addState(IN_GAME, new InGameState(this), new <String>[ENTERING_IN_GAME_FROM_SELECTION_SCREEN, CHANGING_LEVEL]);
+			stateMachine.addState(CHANGING_LEVEL, new ChangingLevel(this), new <String>[IN_GAME]);
 			stateMachine.addState(ENTERING_SELECTION_SCREEN_FROM_IN_GAME, new EnteringSelectionScreenFromInGame(this), new <String>[IN_GAME]);
 			
 			stateMachine.setState(INIT);
