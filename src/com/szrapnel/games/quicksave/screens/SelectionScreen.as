@@ -14,10 +14,12 @@ package com.szrapnel.games.quicksave.screens
 	{
 		private var background:Image;
 		private var levelMiniatures:Vector.<SimpleButton>;
+		private var locks:Vector.<Image>;
 		
 		public function SelectionScreen()
 		{
 			levelMiniatures = new Vector.<SimpleButton>;
+			locks = new Vector.<Image>;
 			
 			background = new Image(Assets.getTexture("CowFall_bckg_U"));
 			addChild(background);
@@ -29,10 +31,17 @@ package com.szrapnel.games.quicksave.screens
 					var miniature:SimpleButton;
 					miniature = new SimpleButton(Assets.getTexture("CowFall_SScreen_level" + (i * 3 + j + 1) + "_lock"));
 					miniature.x = j * background.width / 3;
-					miniature.y = (2*i+1) * background.height / 7;
+					miniature.y = (2 * i + 1) * background.height / 7 - 50;
 					miniature.addEventListener(Event.TRIGGERED, onMiniatureTriggered_handler);
 					levelMiniatures.push(miniature);
 					addChild(miniature);
+					var lock:Image;
+					lock = new Image(Assets.getTexture("CowFall_lock"));
+					lock.touchable = false;
+					lock.x = miniature.x + 110;
+					lock.y = miniature.y + 220;
+					locks.push(lock);
+					addChild(lock);
 				}
 			}
 			
@@ -42,9 +51,15 @@ package com.szrapnel.games.quicksave.screens
 			miniature.addEventListener(Event.TRIGGERED, onMiniatureTriggered_handler);
 			levelMiniatures.push(miniature);
 			addChild(miniature);
+			lock = new Image(Assets.getTexture("CowFall_lock"));
+			lock.touchable = false;
+			lock.x = miniature.x + 110;
+			lock.y = miniature.y + 220;
+			locks.push(lock);
+			addChild(lock);
 		}
 		
-		private function onMiniatureTriggered_handler(e:Event):void 
+		private function onMiniatureTriggered_handler(e:Event):void
 		{
 			dispatchEventWith(Event.TRIGGERED, false, levelMiniatures.indexOf(e.target));
 		}
@@ -53,8 +68,9 @@ package com.szrapnel.games.quicksave.screens
 		{
 			levelMiniatures[value].removeEventListener(Event.TRIGGERED, onMiniatureTriggered_handler);
 			levelMiniatures[value].touchable = false;
-			levelMiniatures[value].upState = Assets.getTexture("CowFall_SScreen_level" + (value+1) + "_lock");
+			levelMiniatures[value].upState = Assets.getTexture("CowFall_SScreen_level" + (value + 1) + "_lock");
 			levelMiniatures[value].downState = levelMiniatures[value].upState;
+			locks[value].visible = true;
 		}
 		
 		public function activateLevel(value:int):void
@@ -62,8 +78,9 @@ package com.szrapnel.games.quicksave.screens
 			levelMiniatures[value].removeEventListener(Event.TRIGGERED, onMiniatureTriggered_handler);
 			levelMiniatures[value].addEventListener(Event.TRIGGERED, onMiniatureTriggered_handler);
 			levelMiniatures[value].touchable = true;
-			levelMiniatures[value].upState = Assets.getTexture("CowFall_SScreen_level" + (value+1));
+			levelMiniatures[value].upState = Assets.getTexture("CowFall_SScreen_level" + (value + 1));
 			levelMiniatures[value].downState = levelMiniatures[value].upState;
+			locks[value].visible = false;
 		}
 		
 	}
