@@ -29,6 +29,7 @@ package com.szrapnel.games.quicksave.items
 				stick.scaleX = 24/52;
 				stick.pivotX = 3;
 				stick.pivotY = 3;
+				stick.touchable = false;
 				topSticks.push(stick);
 				addChild(stick);
 			}
@@ -41,6 +42,7 @@ package com.szrapnel.games.quicksave.items
 				stick.scaleX = 24/52;
 				stick.pivotX = 3;
 				stick.pivotY = 3;
+				stick.touchable = false;
 				botSticks.push(stick);
 				addChild(stick);
 			}

@@ -52,21 +52,19 @@ package com.szrapnel
 			
 			star.start();
 			star.addEventListener(starling.events.Event.ROOT_CREATED, onStarlingRootCreated);
+			
+			admob = Admob.getInstance();
+			admob.setKeys("ca-app-pub-3669883303109473/6323752906");
 		}
 		
 		private function showAdmob():void
 		{
-			admob = Admob.getInstance();
-			admob.setKeys("ca-app-pub-3669883303109473/6323752906");
 			admob.showBanner(Admob.SMART_BANNER, AdmobPosition.TOP_LEFT);
 		}
 		
 		private function hideAdmob():void
 		{
-			if (admob != null)
-			{
-				admob.hideBanner();
-			}
+			admob.hideBanner();
 		}
 		
 		private function onLoaded(e:flash.events.Event):void
@@ -82,8 +80,11 @@ package com.szrapnel
 		
 		private function onStarlingRootCreated(e:starling.events.Event):void
 		{
+			star.root.removeEventListener(DisplayListEvent.HIDE_PRELOADER_OVERLAY, onHidePreloaderOverlay_handler);
 			star.root.addEventListener(DisplayListEvent.HIDE_PRELOADER_OVERLAY, onHidePreloaderOverlay_handler);
+			star.root.removeEventListener(DisplayListEvent.SHOW_ADMOB, onShowAdmob_handler);
 			star.root.addEventListener(DisplayListEvent.SHOW_ADMOB, onShowAdmob_handler);
+			star.root.removeEventListener(DisplayListEvent.HIDE_ADMOB, onHideAdmob_handler);
 			star.root.addEventListener(DisplayListEvent.HIDE_ADMOB, onHideAdmob_handler);
 		}
 		

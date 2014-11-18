@@ -184,7 +184,6 @@ package com.szrapnel.games.quicksave.services
 			score++;
 			if (score >= 10)
 			{
-				removeEventListener(Event.ENTER_FRAME, onEFrame);
 				dispatchEvent(new LevelEvent(LevelEvent.WON));
 			}
 			else
@@ -198,19 +197,19 @@ package com.szrapnel.games.quicksave.services
 		public function stop():void
 		{
 			removeEventListener(Event.ENTER_FRAME, onEFrame);
-			removeEventListener(TouchEvent.TOUCH, onTouch);
+			stage.removeEventListener(TouchEvent.TOUCH, onTouch);
 		}
 		
 		public function start():void
 		{
+			gameStage.getObject("Cow").visible = true;
+			startTime = new Date().time;
+			
 			removeEventListener(Event.ENTER_FRAME, onEFrame);
 			addEventListener(Event.ENTER_FRAME, onEFrame);
 			
 			stage.removeEventListener(TouchEvent.TOUCH, onTouch);
 			stage.addEventListener(TouchEvent.TOUCH, onTouch);
-			
-			gameStage.getObject("Cow").visible = true;
-			startTime = new Date().time;
 		}
 		
 		public function theend():void
