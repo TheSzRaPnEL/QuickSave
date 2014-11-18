@@ -6,6 +6,7 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.items.TelescopicSpring;
 	import flash.utils.clearTimeout;
 	import flash.utils.setTimeout;
+	import nape.phys.Body;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.Touch;
@@ -85,12 +86,17 @@ package com.szrapnel.games.quicksave.services
 					
 					if (now - clickTime < 250)
 					{
-						lastMaxVelocity -= 300;
+						if (lastMaxVelocity > -1200)
+						{
+							lastMaxVelocity -= 300;
+						}
 						symulation.getBody("Platform").velocity.x = lastMaxVelocity;
+						symulation.getBody("PlatformInner").velocity.x = lastMaxVelocity;
 					}
 					else if (symulation.getBody("Platform").velocity.x > -500)
 					{
 						symulation.getBody("Platform").velocity.x = -500;
+						symulation.getBody("PlatformInner").velocity.x = -500;
 						lastMaxVelocity = -500;
 					}
 					
@@ -120,6 +126,11 @@ package com.szrapnel.games.quicksave.services
 				symulation.getBody("Platform").velocity.x = -500;
 				lastMaxVelocity = -500;
 			}
+			if (symulation.getBody("PlatformInner").velocity.x <= -500)
+			{
+				symulation.getBody("PlatformInner").velocity.x = -500;
+				lastMaxVelocity = -500;
+			}
 		}
 		
 		private function onEFrame(e:Event):void
@@ -133,7 +144,7 @@ package com.szrapnel.games.quicksave.services
 			platform.x = symulation.getBody("Platform").position.x;
 			
 			var hand:Sprite = gameStage.getObject("Hand");
-			TelescopicSpring(hand).setWidth(470 - platform.x);
+			TelescopicSpring(hand).setWidth(460 - platform.x);
 			
 			if (cow.y < 0)
 			{
@@ -168,8 +179,10 @@ package com.szrapnel.games.quicksave.services
 		
 		private function dropNewCow():void
 		{
+			stop();
+			
 			score++;
-			if (score >= 1)
+			if (score >= 10)
 			{
 				removeEventListener(Event.ENTER_FRAME, onEFrame);
 				dispatchEvent(new LevelEvent(LevelEvent.WON));
@@ -178,6 +191,7 @@ package com.szrapnel.games.quicksave.services
 			{
 				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/10";
 				symulation.dropNewCow();
+				start();
 			}
 		}
 		
@@ -213,7 +227,7 @@ package com.szrapnel.games.quicksave.services
 			
 			gameStage.getObject("Cow").visible = false;
 			
-			TelescopicSpring(gameStage.getObject("Hand")).setWidth(470 - gameStage.getObject("Platform").x);
+			TelescopicSpring(gameStage.getObject("Hand")).setWidth(460 - gameStage.getObject("Platform").x);
 		}
 		
 		private function onDeathComplete_handler(e:Event):void 

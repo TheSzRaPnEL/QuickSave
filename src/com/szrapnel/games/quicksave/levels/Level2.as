@@ -5,6 +5,7 @@ package com.szrapnel.games.quicksave.levels
 	import com.szrapnel.games.quicksave.services.FirePitLogic;
 	import com.szrapnel.games.quicksave.services.FirePitSimulation;
 	import com.szrapnel.games.quicksave.services.RocketSilo;
+	import com.szrapnel.games.quicksave.services.RocketSiloSimulation;
 	import com.szrapnel.games.services.Assets;
 	import flash.geom.Rectangle;
 	import starling.display.Sprite;
@@ -31,7 +32,7 @@ package com.szrapnel.games.quicksave.levels
 				Sprite(gameStage).clipRect = new Rectangle(0, 0, 540, 960);
 				addChild(Sprite(gameStage));
 				
-				symulation = new FirePitSimulation();
+				symulation = new RocketSiloSimulation();
 				symulation.generate();
 				
 				gameLogic = new FirePitLogic(gameStage, symulation);

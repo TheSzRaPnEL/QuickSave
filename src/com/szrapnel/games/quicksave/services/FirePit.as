@@ -60,8 +60,8 @@ package com.szrapnel.games.quicksave.services
 			
 			var hand:Sprite = new TelescopicSpring();
 			TelescopicSpring(hand).generate();
-			hand.x = 600;
-			hand.y = 480;
+			hand.x = 630;
+			hand.y = 468;
 			addChild(hand);
 			hand.name = "Hand";
 			addObject(hand);
@@ -73,13 +73,6 @@ package com.szrapnel.games.quicksave.services
 			addChild(platform);
 			platform.name = "Platform";
 			addObject(platform);
-			
-			var dock:Sprite = new Dock();
-			dock.x = 540;
-			dock.y = 365;
-			addChild(dock);
-			dock.name = "Dock";
-			addObject(dock);
 			
 			var banner:Sprite = new Banner();
 			banner.x = background.width - 287;

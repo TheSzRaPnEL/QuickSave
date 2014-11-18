@@ -2,6 +2,7 @@ package com.szrapnel.games.quicksave.services
 {
 	import nape.phys.Body;
 	import nape.space.Space;
+	import starling.events.EventDispatcher;
 	
 	/**
 	 * Physics simulation interface
@@ -22,5 +23,7 @@ package com.szrapnel.games.quicksave.services
 		function get space():Space
 		
 		function set space(value:Space):void
+		
+		function get eventDispatcher():EventDispatcher 
 	}
 }

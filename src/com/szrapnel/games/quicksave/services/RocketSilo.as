@@ -6,6 +6,7 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.items.CowDeath;
 	import com.szrapnel.games.quicksave.items.Dock;
 	import com.szrapnel.games.quicksave.items.LaserField;
+	import com.szrapnel.games.quicksave.items.Obstacle;
 	import com.szrapnel.games.quicksave.items.Platform;
 	import com.szrapnel.games.quicksave.items.PlayBtn;
 	import com.szrapnel.games.quicksave.items.TelescopicSpring;
@@ -75,6 +76,13 @@ package com.szrapnel.games.quicksave.services
 			addChild(platform);
 			platform.name = "Platform";
 			addObject(platform);
+			
+			var obstacle:Sprite = new Obstacle();
+			obstacle.x = 270;
+			obstacle.y = 250;
+			addChild(obstacle);
+			obstacle.name = "Obstacle";
+			addObject(obstacle);
 			
 			var dock:Sprite = new Dock();
 			dock.x = 540;

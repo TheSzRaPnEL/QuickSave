@@ -39,7 +39,13 @@ package com.szrapnel.games.quicksave.levels
 		
 		public function generate():void
 		{
-			
+			symulation.eventDispatcher.removeEventListener(LevelEvent.LOST, onLevelLost_handler);
+			symulation.eventDispatcher.addEventListener(LevelEvent.LOST, onLevelLost_handler);
+		}
+		
+		private function onLevelLost_handler(e:LevelEvent):void 
+		{
+			gameLogic.theend();
 		}
 		
 		public function get gameStage():IGameStage

@@ -82,7 +82,7 @@
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
-        <uint>2</uint>
+        <uint>1</uint>
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
@@ -174,7 +174,7 @@
             <key>scaleMode</key>
             <enum type="ScaleMode">Smooth</enum>
             <key>innerPadding</key>
-            <uint>2</uint>
+            <uint>0</uint>
             <key>extrude</key>
             <uint>2</uint>
             <key>trimThreshold</key>
@@ -216,8 +216,6 @@
             <filename>CowFall_pack1/CowFall_Cow.png</filename>
             <filename>CowFall_pack1/CowFall_doc.png</filename>
             <filename>CowFall_pack1/CowFall_hurdle.png</filename>
-            <filename>CowFall_pack1/CowFall_platform.png</filename>
-            <filename>CowFall_pack4/CowFall_bckg_U.jpg</filename>
             <filename>CowFall_pack4/CowFall_button_taptap.png</filename>
             <filename>CowFall_pack4/CowFall_CowDEATH_001.png</filename>
             <filename>CowFall_pack4/CowFall_CowDEATH_002.png</filename>
@@ -228,6 +226,16 @@
             <filename>CowFall_pack4/CowFall_skull.png</filename>
             <filename>CowFall_pack4/CowFall_INTRO_brasNeverDies.png</filename>
             <filename>CowFall_pack4/CowFall_INTRO_yoloYolt.png</filename>
+            <filename>CowFall_pack5/CowFall_bckg_U.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg2.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7.jpg</filename>
+            <filename>CowFall_pack5/CowFall_SScreen_level2.png</filename>
+            <filename>CowFall_pack5/CowFall_SScreen_level2_lock.png</filename>
+            <filename>CowFall_pack5/CowFall_SScreen_level7.png</filename>
+            <filename>CowFall_pack5/CowFall_SScreen_level7_lock.png</filename>
+            <filename>CowFall_pack5/CowFall_bckg2_crock.png</filename>
+            <filename>CowFall_pack5/CowFall_platform2.png</filename>
+            <filename>CowFall_pack5/CowFall_spring.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -1,5 +1,7 @@
 package com.szrapnel.games.quicksave.items
 {
+	import com.szrapnel.games.services.Assets;
+	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.display.Sprite;
 	
@@ -9,21 +11,22 @@ package com.szrapnel.games.quicksave.items
 	 */
 	public class TelescopicSpring extends Sprite
 	{
-		private var topSticks:Vector.<Quad>
-		private var botSticks:Vector.<Quad>
-		private var stickWidth:int = 34;
+		private static const stickWidth:int = 24;
+		private var topSticks:Vector.<Image>
+		private var botSticks:Vector.<Image>
 		
 		public function TelescopicSpring()
 		{
-			topSticks = new Vector.<Quad>;
-			botSticks = new Vector.<Quad>;
+			topSticks = new Vector.<Image>;
+			botSticks = new Vector.<Image>;
 		}
 		
 		public function generate():void
 		{	
 			for (var i:int = 0; i < 20; i++)
 			{
-				var stick:Quad = new Quad(40, 5, 0x1a1a1a);
+				var stick:Image = new Image(Assets.getTexture("CowFall_spring"));
+				stick.scaleX = 24/52;
 				stick.pivotX = 3;
 				stick.pivotY = 3;
 				topSticks.push(stick);
@@ -34,7 +37,8 @@ package com.szrapnel.games.quicksave.items
 			
 			for (i = 0; i < 20; i++)
 			{
-				stick = new Quad(40, 5, 0);
+				stick = new Image(Assets.getTexture("CowFall_spring"));
+				stick.scaleX = 24/52;
 				stick.pivotX = 3;
 				stick.pivotY = 3;
 				botSticks.push(stick);
@@ -55,12 +59,12 @@ package com.szrapnel.games.quicksave.items
 		private function update():void
 		{
 			var mainRotation:Number;
-			for each (var stick:Quad in topSticks)
+			for each (var stick:Image in topSticks)
 			{
 				if (topSticks.indexOf(stick) != 0)
 				{
 					var prevStickID:int = topSticks.indexOf(stick) - 1;
-					var prevStick:Quad = topSticks[prevStickID];
+					var prevStick:Image = topSticks[prevStickID];
 					stick.x = prevStick.x - stickWidth * Math.cos(prevStick.rotation + Math.PI);
 					stick.y = prevStick.y - stickWidth * Math.sin(prevStick.rotation + Math.PI);
 					stick.rotation = (2 * (prevStickID % 2) - 1) * mainRotation;

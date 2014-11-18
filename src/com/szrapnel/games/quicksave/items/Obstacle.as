@@ -1,4 +1,6 @@
-package com.szrapnel.games.quicksave.items {
+package com.szrapnel.games.quicksave.items
+{
+	import com.szrapnel.games.services.Assets;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	
@@ -6,11 +8,11 @@ package com.szrapnel.games.quicksave.items {
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class Obstacle extends Sprite 
+	public class Obstacle extends Sprite
 	{
 		private var container:Sprite;
 		
-		public function Obstacle() 
+		public function Obstacle()
 		{
 			super();
 			
@@ -18,8 +20,8 @@ package com.szrapnel.games.quicksave.items {
 			addChild(container);
 			
 			var image:Image = new Image(Assets.getTexture("CowFall_hurdle"));
-			image.x = - image.width / 2;
-			image.y = - image.height / 2;
+			image.x = -image.width / 2;
+			image.y = -image.height / 2;
 			container.addChild(image);
 		}
 		

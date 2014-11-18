@@ -20,7 +20,7 @@ package com.szrapnel.games.quicksave.levels
 		}
 		
 		public override function generate():void
-		{
+		{			
 			if (!isGenerated)
 			{
 				delay = 0.3;
@@ -41,6 +41,8 @@ package com.szrapnel.games.quicksave.levels
 			{
 				delay = 0.01;
 			}
+			
+			super.generate();
 			
 			TweenLite.delayedCall(delay, dispatchLevelReady);
 		}
