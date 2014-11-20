@@ -1,12 +1,13 @@
 package com.szrapnel.games.quicksave.services
 {
+	import com.greensock.easing.Bounce;
+	import com.greensock.TweenLite;
 	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.quicksave.items.Banner;
 	import com.szrapnel.games.quicksave.items.CowDeath;
 	import com.szrapnel.games.quicksave.items.TelescopicSpring;
 	import flash.utils.clearTimeout;
 	import flash.utils.setTimeout;
-	import nape.phys.Body;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.Touch;
@@ -28,6 +29,7 @@ package com.szrapnel.games.quicksave.services
 		private var clickTime:Number;
 		private var lastMaxVelocity:Number;
 		private var timerId:uint;
+		private var deadCowIcon:Sprite;
 		
 		public function FirePitLogic(gameStage:IGameStage, symulation:ISimulation)
 		{
@@ -229,13 +231,45 @@ package com.szrapnel.games.quicksave.services
 			TelescopicSpring(gameStage.getObject("Hand")).setWidth(460 - gameStage.getObject("Platform").x);
 		}
 		
-		private function onDeathComplete_handler(e:Event):void 
+		private function onDeathComplete_handler(e:Event):void
 		{
 			gameStage.getObject("Death").visible = false;
 			gameStage.getObject("Death").removeEventListener(Event.COMPLETE, onDeathComplete_handler);
 			
-			init();
+			deadCowIcon = gameStage.getObject("DeadCowIcon");
+			deadCowIcon.visible = true;
+			deadCowIcon.touchable = true;
+			TweenLite.to(deadCowIcon, 0, {x: 270, y: 480, scaleX: 3, scaleY: 3, alpha: 0});
+			TweenLite.to(deadCowIcon, 1, {scaleX: 1, scaleY: 1, alpha: 1, ease: Bounce.easeOut, onComplete: onDeadIconAnimationComplete_handler});
 		}
 		
+		private function onDeadIconAnimationComplete_handler():void
+		{
+			init();
+			
+			playBtn.removeEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
+			playBtn.alpha = 0;
+			playBtn.touchable = false;
+			
+			deadCowIcon.removeEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
+			deadCowIcon.addEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
+		}
+		
+		private function onDeadCowIconTouch(e:TouchEvent):void
+		{
+			if (e.getTouch(stage))
+			{
+				var touch:Touch = e.getTouch(stage);
+				if (touch.phase == TouchPhase.BEGAN)
+				{
+					deadCowIcon.removeEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
+					deadCowIcon.alpha = 0;
+					deadCowIcon.touchable = false;
+					
+					start();
+				}
+			}
+		}
+	
 	}
 }
