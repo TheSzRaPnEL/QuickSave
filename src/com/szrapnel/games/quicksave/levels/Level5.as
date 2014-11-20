@@ -1,7 +1,11 @@
 package com.szrapnel.games.quicksave.levels
 {
-	import com.szrapnel.games.quicksave.items.Background;
-	import com.szrapnel.games.services.Assets;
+	import com.greensock.TweenLite;
+	import com.szrapnel.games.quicksave.services.FirePitLogic;
+	import com.szrapnel.games.quicksave.services.FirePitSimulation;
+	import com.szrapnel.games.quicksave.services.Island;
+	import flash.geom.Rectangle;
+	import starling.display.Sprite;
 	
 	/**
 	 * ...
@@ -16,9 +20,28 @@ package com.szrapnel.games.quicksave.levels
 		
 		public override function generate():void
 		{
-			super.generate();
+			if (!isGenerated)
+			{
+				delay = 0.3;
+				
+				gameStage = new Island();
+				gameStage.generate();
+				Sprite(gameStage).clipRect = new Rectangle(0, 0, 540, 960);
+				addChild(Sprite(gameStage));
+				
+				symulation = new FirePitSimulation();
+				symulation.generate();
+				
+				gameLogic = new FirePitLogic(gameStage, symulation);
+				addChild(Sprite(gameLogic));
+				Sprite(gameLogic).touchable = false;
+			}
+			else
+			{
+				delay = 0.01;
+			}
 			
-			Background(gameStage.getObject("Background")).image.texture = Assets.getTexture("CowFall_bckg3");
+			TweenLite.delayedCall(delay, dispatchLevelReady);
 		}
 		
 	}

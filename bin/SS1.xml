@@ -24,8 +24,6 @@
     <SubTexture name="CowFall_SScreen_level3_lock" x="1593" y="1246" width="164" height="277" frameX="0" frameY="-1" frameWidth="180" frameHeight="280"/>
 	<SubTexture name="CowFall_SScreen_level4" x="1641" y="549" width="164" height="277" frameX="0" frameY="-1" frameWidth="180" frameHeight="280"/>
     <SubTexture name="CowFall_SScreen_level4_lock" x="1593" y="1246" width="164" height="277" frameX="0" frameY="-1" frameWidth="180" frameHeight="280"/>
-	<SubTexture name="CowFall_SScreen_level5" x="1641" y="549" width="164" height="277" frameX="0" frameY="-1" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level5_lock" x="1593" y="1246" width="164" height="277" frameX="0" frameY="-1" frameWidth="180" frameHeight="280"/>
 	<SubTexture name="CowFall_SScreen_level6" x="1641" y="549" width="164" height="277" frameX="0" frameY="-1" frameWidth="180" frameHeight="280"/>
     <SubTexture name="CowFall_SScreen_level6_lock" x="1593" y="1246" width="164" height="277" frameX="0" frameY="-1" frameWidth="180" frameHeight="280"/>
     <SubTexture name="CowFall_SScreen_level7" x="1692" y="832" width="160" height="267" frameX="-4" frameY="-11" frameWidth="180" frameHeight="280"/>
