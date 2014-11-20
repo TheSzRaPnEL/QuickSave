@@ -5,7 +5,10 @@ package com.szrapnel.games.quicksave.states.gameStates
 	import com.szrapnel.games.quicksave.levels.ILevel;
 	import com.szrapnel.games.quicksave.QuickSave;
 	import com.szrapnel.games.quicksave.states.IState;
+	import com.szrapnel.games.services.Assets;
 	import starling.display.DisplayObject;
+	import starling.display.Image;
+	import starling.display.Sprite;
 	import starling.events.Event;
 	
 	/**
@@ -19,6 +22,8 @@ package com.szrapnel.games.quicksave.states.gameStates
 		private var tween:TweenLite;
 		private var level:ILevel;
 		private var addingDelay:Number;
+		private var loseBannerTop:Sprite;
+		private var loseBannerBot:Sprite;
 		
 		public function ChangingLevel(actor:*)
 		{
@@ -29,22 +34,48 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		public function enter():void
 		{
+			if (loseBannerTop == null)
+			{
+				loseBannerTop = new Sprite();
+				var image:Image = new Image(Assets.getTexture("CowFall_levelCOMPLETE_top"));
+				loseBannerTop.addChild(image);
+				loseBannerTop.x = actor.offset;
+				loseBannerTop.y = -loseBannerTop.height;
+				actor.addChild(loseBannerTop);
+			}
+			
+			if (loseBannerBot == null)
+			{
+				loseBannerBot = new Sprite();
+				image = new Image(Assets.getTexture("CowFall_levelCOMPLETE_bottom"));
+				loseBannerBot.addChild(image);
+				loseBannerBot.x = actor.offset;
+				loseBannerBot.y = 960 + loseBannerBot.height;
+				actor.addChild(loseBannerBot);
+			}
+			
+			TweenLite.to(loseBannerTop, 0.3, {y: 0});
+			TweenLite.to(loseBannerBot, 0.3, {y: 960 - loseBannerBot.height, onComplete: loseBannerClosed_handler});
+		}
+		
+		private function loseBannerClosed_handler():void
+		{
 			actor.currentLevel++;
 			
 			if (actor.levelPool.length > actor.currentLevel)
 			{
 				level = actor.levelPool.getLevel(actor.currentLevel);
 				
+				var prevLevel:DisplayObject = actor.levelPool.getLevel(actor.currentLevel - 1);
+				prevLevel.visible = false;
+				prevLevel.touchable = false;
+				
 				if (DisplayObject(level).parent == null)
 				{
-					var prevLevel:DisplayObject = actor.levelPool.getLevel(actor.currentLevel - 1);
 					actor.addChildAt(level, actor.getChildIndex(prevLevel));
 				}
 				
 				DisplayObject(level).visible = true;
-				DisplayObject(level).alpha = 1;
-				DisplayObject(level).scaleX = 1;
-				DisplayObject(level).scaleY = 1;
 				DisplayObject(level).x = actor.offset;
 				DisplayObject(level).y = 0;
 				
@@ -55,19 +86,12 @@ package com.szrapnel.games.quicksave.states.gameStates
 			}
 			else
 			{
+				TweenLite.killTweensOf(loseBannerTop);
+				TweenLite.killTweensOf(loseBannerBot);
+				loseBannerTop.y = -loseBannerTop.height;
+				loseBannerBot.y = 960;
 				actor.stateMachine.setState(QuickSave.MAIN_MENU);
 			}
-		}
-		
-		private function levelReady_handler(e:Event):void
-		{
-			checkStateReady();
-		}
-		
-		private function checkStateReady():void
-		{
-			tween = new TweenLite(actor.levelPool.getLevel(actor.currentLevel-1), 0.3, {x: actor.offset - actor.levelPool.getLevel(actor.currentLevel-1).width / 4, y: -actor.levelPool.getLevel(actor.currentLevel-1).height / 4, alpha: 0, scaleX: 1.5, scaleY: 1.5, onComplete: enterComplete_handler});
-			tween.delay = addingDelay;
 		}
 		
 		public function update():void
@@ -75,12 +99,21 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		}
 		
+		private function levelReady_handler(e:Event):void
+		{
+			TweenLite.delayedCall(1, checkStateReady);
+		}
+		
+		private function checkStateReady():void
+		{
+			TweenLite.to(loseBannerTop, 0.3, {y: -loseBannerTop.height});
+			TweenLite.to(loseBannerBot, 0.3, {y: 960, onComplete: enterComplete_handler});
+		}
+		
 		public function exit():void
 		{
-			tween.complete(true, true);
-			tween = null;
-			
-			removePrevLevel();
+			TweenLite.killTweensOf(loseBannerTop);
+			TweenLite.killTweensOf(loseBannerBot, true);
 		}
 		
 		public function get name():String
@@ -92,17 +125,6 @@ package com.szrapnel.games.quicksave.states.gameStates
 		{
 			actor.stateMachine.setState(QuickSave.IN_GAME);
 		}
-		
-		private function removePrevLevel():void
-		{
-			var prevLevel:ILevel = actor.levelPool.getLevel(actor.currentLevel - 1);
-			DisplayObject(prevLevel).visible = false;
-			DisplayObject(prevLevel).touchable = false;
-			DisplayObject(level).scaleX = 1;
-			DisplayObject(level).scaleY = 1;
-			DisplayObject(level).x = actor.offset;
-			DisplayObject(level).y = 0;
-		}
-		
+	
 	}
 }

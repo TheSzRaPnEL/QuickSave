@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:d3e8539f5488ca9f445815be633e3b3d:32507365df6fd047c092394eaddf6eac:189985d7a98826055c0fce07845092c2$ -->
+<TextureAtlas imagePath="E:/Projects/QuickSave/bin/SS2.png/SS2.png">
+    <SubTexture name="CowFall_SScreen_level5" x="4" y="1529" width="164" height="277" frameX="-4" frameY="-5" frameWidth="184" frameHeight="284"/>
+    <SubTexture name="CowFall_SScreen_level5_lock" x="4" y="1812" rotated="true" width="277" height="164" frameX="-4" frameY="-5" frameWidth="184" frameHeight="284"/>
+    <SubTexture name="CowFall_bckg5" x="4" y="4" width="544" height="964"/>
+    <SubTexture name="CowFall_bckg5_shark" x="174" y="1529" rotated="true" width="127" height="164"/>
+    <SubTexture name="CowFall_levelCOMPLETE_bottom" x="554" y="4" width="544" height="525"/>
+    <SubTexture name="CowFall_levelCOMPLETE_top" x="4" y="974" width="544" height="549"/>
+</TextureAtlas>
