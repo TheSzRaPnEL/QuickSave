@@ -5,6 +5,10 @@ package com.szrapnel.games.quicksave.screens
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.text.TextField;
+	import starling.utils.Color;
+	import starling.utils.HAlign;
+	import starling.utils.VAlign;
 	
 	/**
 	 * ...
@@ -15,6 +19,8 @@ package com.szrapnel.games.quicksave.screens
 		private var background:Image;
 		private var levelMiniatures:Vector.<SimpleButton>;
 		private var locks:Vector.<Image>;
+		private var _bannerNumber:TextField;
+		private var _bannerText:Image;
 		
 		public function SelectionScreen()
 		{
@@ -45,8 +51,26 @@ package com.szrapnel.games.quicksave.screens
 				}
 			}
 			
+			var banner:Sprite = new Sprite();
+			banner.x = background.width / 20;
+			banner.y = 11 * background.height / 14;
+			addChild(banner)
+			var bannerBackground:Image = new Image(Assets.getTexture("CowFall_SScreen_level7_baner"));
+			banner.addChild(bannerBackground);
+			_bannerText = new Image(Assets.getTexture("CowFall_SScreen_level7_baner_TXT1"));
+			bannerText.x = 42;
+			bannerText.y = 15;
+			banner.addChild(bannerText);
+			_bannerNumber = new TextField(100, 40, "1111", "font", 24, Color.GREEN);
+			bannerNumber.autoScale = true;
+			bannerNumber.hAlign = HAlign.CENTER;
+			bannerNumber.vAlign = VAlign.CENTER;
+			bannerNumber.x = 81;
+			bannerNumber.y = 27;
+			banner.addChild(bannerNumber);
+			
 			miniature = new SimpleButton(Assets.getTexture("CowFall_SScreen_level7_lock"));
-			miniature.x = background.width / 3;
+			miniature.x = 2 * background.width / 3;
 			miniature.y = 7 * background.height / 10;
 			miniature.addEventListener(Event.TRIGGERED, onMiniatureTriggered_handler);
 			levelMiniatures.push(miniature);
@@ -81,6 +105,16 @@ package com.szrapnel.games.quicksave.screens
 			levelMiniatures[value].upState = Assets.getTexture("CowFall_SScreen_level" + (value + 1));
 			levelMiniatures[value].downState = levelMiniatures[value].upState;
 			locks[value].visible = false;
+		}
+		
+		public function get bannerNumber():TextField 
+		{
+			return _bannerNumber;
+		}
+		
+		public function get bannerText():Image 
+		{
+			return _bannerText;
 		}
 		
 	}

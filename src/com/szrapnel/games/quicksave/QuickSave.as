@@ -66,6 +66,11 @@ package com.szrapnel.games.quicksave
 				sharedObject.data.levels = new <Boolean>[true,false,false,false,false,false,false];
 				sharedObject.flush();
 			}
+			if (sharedObject.data.saved == null)
+			{
+				sharedObject.data.saved = 0;
+				sharedObject.flush();
+			}
 			
 			_fsm = new StateMachine();
 			
@@ -92,7 +97,7 @@ package com.szrapnel.games.quicksave
 			
 			stateMachine.setState(INIT);
 			
-			_assetsList = new <String>["SS0.xml", "SS0.png", "SS1.xml", "SS1.png", "font.fnt", "font.png", "music.mp3", "bounce.mp3"];
+			_assetsList = new <String>["SS0.xml", "SS0.png", "SS1.xml", "SS1.png", "SS2.xml", "SS2.png", "font.fnt", "font.png", "music.mp3", "bounce.mp3"];
 			
 			_offset = int(Starling.current.stage.stageWidth - 540) / 2;
 			

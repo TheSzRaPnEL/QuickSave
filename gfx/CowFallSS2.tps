@@ -194,6 +194,34 @@
             <filename>CowFall_pack6/CowFall_levelCOMPLETE_top.png</filename>
             <filename>CowFall_pack6/CowFall_SScreen_level5.png</filename>
             <filename>CowFall_pack6/CowFall_SScreen_level5_lock.png</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_001.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_002.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_003.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_004.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_005.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_006.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_007.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_008.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_009.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_010.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_011.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_012.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_013.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_014.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_015.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_016.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_017.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_018.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_019.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_020.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_021.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_022.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_023.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_024.jpg</filename>
+            <filename>CowFall_pack5/CowFall_bckg7_anim_025.jpg</filename>
+            <filename>CowFall_pack6/CowFall_SScreen_level7_baner.png</filename>
+            <filename>CowFall_pack6/CowFall_SScreen_level7_baner_TXT1.png</filename>
+            <filename>CowFall_pack6/CowFall_SScreen_level7_baner_TXT2.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

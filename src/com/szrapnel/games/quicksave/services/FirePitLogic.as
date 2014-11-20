@@ -183,6 +183,8 @@ package com.szrapnel.games.quicksave.services
 		{
 			stop();
 			
+			dispatchEvent(new LevelEvent(LevelEvent.COW_SAVED));
+			
 			score++;
 			if (score >= 10)
 			{

@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:d3e8539f5488ca9f445815be633e3b3d:32507365df6fd047c092394eaddf6eac:189985d7a98826055c0fce07845092c2$ -->
+<!-- $TexturePacker:SmartUpdate:fb957c64102c98fbdbd768fe2c02b765:d0186c3bfc1514806ce4640bd94f1e64:189985d7a98826055c0fce07845092c2$ -->
 <TextureAtlas imagePath="E:/Projects/QuickSave/bin/SS2.png/SS2.png">
-    <SubTexture name="CowFall_SScreen_level5" x="4" y="1529" width="164" height="277" frameX="-4" frameY="-5" frameWidth="184" frameHeight="284"/>
-    <SubTexture name="CowFall_SScreen_level5_lock" x="4" y="1812" rotated="true" width="277" height="164" frameX="-4" frameY="-5" frameWidth="184" frameHeight="284"/>
+    <SubTexture name="CowFall_SScreen_level5" x="328" y="1529" width="164" height="277" frameX="-4" frameY="-5" frameWidth="184" frameHeight="284"/>
+    <SubTexture name="CowFall_SScreen_level5_lock" x="498" y="1529" width="164" height="277" frameX="-4" frameY="-5" frameWidth="184" frameHeight="284"/>
+    <SubTexture name="CowFall_SScreen_level7_baner" x="4" y="1529" rotated="true" width="181" height="479"/>
+    <SubTexture name="CowFall_SScreen_level7_baner_TXT1" x="191" y="1529" rotated="true" width="131" height="295" frameX="0" frameY="0" frameWidth="319" frameHeight="131"/>
+    <SubTexture name="CowFall_SScreen_level7_baner_TXT2" x="1291" y="344" width="275" height="106"/>
     <SubTexture name="CowFall_bckg5" x="4" y="4" width="544" height="964"/>
-    <SubTexture name="CowFall_bckg5_shark" x="174" y="1529" rotated="true" width="127" height="164"/>
-    <SubTexture name="CowFall_levelCOMPLETE_bottom" x="554" y="4" width="544" height="525"/>
+    <SubTexture name="CowFall_bckg5_shark" x="1572" y="344" width="164" height="127"/>
+    <SubTexture name="CowFall_bckg7_anim_001" x="191" y="1830" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_002" x="554" y="4" rotated="true" width="164" height="544"/>
+    <SubTexture name="CowFall_bckg7_anim_003" x="1291" y="4" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_004" x="1291" y="4" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_005" x="1291" y="4" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_006" x="1291" y="4" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_007" x="1291" y="4" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_008" x="1291" y="4" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_009" x="1291" y="4" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_010" x="1291" y="4" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_011" x="1291" y="4" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_012" x="1291" y="4" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_013" x="554" y="4" rotated="true" width="164" height="544"/>
+    <SubTexture name="CowFall_bckg7_anim_014" x="1841" y="4" rotated="true" width="164" height="544"/>
+    <SubTexture name="CowFall_bckg7_anim_015" x="191" y="1830" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_016" x="1291" y="174" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_017" x="1291" y="174" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_018" x="1291" y="174" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_019" x="1291" y="174" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_020" x="1291" y="174" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_021" x="1291" y="174" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_022" x="1291" y="174" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_023" x="1291" y="174" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_024" x="1291" y="174" width="544" height="164"/>
+    <SubTexture name="CowFall_bckg7_anim_025" x="1291" y="174" width="544" height="164"/>
+    <SubTexture name="CowFall_levelCOMPLETE_bottom" x="741" y="4" width="544" height="525"/>
     <SubTexture name="CowFall_levelCOMPLETE_top" x="4" y="974" width="544" height="549"/>
 </TextureAtlas>

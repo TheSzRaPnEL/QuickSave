@@ -95,6 +95,7 @@ package com.szrapnel.games.quicksave.intro
 		{
 			var sharedObject:SharedObject = SharedObject.getLocal("CowFallSO", "/");
 			sharedObject.data.levels = new <Boolean>[true, false, false, false, false, false, false];
+			sharedObject.data.saved = 0;
 			sharedObject.flush();
 		}
 		
