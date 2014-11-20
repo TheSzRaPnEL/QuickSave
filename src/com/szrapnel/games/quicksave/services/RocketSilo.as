@@ -4,6 +4,7 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.items.Banner;
 	import com.szrapnel.games.quicksave.items.Cow;
 	import com.szrapnel.games.quicksave.items.CowDeath;
+	import com.szrapnel.games.quicksave.items.DeadCowIcon;
 	import com.szrapnel.games.quicksave.items.Dock;
 	import com.szrapnel.games.quicksave.items.LaserField;
 	import com.szrapnel.games.quicksave.items.Obstacle;
@@ -114,6 +115,14 @@ package com.szrapnel.games.quicksave.services
 			addChild(indicator);
 			indicator.name = "Indicator";
 			addObject(indicator);
+			
+			var deadCowIcon:Sprite = new DeadCowIcon();
+			deadCowIcon.x = 0;
+			deadCowIcon.y = 0;
+			addChild(deadCowIcon);
+			deadCowIcon.name = "DeadCowIcon";
+			deadCowIcon.visible = false;
+			addObject(deadCowIcon);
 		}
 		
 		public function addObject(object:Sprite):void
