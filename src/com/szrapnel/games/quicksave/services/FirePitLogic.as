@@ -198,6 +198,9 @@ package com.szrapnel.games.quicksave.services
 		
 		public function stop():void
 		{
+			gameStage.getObject("Death").removeEventListener(Event.COMPLETE, onDeathComplete_handler);
+			TweenLite.killTweensOf(gameStage.getObject("DeadCowIcon"));
+			gameStage.getObject("DeadCowIcon").visible = false;
 			removeEventListener(Event.ENTER_FRAME, onEFrame);
 			stage.removeEventListener(TouchEvent.TOUCH, onTouch);
 		}
@@ -270,6 +273,6 @@ package com.szrapnel.games.quicksave.services
 				}
 			}
 		}
-	
+		
 	}
 }
