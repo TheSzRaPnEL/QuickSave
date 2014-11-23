@@ -43,7 +43,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		private function cowSaved_handler(e:LevelEvent):void 
 		{
-			actor.sharedObject.data.saved+=500;
+			actor.sharedObject.data.saved++;
 			
 			if (actor.sharedObject.data.saved >= 1111)
 			{

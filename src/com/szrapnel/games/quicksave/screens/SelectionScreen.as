@@ -58,10 +58,10 @@ package com.szrapnel.games.quicksave.screens
 			var bannerBackground:Image = new Image(Assets.getTexture("CowFall_SScreen_level7_baner"));
 			banner.addChild(bannerBackground);
 			_bannerText = new Image(Assets.getTexture("CowFall_SScreen_level7_baner_TXT1"));
-			bannerText.x = 42;
+			bannerText.x = 32;
 			bannerText.y = 15;
 			banner.addChild(bannerText);
-			_bannerNumber = new TextField(100, 40, "1111", "font", 24, Color.GREEN);
+			_bannerNumber = new TextField(100, 40, "1111", "font", 30, 0xff7300);
 			bannerNumber.autoScale = true;
 			bannerNumber.hAlign = HAlign.CENTER;
 			bannerNumber.vAlign = VAlign.CENTER;

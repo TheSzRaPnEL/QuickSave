@@ -77,6 +77,7 @@ package com.szrapnel.games.services
 		{
 			var soundChannel:SoundChannel = SoundChannel(e.target);
 			soundChannel.removeEventListener(Event.SOUND_COMPLETE, onMusicComplete);
+			var volume:Number = soundChannel.soundTransform.volume;
 			var indexofSoundChannel:int = musicChannels.indexOf(soundChannel);
 			var music:Sound = musics[indexofSoundChannel];
 			soundChannel = music.play();
@@ -84,7 +85,9 @@ package com.szrapnel.games.services
 			musicChannels.push(soundChannel);
 			musics.splice(indexofSoundChannel, 1);
 			musics.push(music);
-			musicChannels[musicChannels.length - 1].soundTransform = soundChannel.soundTransform;
+			var soundTransform:SoundTransform = new SoundTransform(volume);
+			musicChannels[musicChannels.length - 1].soundTransform = soundTransform;
+			musicChannels[musicChannels.length - 1].removeEventListener(Event.SOUND_COMPLETE, onMusicComplete);
 			musicChannels[musicChannels.length - 1].addEventListener(Event.SOUND_COMPLETE, onMusicComplete);
 		}
 		

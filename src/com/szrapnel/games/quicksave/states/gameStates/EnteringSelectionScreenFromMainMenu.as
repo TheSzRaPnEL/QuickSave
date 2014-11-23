@@ -34,7 +34,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 			if (actor.sharedObject.data.saved < 1111)
 			{
 				actor.selectionScreen.bannerText.texture = Assets.getTexture("CowFall_SScreen_level7_baner_TXT1");
-				actor.selectionScreen.bannerText.x = 42;
+				actor.selectionScreen.bannerText.x = 32;
 				actor.selectionScreen.bannerNumber.text = String(1111 - actor.sharedObject.data.saved);
 				actor.selectionScreen.bannerNumber.x = 81;
 				actor.selectionScreen.bannerNumber.y = 27;
@@ -44,8 +44,8 @@ package com.szrapnel.games.quicksave.states.gameStates
 				actor.selectionScreen.bannerText.texture = Assets.getTexture("CowFall_SScreen_level7_baner_TXT2");
 				actor.selectionScreen.bannerText.x = 32;
 				actor.selectionScreen.bannerNumber.text = String(actor.sharedObject.data.saved);
-				actor.selectionScreen.bannerNumber.x = 190;
-				actor.selectionScreen.bannerNumber.y = 32;
+				actor.selectionScreen.bannerNumber.x = 167;
+				actor.selectionScreen.bannerNumber.y = 45;
 			}
 			
 			var levelActiveListLength:int = actor.sharedObject.data.levels != null ? actor.sharedObject.data.levels.length : 0;

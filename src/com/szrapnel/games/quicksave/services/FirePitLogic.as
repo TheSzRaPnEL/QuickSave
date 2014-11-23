@@ -8,6 +8,7 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.items.TelescopicSpring;
 	import flash.utils.clearTimeout;
 	import flash.utils.setTimeout;
+	import starling.display.DisplayObject;
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.events.Touch;
@@ -243,9 +244,11 @@ package com.szrapnel.games.quicksave.services
 			
 			deadCowIcon = gameStage.getObject("DeadCowIcon");
 			deadCowIcon.visible = true;
-			deadCowIcon.touchable = true;
 			TweenLite.to(deadCowIcon, 0, {x: 270, y: 480, scaleX: 3, scaleY: 3, alpha: 0});
-			TweenLite.to(deadCowIcon, 1, {scaleX: 1, scaleY: 1, alpha: 1, ease: Bounce.easeOut, onComplete: onDeadIconAnimationComplete_handler});
+			TweenLite.to(deadCowIcon, 1, { scaleX: 1, scaleY: 1, alpha: 1, ease: Bounce.easeOut, onComplete: onDeadIconAnimationComplete_handler } );
+			
+			DisplayObject(gameStage).removeEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
+			DisplayObject(gameStage).addEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
 		}
 		
 		private function onDeadIconAnimationComplete_handler():void
@@ -255,9 +258,6 @@ package com.szrapnel.games.quicksave.services
 			playBtn.removeEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
 			playBtn.alpha = 0;
 			playBtn.touchable = false;
-			
-			deadCowIcon.removeEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
-			deadCowIcon.addEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
 		}
 		
 		private function onDeadCowIconTouch(e:TouchEvent):void
@@ -267,7 +267,9 @@ package com.szrapnel.games.quicksave.services
 				var touch:Touch = e.getTouch(stage);
 				if (touch.phase == TouchPhase.BEGAN)
 				{
-					deadCowIcon.removeEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
+					TweenLite.killTweensOf(deadCowIcon, true);
+					
+					DisplayObject(gameStage).removeEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
 					deadCowIcon.alpha = 0;
 					deadCowIcon.touchable = false;
 					
