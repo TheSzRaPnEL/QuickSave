@@ -11,6 +11,7 @@ package com.szrapnel.games.quicksave.items
 	public class Cow extends Sprite
 	{
 		private var container:Sprite;
+		private var _image:Image;
 		
 		public function Cow()
 		{
@@ -19,10 +20,15 @@ package com.szrapnel.games.quicksave.items
 			container = new Sprite();
 			addChild(container);
 			
-			var image:Image = new Image(Assets.getTexture("CowFall_Cow"));
+			_image = new Image(Assets.getTexture("CowFall_Cow"));
 			image.x = -image.width / 2;
 			image.y = -image.height / 2;
 			container.addChild(image);
+		}
+		
+		public function get image():Image 
+		{
+			return _image;
 		}
 		
 	}

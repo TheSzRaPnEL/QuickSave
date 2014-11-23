@@ -4,31 +4,16 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.items.Banner;
 	import com.szrapnel.games.quicksave.items.Cow;
 	import com.szrapnel.games.services.Assets;
-	import starling.display.Sprite;
-	import starling.events.Event;
 	
 	/**
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class WoodsLogic extends FirePitLogic
+	public class ToxicLogic extends FirePitLogic
 	{
-		public function WoodsLogic(gameStage:IGameStage, symulation:ISimulation)
+		public function ToxicLogic(gameStage:IGameStage, symulation:ISimulation)
 		{
 			super(gameStage, symulation);
-		}
-		
-		protected override function onEFrame(e:Event):void
-		{
-			var obstacleTop:Sprite = gameStage.getObject("ObstacleTop");
-			obstacleTop.x = symulation.getBody("ObstacleTop").position.x;
-			obstacleTop.y = symulation.getBody("ObstacleTop").position.y;
-			
-			var obstacleBot:Sprite = gameStage.getObject("ObstacleBot");
-			obstacleBot.x = symulation.getBody("ObstacleBot").position.x;
-			obstacleBot.y = symulation.getBody("ObstacleBot").position.y;
-			
-			super.onEFrame(e);
 		}
 		
 		protected override function dropNewCow():void
@@ -48,8 +33,16 @@ package com.szrapnel.games.quicksave.services
 			}
 			else
 			{
-				Cow(gameStage.getObject("Cow")).image.texture = Assets.getTexture("CowFall_Bull");
-				isBull = true;
+				if (score % 2 == 0)
+				{
+					Cow(gameStage.getObject("Cow")).image.texture = Assets.getTexture("CowFall_Bull");
+					isBull = true;
+				}
+				else
+				{
+					Cow(gameStage.getObject("Cow")).image.texture = Assets.getTexture("CowFall_Cow");
+				}
+				
 				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/10";
 				symulation.dropNewCow();
 				start();

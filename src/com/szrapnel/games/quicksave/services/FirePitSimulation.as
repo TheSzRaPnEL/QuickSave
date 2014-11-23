@@ -2,6 +2,7 @@ package com.szrapnel.games.quicksave.services
 {
 	import com.greensock.TweenLite;
 	import com.szrapnel.games.quicksave.events.LevelEvent;
+	import com.szrapnel.games.quicksave.events.SimulationEvent;
 	import nape.callbacks.CbEvent;
 	import nape.callbacks.CbType;
 	import nape.callbacks.InteractionCallback;
@@ -32,17 +33,20 @@ package com.szrapnel.games.quicksave.services
 		protected var glueMaterial:Material;
 		protected var bodies:Vector.<Body>;
 		private var debug:BitmapDebug;
-		private var interactionListener:InteractionListener;
+		protected var _interactionListener:InteractionListener;
 		private var f1c:CbType = new CbType();
 		private var f2c:CbType = new CbType();
-		private var grabbed:Boolean;
-		private var ballToPlatformOffset:int = 0;
+		protected var _grabbed:Boolean;
+		protected var _isBull:Boolean;
+		private var _bullCounter:int;
+		protected var ballToPlatformOffset:int = 0;
 		private var _eventDispatcher:EventDispatcher;
 		
 		public function FirePitSimulation():void
 		{
 			_eventDispatcher = new EventDispatcher();
 			bodies = new Vector.<Body>;
+			_isBull = false;
 			super();
 		}
 		
@@ -60,27 +64,34 @@ package com.szrapnel.games.quicksave.services
 			
 			grabbed = false;
 			
-			if (interactionListener == null)
+			if (_interactionListener == null)
 			{
-				interactionListener = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, f1c, f2c, collision);
+				_interactionListener = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, f1c, f2c, collision);
 				space.listeners.add(interactionListener);
 			}
 		}
 		
-		private function collision(collision:InteractionCallback):void
+		protected function collision(collision:InteractionCallback):void
 		{
-			if (collision.int1.castBody.position.y < getBody("Platform").position.y && collision.int1.castBody.position.y > getBody("Platform").position.y - 45)
+			var cow:Body = collision.int1.castBody;
+			var platform:Body = getBody("Platform");
+			if (cow.position.y < platform.position.y && cow.position.y > platform.position.y - 45)
 			{
-				collision.int1.castBody.type = BodyType.KINEMATIC;
-				collision.int1.castBody.velocity = Vec2.weak();
-				collision.int1.castBody.angularVel = 0;
+				cow.type = BodyType.KINEMATIC;
+				cow.velocity = Vec2.weak();
+				cow.angularVel = 0;
 				space.listeners.remove(interactionListener);
 				grabbed = true;
-				ballToPlatformOffset = getBody("Ball").position.x - getBody("Platform").position.x;
-				getBody("Ball").position.y = getBody("Platform").position.y - 35;
+				ballToPlatformOffset = cow.position.x - platform.position.x;
+				cow.position.y = platform.position.y - 35;
 				getBody("RightWall").position.x = 1000;
-				TweenLite.to(getBody("Ball"), 0.2, {rotation: int(getBody("Ball").rotation / (Math.PI / 2)) * (Math.PI / 2)});
+				TweenLite.to(cow, 0.2, {rotation: int(cow.rotation / (Math.PI / 2)) * (Math.PI / 2), onComplete: rotationComplete_handler});
 			}
+		}
+		
+		private function rotationComplete_handler():void 
+		{
+			eventDispatcher.dispatchEvent(new SimulationEvent(SimulationEvent.COW_GRABBED));
 		}
 		
 		private function setUp():void
@@ -229,7 +240,8 @@ package com.szrapnel.games.quicksave.services
 				platformInner.velocity.x = 0;
 			}
 			
-			if (!grabbed && ((getBody("Ball").position.x < 24 && platform.position.x < 24) || (getBody("Ball").position.x > 510 && platform.position.x > 510)) && getBody("Ball").position.y > platform.position.y - 100 && getBody("Ball").position.y < platform.position.y + 100)
+			var cow:Body = getBody("Ball");
+			if (cow.position.x < 24 && platform.position.x < 24 && cow.position.y > platform.position.y - 80 && cow.position.y < platform.position.y + 60)
 			{
 				eventDispatcher.dispatchEvent(new LevelEvent(LevelEvent.LOST));
 			}
@@ -281,6 +293,16 @@ package com.szrapnel.games.quicksave.services
 			return null;
 		}
 		
+		public function get grabbed():Boolean 
+		{
+			return _grabbed;
+		}
+		
+		public function set grabbed(value:Boolean):void 
+		{
+			_grabbed = value;
+		}
+		
 		public function get space():Space
 		{
 			return _space;
@@ -294,6 +316,11 @@ package com.szrapnel.games.quicksave.services
 		public function get eventDispatcher():EventDispatcher
 		{
 			return _eventDispatcher;
+		}
+		
+		public function get interactionListener():InteractionListener 
+		{
+			return _interactionListener;
 		}
 		
 	}

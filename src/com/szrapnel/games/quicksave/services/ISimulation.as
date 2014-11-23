@@ -1,5 +1,6 @@
 package com.szrapnel.games.quicksave.services
 {
+	import nape.callbacks.InteractionListener;
 	import nape.phys.Body;
 	import nape.space.Space;
 	import starling.events.EventDispatcher;
@@ -24,6 +25,12 @@ package com.szrapnel.games.quicksave.services
 		
 		function set space(value:Space):void
 		
-		function get eventDispatcher():EventDispatcher 
+		function get eventDispatcher():EventDispatcher
+		
+		function get interactionListener():InteractionListener
+		
+		function get grabbed():Boolean
+		
+		function set grabbed(value:Boolean):void
 	}
 }

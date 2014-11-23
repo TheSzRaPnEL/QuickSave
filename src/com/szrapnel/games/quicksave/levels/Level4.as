@@ -1,8 +1,8 @@
 package com.szrapnel.games.quicksave.levels
 {
 	import com.greensock.TweenLite;
-	import com.szrapnel.games.quicksave.services.FirePitLogic;
 	import com.szrapnel.games.quicksave.services.Toxic;
+	import com.szrapnel.games.quicksave.services.ToxicLogic;
 	import com.szrapnel.games.quicksave.services.ToxicSimulation;
 	import flash.geom.Rectangle;
 	import starling.display.Sprite;
@@ -32,7 +32,7 @@ package com.szrapnel.games.quicksave.levels
 				symulation = new ToxicSimulation();
 				symulation.generate();
 				
-				gameLogic = new FirePitLogic(gameStage, symulation);
+				gameLogic = new ToxicLogic(gameStage, symulation);
 				addChild(Sprite(gameLogic));
 				Sprite(gameLogic).touchable = false;
 			}

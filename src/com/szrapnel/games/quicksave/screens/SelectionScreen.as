@@ -53,7 +53,7 @@ package com.szrapnel.games.quicksave.screens
 			
 			var banner:Sprite = new Sprite();
 			banner.x = background.width / 20;
-			banner.y = 11 * background.height / 14;
+			banner.y = 15 * background.height / 20;
 			addChild(banner)
 			var bannerBackground:Image = new Image(Assets.getTexture("CowFall_SScreen_level7_baner"));
 			banner.addChild(bannerBackground);
@@ -71,7 +71,7 @@ package com.szrapnel.games.quicksave.screens
 			
 			miniature = new SimpleButton(Assets.getTexture("CowFall_SScreen_level7_lock"));
 			miniature.x = 2 * background.width / 3;
-			miniature.y = 7 * background.height / 10;
+			miniature.y = 5 * background.height / 7 - 50;
 			miniature.addEventListener(Event.TRIGGERED, onMiniatureTriggered_handler);
 			levelMiniatures.push(miniature);
 			addChild(miniature);

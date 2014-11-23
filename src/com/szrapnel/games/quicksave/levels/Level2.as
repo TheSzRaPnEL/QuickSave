@@ -4,6 +4,7 @@ package com.szrapnel.games.quicksave.levels
 	import com.szrapnel.games.quicksave.services.FirePitLogic;
 	import com.szrapnel.games.quicksave.services.FirePitSimulation;
 	import com.szrapnel.games.quicksave.services.Swamp;
+	import com.szrapnel.games.quicksave.services.SwampLogic;
 	import com.szrapnel.games.quicksave.services.SwampSimulation;
 	import flash.geom.Rectangle;
 	import starling.display.Sprite;
@@ -33,7 +34,7 @@ package com.szrapnel.games.quicksave.levels
 				symulation = new SwampSimulation();
 				symulation.generate();
 				
-				gameLogic = new FirePitLogic(gameStage, symulation);
+				gameLogic = new SwampLogic(gameStage, symulation);
 				addChild(Sprite(gameLogic));
 				Sprite(gameLogic).touchable = false;
 			}
