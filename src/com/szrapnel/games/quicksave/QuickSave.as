@@ -97,7 +97,12 @@ package com.szrapnel.games.quicksave
 			
 			stateMachine.setState(INIT);
 			
-			_assetsList = new <String>["SS0.xml", "SS0.png", "SS1.xml", "SS1.png", "SS2.xml", "SS2.png", "font.fnt", "font.png", "music.mp3", "bounce.mp3"];
+			_assetsList = new < String > ["font.fnt", "font.png", "music.mp3", "alienmusic.mp3", "bounce.mp3"];
+			_assetsList.push("CowFall_SS001.png","CowFall_SS001.xml");
+			_assetsList.push("CowFall_SS002.png","CowFall_SS002.xml");
+			_assetsList.push("CowFall_SS003.png","CowFall_SS003.xml");
+			_assetsList.push("CowFall_SS004.png","CowFall_SS004.xml");
+			_assetsList.push("CowFall_SS005.png","CowFall_SS005.xml");
 			
 			_offset = int(Starling.current.stage.stageWidth - 540) / 2;
 			

@@ -13,6 +13,8 @@ package com.szrapnel.games.quicksave.services
 		
 		function addObject(object:Sprite):void
 		
+		function removeObject(object:Sprite):void
+		
 		function getObject(name:String):Sprite
 	}
 }

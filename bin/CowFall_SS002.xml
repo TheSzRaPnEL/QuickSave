@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:c5cc7956fb50bd50ae763db94f90d532:9969281549fb307f0427ce35285e1bff:c48d84f77a481afdba0405a470b28e5c$ -->
+<TextureAtlas imagePath="CowFall_SS002.png">
+    <SubTexture name="CowFall_bckg2" x="4" y="4" width="544" height="964"/>
+    <SubTexture name="CowFall_bckg3" x="4" y="974" width="544" height="964"/>
+    <SubTexture name="CowFall_bckg4" x="554" y="4" width="544" height="964"/>
+    <SubTexture name="CowFall_bckg5" x="554" y="974" width="544" height="964"/>
+    <SubTexture name="CowFall_bckg6" x="1104" y="4" width="544" height="964"/>
+    <SubTexture name="CowFall_bckg7" x="1104" y="974" width="544" height="964"/>
+</TextureAtlas>

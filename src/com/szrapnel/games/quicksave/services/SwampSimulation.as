@@ -4,11 +4,11 @@ package com.szrapnel.games.quicksave.services
 	import nape.phys.BodyType;
 	import nape.shape.Circle;
 	
-	public class RocketSiloSimulation extends FirePitSimulation
+	public class SwampSimulation extends FirePitSimulation
 	{
 		private var obstacle:Body;
 		
-		public function RocketSiloSimulation():void
+		public function SwampSimulation():void
 		{
 			super();
 		}
@@ -20,7 +20,7 @@ package com.szrapnel.games.quicksave.services
 			obstacle = new Body(BodyType.STATIC);
 			obstacle.shapes.add(new Circle(20));
 			obstacle.setShapeMaterials(glueMaterial);
-			obstacle.position.setxy(270, 280);
+			obstacle.position.setxy(270, 250);
 			obstacle.space = space;
 		}
 		

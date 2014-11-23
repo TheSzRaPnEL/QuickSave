@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:f30123c8646ad84a9b238b22752d4902:659ecc242c7609255099ae1c34a48db6:3ffcd7233483f931ff85bc0f23fcd030$ -->
-<TextureAtlas imagePath="E:/Projects/QuickSave/bin/SS0.png/SS0.png">
+<!-- $TexturePacker:SmartUpdate:c441ee181236d0259e21a6967d085a65:659ecc242c7609255099ae1c34a48db6:8fe232d95ac6088ca8843f622bfe2233$ -->
+<TextureAtlas imagePath="CowFall_SS003.png">
     <SubTexture name="CowFall_bckg1_anim_001" x="4" y="4" width="544" height="244"/>
     <SubTexture name="CowFall_bckg1_anim_002" x="554" y="4" width="544" height="244"/>
     <SubTexture name="CowFall_bckg1_anim_003" x="1104" y="4" width="544" height="244"/>

@@ -5,7 +5,6 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.items.Cow;
 	import com.szrapnel.games.quicksave.items.CowDeath;
 	import com.szrapnel.games.quicksave.items.DeadCowIcon;
-	import com.szrapnel.games.quicksave.items.Dock;
 	import com.szrapnel.games.quicksave.items.Fire;
 	import com.szrapnel.games.quicksave.items.Platform;
 	import com.szrapnel.games.quicksave.items.PlayBtn;
@@ -76,7 +75,7 @@ package com.szrapnel.games.quicksave.services
 			addObject(platform);
 			
 			var banner:Sprite = new Banner();
-			banner.x = background.width - 287;
+			banner.x = background.width - banner.width + 2;
 			banner.y = 0;
 			addChild(banner);
 			banner.name = "Banner";
@@ -111,6 +110,12 @@ package com.szrapnel.games.quicksave.services
 		public function addObject(object:Sprite):void
 		{
 			elements.push(object);
+		}
+		
+		public function removeObject(object:Sprite):void
+		{
+			elements.splice(elements.indexOf(object), 1);
+			removeChild(object, true);
 		}
 		
 		public function getObject(name:String):Sprite

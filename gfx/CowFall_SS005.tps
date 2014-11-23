@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.5.3</string>
         <key>fileName</key>
-        <string>E:/Projects/QuickSave/gfx/CowFallSS2.tps</string>
+        <string>E:/Projects/QuickSave/gfx/CowFall_SS005.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -28,17 +28,17 @@
             </struct>
         </array>
         <key>allowRotation</key>
-        <true/>
+        <false/>
         <key>premultiplyAlpha</key>
         <false/>
         <key>shapeDebug</key>
         <false/>
         <key>dpi</key>
-        <uint>300</uint>
+        <uint>72</uint>
         <key>dataFormat</key>
         <string>sparrow</string>
         <key>textureFileName</key>
-        <filename>../bin/SS2.png</filename>
+        <filename>../bin/CowFall_SS005.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -78,7 +78,7 @@
         <key>webpQualityLevel</key>
         <uint>101</uint>
         <key>textureSubPath</key>
-        <string>E:/Projects/QuickSave/bin/SS2.png</string>
+        <string></string>
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
@@ -145,7 +145,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../bin/SS2.xml</filename>
+                <filename>../bin/CowFall_SS005.xml</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -188,40 +188,31 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>CowFall_pack6/CowFall_bckg5.jpg</filename>
-            <filename>CowFall_pack6/CowFall_bckg5_shark.png</filename>
-            <filename>CowFall_pack6/CowFall_levelCOMPLETE_bottom.png</filename>
-            <filename>CowFall_pack6/CowFall_levelCOMPLETE_top.png</filename>
-            <filename>CowFall_pack6/CowFall_SScreen_level5.png</filename>
-            <filename>CowFall_pack6/CowFall_SScreen_level5_lock.png</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_001.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_002.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_003.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_004.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_005.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_006.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_007.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_008.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_009.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_010.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_011.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_012.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_013.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_014.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_015.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_016.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_017.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_018.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_019.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_020.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_021.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_022.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_023.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_024.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_025.jpg</filename>
-            <filename>CowFall_pack6/CowFall_SScreen_level7_baner.png</filename>
-            <filename>CowFall_pack6/CowFall_SScreen_level7_baner_TXT1.png</filename>
-            <filename>CowFall_pack6/CowFall_SScreen_level7_baner_TXT2.png</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_001.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_002.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_003.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_004.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_005.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_006.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_007.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_008.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_009.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_010.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_011.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_012.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_013.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_014.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_015.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_016.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_017.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_018.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_019.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_020.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_021.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_022.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_023.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_024.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg6_anim_025.jpg</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

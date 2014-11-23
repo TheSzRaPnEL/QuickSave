@@ -4,9 +4,9 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.5.2</string>
+        <string>3.5.3</string>
         <key>fileName</key>
-        <string>E:/Projects/QuickSave/gfx/CowFallSS.tps</string>
+        <string>E:/Projects/QuickSave/gfx/CowFall_SS004.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -28,17 +28,17 @@
             </struct>
         </array>
         <key>allowRotation</key>
-        <true/>
+        <false/>
         <key>premultiplyAlpha</key>
         <false/>
         <key>shapeDebug</key>
         <false/>
         <key>dpi</key>
-        <uint>300</uint>
+        <uint>72</uint>
         <key>dataFormat</key>
         <string>sparrow</string>
         <key>textureFileName</key>
-        <filename>../bin/SS0.png</filename>
+        <filename>../bin/CowFall_SS004.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -78,7 +78,7 @@
         <key>webpQualityLevel</key>
         <uint>101</uint>
         <key>textureSubPath</key>
-        <string>E:/Projects/QuickSave/bin/SS0.png</string>
+        <string></string>
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
@@ -108,7 +108,7 @@
             <key>sizeConstraints</key>
             <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
             <key>forceSquared</key>
-            <false/>
+            <true/>
             <key>forceWordAligned</key>
             <false/>
             <key>maxRects</key>
@@ -145,7 +145,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../bin/SS0.xml</filename>
+                <filename>../bin/CowFall_SS004.xml</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -188,31 +188,31 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_001.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_002.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_003.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_004.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_005.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_006.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_007.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_008.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_009.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_010.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_011.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_012.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_013.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_014.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_015.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_016.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_017.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_018.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_019.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_020.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_021.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_022.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_023.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_024.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg1_anim_025.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_001.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_002.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_003.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_004.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_005.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_006.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_007.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_008.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_009.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_010.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_011.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_012.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_013.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_014.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_015.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_016.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_017.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_018.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_019.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_020.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_021.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_022.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_023.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_024.jpg</filename>
+            <filename>CowFall_pack7/CowFall_bckg4_anim_025.jpg</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

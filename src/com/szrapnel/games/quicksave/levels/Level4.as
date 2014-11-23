@@ -4,6 +4,7 @@ package com.szrapnel.games.quicksave.levels
 	import com.szrapnel.games.quicksave.services.FirePit;
 	import com.szrapnel.games.quicksave.services.FirePitLogic;
 	import com.szrapnel.games.quicksave.services.FirePitSimulation;
+	import com.szrapnel.games.quicksave.services.Toxic;
 	import flash.geom.Rectangle;
 	import starling.display.Sprite;
 	
@@ -24,7 +25,7 @@ package com.szrapnel.games.quicksave.levels
 			{
 				delay = 0.3;
 				
-				gameStage = new FirePit();
+				gameStage = new Toxic();
 				gameStage.generate();
 				Sprite(gameStage).clipRect = new Rectangle(0, 0, 540, 960);
 				addChild(Sprite(gameStage));

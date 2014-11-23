@@ -1,6 +1,7 @@
 package com.szrapnel.games.quicksave.levels
 {
 	import com.greensock.TweenLite;
+	import com.szrapnel.games.quicksave.services.Alien;
 	import com.szrapnel.games.quicksave.services.FirePitLogic;
 	import com.szrapnel.games.quicksave.services.FirePitSimulation;
 	import com.szrapnel.games.quicksave.services.Swamp;
@@ -24,7 +25,7 @@ package com.szrapnel.games.quicksave.levels
 			{
 				delay = 0.3;
 				
-				gameStage = new Swamp();
+				gameStage = new Alien();
 				gameStage.generate();
 				Sprite(gameStage).clipRect = new Rectangle(0, 0, 540, 960);
 				addChild(Sprite(gameStage));

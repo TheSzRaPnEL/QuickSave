@@ -1,7 +1,7 @@
 package com.szrapnel.games.quicksave.services
 {
 	import com.szrapnel.games.quicksave.items.Background;
-	import com.szrapnel.games.quicksave.items.Sharks;
+	import com.szrapnel.games.quicksave.items.Eggs;
 	import com.szrapnel.games.services.Assets;
 	import starling.display.Sprite;
 	
@@ -9,9 +9,10 @@ package com.szrapnel.games.quicksave.services
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class Island extends FirePit
+	public class Alien extends FirePit
 	{
-		public function Island()
+		
+		public function Alien()
 		{
 			super();
 		}
@@ -20,19 +21,19 @@ package com.szrapnel.games.quicksave.services
 		{
 			super.generate();
 			
-			Background(getObject("Background")).image.texture = Assets.getTexture("CowFall_bckg5");
+			Background(getObject("Background")).image.texture = Assets.getTexture("CowFall_bckg7");
 			
 			var animation:Sprite = getObject("Animation");
 			var animIndex:int = getChildIndex(animation);
 			removeObject(animation);
 			
-			var sharks:Sprite = new Sharks();
-			sharks.x = 0;
-			sharks.y = getObject("Background").height - sharks.height;
-			addChildAt(sharks, animIndex);
-			Sharks(sharks).play();
-			sharks.name = "Animation";
-			addObject(sharks);
+			var eggs:Sprite = new Eggs();
+			eggs.x = 0;
+			eggs.y = getObject("Background").height - eggs.height;
+			addChildAt(eggs, animIndex);
+			Eggs(eggs).play();
+			eggs.name = "Animation";
+			addObject(eggs);
 		}
 		
 	}

@@ -27,7 +27,14 @@ package com.szrapnel.games.quicksave.states.gameStates
 			actor.levelPool.getLevel(actor.currentLevel).visible = true;
 			actor.levelPool.getLevel(actor.currentLevel).touchable = true;
 			actor.levelPool.getLevel(actor.currentLevel).gameLogic.init();
-			SoundController.playMusic(Assets.assetManager.getSound("music"));
+			if (actor.currentLevel == 6)
+			{
+				SoundController.playMusic(Assets.assetManager.getSound("alienmusic"));
+			}
+			else
+			{
+				SoundController.playMusic(Assets.assetManager.getSound("music"));
+			}
 			actor.levelPool.getLevel(actor.currentLevel).gameLogic.removeEventListener(LevelEvent.WON, levelWon_handler);
 			actor.levelPool.getLevel(actor.currentLevel).gameLogic.addEventListener(LevelEvent.WON, levelWon_handler);
 			actor.levelPool.getLevel(actor.currentLevel).gameLogic.removeEventListener(LevelEvent.COW_SAVED, cowSaved_handler);
@@ -36,7 +43,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		private function cowSaved_handler(e:LevelEvent):void 
 		{
-			actor.sharedObject.data.saved++;
+			actor.sharedObject.data.saved+=500;
 			
 			if (actor.sharedObject.data.saved >= 1111)
 			{
@@ -71,7 +78,14 @@ package com.szrapnel.games.quicksave.states.gameStates
 			actor.levelPool.getLevel(actor.currentLevel).gameLogic.removeEventListener(LevelEvent.WON, levelWon_handler);
 			actor.levelPool.getLevel(actor.currentLevel).gameLogic.removeEventListener(LevelEvent.COW_SAVED, levelWon_handler);
 			actor.levelPool.getLevel(actor.currentLevel).gameLogic.stop();
-			SoundController.stopMusic(Assets.assetManager.getSound("music"));
+			if (actor.currentLevel == 6)
+			{
+				SoundController.stopMusic(Assets.assetManager.getSound("alienmusic"));
+			}
+			else
+			{
+				SoundController.stopMusic(Assets.assetManager.getSound("music"));
+			}
 		}
 		
 		public function get name():String 
