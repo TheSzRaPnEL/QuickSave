@@ -3,6 +3,7 @@ package com.szrapnel.games.quicksave.intro
 	import com.greensock.easing.Bounce;
 	import com.greensock.TimelineLite;
 	import com.greensock.TweenLite;
+	import com.szrapnel.games.events.DisplayListEvent;
 	import com.szrapnel.games.quicksave.components.SimpleButton;
 	import com.szrapnel.games.quicksave.events.IntroEvent;
 	import com.szrapnel.games.services.Assets;
@@ -96,7 +97,18 @@ package com.szrapnel.games.quicksave.intro
 			var sharedObject:SharedObject = SharedObject.getLocal("CowFallSO", "/");
 			sharedObject.data.levels = new <Boolean>[true, false, false, false, false, false, false];
 			sharedObject.data.saved = 0;
-			sharedObject.flush();
+			if (sharedObject.data.ads == true)
+			{
+				sharedObject.data.ads = false;
+				sharedObject.flush();
+				Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.HIDE_ADMOB));
+			}
+			else
+			{
+				sharedObject.data.ads = true;
+				sharedObject.flush();
+				Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.SHOW_ADMOB));
+			}
 		}
 		
 		private function onPlayBtnTriggered_handler(e:Event):void

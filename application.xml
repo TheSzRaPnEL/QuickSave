@@ -13,7 +13,7 @@
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<application>
-		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+		<meta-data android:name="com.google.android.gms.version" android:value="4452000"/>
 		<activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
 	</application>
 </manifest>]]></manifestAdditions>
@@ -80,6 +80,6 @@
 	http://developer.android.com/guide/topics/manifest/manifest-intro.html
 	-->
   <extensions>
-    <extensionID>so.cuo.platform.admob</extensionID>
+    <extensionID>com.admob.ane</extensionID>
   </extensions>
 </application>

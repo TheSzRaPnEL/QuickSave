@@ -1,5 +1,6 @@
 package com.szrapnel
 {
+	import com.admob.*;
 	import com.szrapnel.games.events.DisplayListEvent;
 	import flash.display.Bitmap;
 	import flash.display.Loader;
@@ -9,11 +10,10 @@ package com.szrapnel
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
+	import flash.net.SharedObject;
 	import flash.net.URLRequest;
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
-	import so.cuo.platform.admob.Admob;
-	import so.cuo.platform.admob.AdmobPosition;
 	import starling.core.Starling;
 	import starling.events.Event;
 	
@@ -24,8 +24,9 @@ package com.szrapnel
 	public class Main extends Sprite
 	{
 		private var star:Starling;
-		private var admob:Admob;
+		private var admob:AdMobManager;
 		private var preloaderOverlay:Sprite;
+		private var sharedObject:SharedObject;
 		
 		public function Main():void
 		{
@@ -53,18 +54,21 @@ package com.szrapnel
 			star.start();
 			star.addEventListener(starling.events.Event.ROOT_CREATED, onStarlingRootCreated);
 			
-			admob = Admob.getInstance();
-			admob.setKeys("ca-app-pub-3669883303109473/6323752906");
+			admob = AdMobManager.manager;
+			admob.operationMode = AdMobManager.TEST_MODE;
+			//admob.renderLayerType = AdMobManager.RENDER_TYPE_HARDWARE;
+			admob.bannersAdMobId = "ca-app-pub-3669883303109473/6323752906";
+			admob.createBannerAbsolute(AdMobSize.SMART_BANNER, 0, 0, "TopBanner");
 		}
 		
 		private function showAdmob():void
 		{
-			admob.showBanner(Admob.SMART_BANNER, AdmobPosition.TOP_LEFT);
+			admob.showBanner("TopBanner");
 		}
 		
 		private function hideAdmob():void
 		{
-			admob.hideBanner();
+			admob.hideAllBanner();
 		}
 		
 		private function onLoaded(e:flash.events.Event):void
@@ -95,7 +99,11 @@ package com.szrapnel
 		
 		private function onShowAdmob_handler(e:DisplayListEvent):void
 		{
-			showAdmob();
+			sharedObject = SharedObject.getLocal("CowFallSO", "/");
+			if (sharedObject.data.ads == true)
+			{
+				showAdmob();
+			}
 		}
 		
 		private function onHidePreloaderOverlay_handler(e:DisplayListEvent):void
