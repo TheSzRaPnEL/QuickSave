@@ -1,10 +1,9 @@
 package com.szrapnel.games.quicksave.levels
 {
 	import com.greensock.TweenLite;
-	import com.szrapnel.games.quicksave.services.FirePitLogic;
-	import com.szrapnel.games.quicksave.services.FirePitSimulation;
-	import com.szrapnel.games.quicksave.services.Swamp;
 	import com.szrapnel.games.quicksave.services.Woods;
+	import com.szrapnel.games.quicksave.services.WoodsLogic;
+	import com.szrapnel.games.quicksave.services.WoodsSimulation;
 	import flash.geom.Rectangle;
 	import starling.display.Sprite;
 	
@@ -30,10 +29,10 @@ package com.szrapnel.games.quicksave.levels
 				Sprite(gameStage).clipRect = new Rectangle(0, 0, 540, 960);
 				addChild(Sprite(gameStage));
 				
-				symulation = new FirePitSimulation();
+				symulation = new WoodsSimulation();
 				symulation.generate();
 				
-				gameLogic = new FirePitLogic(gameStage, symulation);
+				gameLogic = new WoodsLogic(gameStage, symulation);
 				addChild(Sprite(gameLogic));
 				Sprite(gameLogic).touchable = false;
 			}

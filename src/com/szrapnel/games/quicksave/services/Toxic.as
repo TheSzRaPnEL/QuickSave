@@ -1,7 +1,7 @@
 package com.szrapnel.games.quicksave.services
 {
 	import com.szrapnel.games.quicksave.items.Background;
-	import com.szrapnel.games.quicksave.items.Saw;
+	import com.szrapnel.games.quicksave.items.Obstacle;
 	import com.szrapnel.games.quicksave.items.Wastes;
 	import com.szrapnel.games.services.Assets;
 	import starling.display.Sprite;
@@ -34,6 +34,20 @@ package com.szrapnel.games.quicksave.services
 			Wastes(wastes).play();
 			wastes.name = "Animation";
 			addObject(wastes);
+			
+			var obstacleLeft:Sprite = new Obstacle();
+			obstacleLeft.x = 170;
+			obstacleLeft.y = 370;
+			addChildAt(obstacleLeft, numChildren - 3);
+			obstacleLeft.name = "ObstacleLeft";
+			addObject(obstacleLeft);
+			
+			var obstacleRight:Sprite = new Obstacle();
+			obstacleRight.x = 370;
+			obstacleRight.y = 370;
+			addChildAt(obstacleRight, numChildren - 3);
+			obstacleRight.name = "ObstacleRight";
+			addObject(obstacleRight);
 		}
 		
 	}

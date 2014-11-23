@@ -30,7 +30,7 @@ package com.szrapnel.games.quicksave.services
 		private var dockWallBot:Body;
 		protected var bouncyMaterial:Material;
 		protected var glueMaterial:Material;
-		private var bodies:Vector.<Body>;
+		protected var bodies:Vector.<Body>;
 		private var debug:BitmapDebug;
 		private var interactionListener:InteractionListener;
 		private var f1c:CbType = new CbType();
@@ -65,9 +65,9 @@ package com.szrapnel.games.quicksave.services
 				interactionListener = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, f1c, f2c, collision);
 				space.listeners.add(interactionListener);
 			}
-        }
+		}
 		
-		private function collision(collision:InteractionCallback):void 
+		private function collision(collision:InteractionCallback):void
 		{
 			if (collision.int1.castBody.position.y < getBody("Platform").position.y && collision.int1.castBody.position.y > getBody("Platform").position.y - 45)
 			{
@@ -79,7 +79,7 @@ package com.szrapnel.games.quicksave.services
 				ballToPlatformOffset = getBody("Ball").position.x - getBody("Platform").position.x;
 				getBody("Ball").position.y = getBody("Platform").position.y - 35;
 				getBody("RightWall").position.x = 1000;
-				TweenLite.to(getBody("Ball"), 0.2, { rotation:int(getBody("Ball").rotation / (Math.PI / 2)) * (Math.PI / 2) } );
+				TweenLite.to(getBody("Ball"), 0.2, {rotation: int(getBody("Ball").rotation / (Math.PI / 2)) * (Math.PI / 2)});
 			}
 		}
 		
@@ -291,7 +291,7 @@ package com.szrapnel.games.quicksave.services
 			_space = value;
 		}
 		
-		public function get eventDispatcher():EventDispatcher 
+		public function get eventDispatcher():EventDispatcher
 		{
 			return _eventDispatcher;
 		}

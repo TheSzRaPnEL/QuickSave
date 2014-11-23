@@ -21,8 +21,8 @@ package com.szrapnel.games.quicksave.services
 	 */
 	public class FirePitLogic extends Sprite implements IGameLogic
 	{
-		private var gameStage:IGameStage;
-		private var symulation:ISimulation;
+		protected var gameStage:IGameStage;
+		protected var symulation:ISimulation;
 		private var startTime:Number;
 		private var score:int;
 		private var now:Number;
@@ -136,7 +136,7 @@ package com.szrapnel.games.quicksave.services
 			}
 		}
 		
-		private function onEFrame(e:Event):void
+		protected function onEFrame(e:Event):void
 		{
 			var cow:Sprite = gameStage.getObject("Cow");
 			cow.x = symulation.getBody("Ball").position.x;
@@ -245,7 +245,7 @@ package com.szrapnel.games.quicksave.services
 			deadCowIcon = gameStage.getObject("DeadCowIcon");
 			deadCowIcon.visible = true;
 			TweenLite.to(deadCowIcon, 0, {x: 270, y: 480, scaleX: 3, scaleY: 3, alpha: 0});
-			TweenLite.to(deadCowIcon, 1, { scaleX: 1, scaleY: 1, alpha: 1, ease: Bounce.easeOut, onComplete: onDeadIconAnimationComplete_handler } );
+			TweenLite.to(deadCowIcon, 1, {scaleX: 1, scaleY: 1, alpha: 1, ease: Bounce.easeOut, onComplete: onDeadIconAnimationComplete_handler});
 			
 			DisplayObject(gameStage).removeEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
 			DisplayObject(gameStage).addEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
