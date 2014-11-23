@@ -203,11 +203,11 @@ package com.szrapnel.games.quicksave.services
 			{
 				if (Math.abs(body.velocity.x) > 1200)
 				{
-					body.velocity.x *= 1200 / Math.abs(body.velocity.x);
+					body.velocity.x = 1200;
 				}
 				if (Math.abs(body.velocity.y) > 1200)
 				{
-					body.velocity.y *= 1200 / Math.abs(body.velocity.y);
+					body.velocity.y = 1200;
 				}
 			}
 			

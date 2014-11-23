@@ -56,8 +56,6 @@ package com.szrapnel.games.quicksave.services
 		
 		protected function onCowGrabbed_handler(e:SimulationEvent):void
 		{
-			symulation.getBody("RightWall").position.x = 535;
-			
 			if (isBull)
 			{
 				bullCounter++;
@@ -66,6 +64,7 @@ package com.szrapnel.games.quicksave.services
 					symulation.grabbed = false;
 					
 					symulation.getBody("Ball").type = BodyType.DYNAMIC;
+					symulation.getBody("Ball").position.y = symulation.getBody("Platform").position.y - 45;
 					symulation.getBody("Ball").velocity = Vec2.weak(0, -1000 * Math.random() - 150);
 					symulation.getBody("Ball").angularVel = -40 * Math.random() + 20;
 					
