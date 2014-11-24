@@ -101,7 +101,7 @@ package com.szrapnel.games.quicksave.services
 			
 			startTime = new Date().time;
 			score = 0;
-			Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/10";
+			Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/4";
 			
 			symulation.reset();
 			
@@ -229,13 +229,13 @@ package com.szrapnel.games.quicksave.services
 			symulation.getBody("RightWall").position.x = 535;
 			
 			score++;
-			if (score >= 10)
+			if (score >= 4)
 			{
 				dispatchEvent(new LevelEvent(LevelEvent.WON));
 			}
 			else
 			{
-				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/10";
+				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/4";
 				symulation.dropNewCow();
 				start();
 			}

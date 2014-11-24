@@ -26,7 +26,7 @@ package com.szrapnel.games.quicksave.services
 			
 			score++;
 			
-			if (score >= 10)
+			if (score >= 4)
 			{
 				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/10";
 				dispatchEvent(new LevelEvent(LevelEvent.WON));
@@ -43,7 +43,7 @@ package com.szrapnel.games.quicksave.services
 					Cow(gameStage.getObject("Cow")).image.texture = Assets.getTexture("CowFall_Cow");
 				}
 				
-				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/10";
+				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/4";
 				symulation.dropNewCow();
 				start();
 			}
