@@ -7,7 +7,7 @@
   <name>CowFall</name>
   <android>
     <manifestAdditions><![CDATA[<manifest android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="8" />
+	<uses-sdk android:minSdkVersion="9" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
