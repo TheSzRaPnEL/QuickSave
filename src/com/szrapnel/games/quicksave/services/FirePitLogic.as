@@ -12,6 +12,7 @@ package com.szrapnel.games.quicksave.services
 	import flash.utils.clearTimeout;
 	import flash.utils.setTimeout;
 	import nape.geom.Vec2;
+	import nape.phys.Body;
 	import nape.phys.BodyType;
 	import starling.display.DisplayObject;
 	import starling.display.Sprite;
@@ -61,14 +62,17 @@ package com.szrapnel.games.quicksave.services
 				bullCounter++;
 				if (bullCounter < 4)
 				{
+					symulation.getBody("RightWall").position.x = 0;
 					symulation.grabbed = false;
-					
-					symulation.getBody("Ball").type = BodyType.DYNAMIC;
-					symulation.getBody("Ball").position.y = symulation.getBody("Platform").position.y - 45;
-					symulation.getBody("Ball").velocity = Vec2.weak(0, -1000 * Math.random() - 150);
-					symulation.getBody("Ball").angularVel = -40 * Math.random() + 20;
-					
-					symulation.space.listeners.add(symulation.interactionListener);
+					var ball:Body = symulation.getBody("Ball");
+					ball.position.y = symulation.getBody("Platform").position.y - 45;
+					ball.velocity = Vec2.weak(0, -500 * Math.random() - 150);
+					ball.angularVel = -20 * Math.random() + 10;
+					ball.type = BodyType.DYNAMIC;
+					if (!(symulation.space.listeners.has(symulation.interactionListener)))
+					{
+						symulation.space.listeners.add(symulation.interactionListener);
+					}
 				}
 				else
 				{
@@ -185,8 +189,8 @@ package com.szrapnel.games.quicksave.services
 			cow.y = symulation.getBody("Ball").position.y;
 			cow.rotation = symulation.getBody("Ball").rotation;
 			
-			var hand:Sprite = gameStage.getObject("Hand");
-			TelescopicSpring(hand).setWidth(460 - platform.x);
+			//var hand:Sprite = gameStage.getObject("Hand");
+			//TelescopicSpring(hand).setWidth(460 - platform.x);
 			
 			if (cow.y < 0)
 			{
@@ -226,7 +230,7 @@ package com.szrapnel.games.quicksave.services
 			dispatchEvent(new LevelEvent(LevelEvent.COW_SAVED));
 			bullCounter = 0;
 			isBull = false;
-			symulation.getBody("RightWall").position.x = 535;
+			symulation.getBody("RightWall").position.x = 0;
 			
 			score++;
 			if (score >= 4)
@@ -235,6 +239,8 @@ package com.szrapnel.games.quicksave.services
 			}
 			else
 			{
+				Cow(gameStage.getObject("Cow")).image.texture = Assets.getTexture("CowFall_Bull");
+				isBull = true;
 				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/4";
 				symulation.dropNewCow();
 				start();
@@ -243,6 +249,8 @@ package com.szrapnel.games.quicksave.services
 		
 		public function stop():void
 		{
+			symulation.eventDispatcher.removeEventListener(SimulationEvent.COW_GRABBED, onCowGrabbed_handler);
+			
 			gameStage.getObject("Death").removeEventListener(Event.COMPLETE, onDeathComplete_handler);
 			TweenLite.killTweensOf(gameStage.getObject("DeadCowIcon"));
 			gameStage.getObject("DeadCowIcon").visible = false;
@@ -252,6 +260,9 @@ package com.szrapnel.games.quicksave.services
 		
 		public function start():void
 		{
+			symulation.eventDispatcher.removeEventListener(SimulationEvent.COW_GRABBED, onCowGrabbed_handler);
+			symulation.eventDispatcher.addEventListener(SimulationEvent.COW_GRABBED, onCowGrabbed_handler);
+			
 			gameStage.getObject("Cow").visible = true;
 			startTime = new Date().time;
 			
@@ -272,10 +283,12 @@ package com.szrapnel.games.quicksave.services
 			{
 				Cow(cow).image.texture = Assets.getTexture("CowFall_Cow");
 				isBull = false;
+				symulation.grabbed = false;
+				symulation.getBody("Ball").type = BodyType.DYNAMIC;
 			}
 			bullCounter = 0;
 			
-			symulation.getBody("RightWall").position.x = 535;
+			symulation.getBody("RightWall").position.x = 0;
 			
 			var death:Sprite = gameStage.getObject("Death");
 			death.x = cow.x;
@@ -288,7 +301,7 @@ package com.szrapnel.games.quicksave.services
 			
 			cow.visible = false;
 			
-			TelescopicSpring(gameStage.getObject("Hand")).setWidth(460 - gameStage.getObject("Platform").x);
+			//TelescopicSpring(gameStage.getObject("Hand")).setWidth(460 - gameStage.getObject("Platform").x);
 		}
 		
 		private function onDeathComplete_handler(e:Event):void

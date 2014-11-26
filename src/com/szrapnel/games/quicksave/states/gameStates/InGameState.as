@@ -27,6 +27,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 			actor.levelPool.getLevel(actor.currentLevel).visible = true;
 			actor.levelPool.getLevel(actor.currentLevel).touchable = true;
 			actor.levelPool.getLevel(actor.currentLevel).gameLogic.init();
+			actor.levelPool.getLevel(actor.currentLevel).gameStage.getObject("Animation").play();
 			if (actor.currentLevel == 6)
 			{
 				SoundController.playMusic(Assets.assetManager.getSound("alienmusic"));
@@ -78,6 +79,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 			actor.levelPool.getLevel(actor.currentLevel).gameLogic.removeEventListener(LevelEvent.WON, levelWon_handler);
 			actor.levelPool.getLevel(actor.currentLevel).gameLogic.removeEventListener(LevelEvent.COW_SAVED, levelWon_handler);
 			actor.levelPool.getLevel(actor.currentLevel).gameLogic.stop();
+			actor.levelPool.getLevel(actor.currentLevel).gameStage.getObject("Animation").stop();
 			if (actor.currentLevel == 6)
 			{
 				SoundController.stopMusic(Assets.assetManager.getSound("alienmusic"));

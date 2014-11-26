@@ -31,5 +31,11 @@ package com.szrapnel.games.quicksave.items
 			Starling.juggler.add(animation);
 		}
 		
+		public function stop():void
+		{
+			animation.stop();
+			Starling.juggler.remove(animation);
+		}
+		
 	}
 }

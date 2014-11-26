@@ -1,6 +1,7 @@
 package com.szrapnel.games.quicksave.items
 {
 	import com.szrapnel.games.services.Assets;
+	import starling.display.BlendMode;
 	import starling.display.Image;
 	import starling.display.Quad;
 	import starling.display.Sprite;
@@ -26,6 +27,7 @@ package com.szrapnel.games.quicksave.items
 			for (var i:int = 0; i < 20; i++)
 			{
 				var stick:Image = new Image(Assets.getTexture("CowFall_spring"));
+				stick.blendMode = BlendMode.NONE;
 				stick.scaleX = 24/52;
 				stick.pivotX = 3;
 				stick.pivotY = 3;
@@ -39,6 +41,7 @@ package com.szrapnel.games.quicksave.items
 			for (i = 0; i < 20; i++)
 			{
 				stick = new Image(Assets.getTexture("CowFall_spring"));
+				stick.blendMode = BlendMode.NONE;
 				stick.scaleX = 24/52;
 				stick.pivotX = 3;
 				stick.pivotY = 3;

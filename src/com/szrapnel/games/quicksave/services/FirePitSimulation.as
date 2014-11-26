@@ -67,6 +67,10 @@ package com.szrapnel.games.quicksave.services
 			if (_interactionListener == null)
 			{
 				_interactionListener = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, f1c, f2c, collision);
+			}
+			
+			if (!(space.listeners.has(interactionListener)))
+			{
 				space.listeners.add(interactionListener);
 			}
 		}
@@ -105,7 +109,7 @@ package com.szrapnel.games.quicksave.services
 			ball.shapes.add(new Polygon(Polygon.box(50, 50)));
 			ball.shapes.at(0).fluidEnabled = false;
 			ball.shapes.at(0).sensorEnabled = false;
-			ball.position.setxy(430 * Math.random() + 20, -100);
+			ball.position.setxy(430 * Math.random() + 20, -370);
 			ball.setShapeMaterials(bouncyMaterial);
 			ball.angularVel = 10;
 			ball.space = space;
@@ -194,22 +198,25 @@ package com.szrapnel.games.quicksave.services
 			ball.rotation = 0;
 			ball.velocity = Vec2.weak(600 * Math.random() - 300, 0);
 			
-			space.listeners.add(interactionListener);
+			if (!(space.listeners.has(interactionListener)))
+			{
+				space.listeners.add(interactionListener);
+			}
 		}
 		
 		public function update(time:Number):void
 		{
-			for each (var body:Body in bodies)
-			{
-				if (Math.abs(body.velocity.x) > 1200)
-				{
-					body.velocity.x *= 1200 / Math.abs(body.velocity.x);
-				}
-				if (Math.abs(body.velocity.y) > 1200)
-				{
-					body.velocity.y *= 1200 / Math.abs(body.velocity.y);
-				}
-			}
+			//for each (var body:Body in bodies)
+			//{
+				//if (Math.abs(body.velocity.x) > 1200)
+				//{
+					//body.velocity.x *= 1200 / Math.abs(body.velocity.x);
+				//}
+				//if (Math.abs(body.velocity.y) > 1200)
+				//{
+					//body.velocity.y *= 1200 / Math.abs(body.velocity.y);
+				//}
+			//}
 			
 			space.step(time, 4, 4);
 			

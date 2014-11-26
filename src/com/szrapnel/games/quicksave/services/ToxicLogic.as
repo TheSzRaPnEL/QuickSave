@@ -28,7 +28,7 @@ package com.szrapnel.games.quicksave.services
 			
 			if (score >= 4)
 			{
-				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/10";
+				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/4";
 				dispatchEvent(new LevelEvent(LevelEvent.WON));
 			}
 			else
