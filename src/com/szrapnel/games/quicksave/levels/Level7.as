@@ -4,7 +4,6 @@ package com.szrapnel.games.quicksave.levels
 	import com.szrapnel.games.quicksave.services.Alien;
 	import com.szrapnel.games.quicksave.services.FirePitLogic;
 	import com.szrapnel.games.quicksave.services.FirePitSimulation;
-	import com.szrapnel.games.quicksave.services.Swamp;
 	import flash.geom.Rectangle;
 	import starling.display.Sprite;
 	
@@ -12,7 +11,7 @@ package com.szrapnel.games.quicksave.levels
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class Level7 extends Level1
+	public class Level7 extends ALevel
 	{
 		public function Level7()
 		{
@@ -41,6 +40,8 @@ package com.szrapnel.games.quicksave.levels
 			{
 				delay = 0.01;
 			}
+			
+			super.generate();
 			
 			TweenLite.delayedCall(delay, dispatchLevelReady);
 		}

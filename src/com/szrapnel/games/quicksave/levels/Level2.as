@@ -1,8 +1,6 @@
 package com.szrapnel.games.quicksave.levels
 {
 	import com.greensock.TweenLite;
-	import com.szrapnel.games.quicksave.services.FirePitLogic;
-	import com.szrapnel.games.quicksave.services.FirePitSimulation;
 	import com.szrapnel.games.quicksave.services.Swamp;
 	import com.szrapnel.games.quicksave.services.SwampLogic;
 	import com.szrapnel.games.quicksave.services.SwampSimulation;
@@ -13,7 +11,7 @@ package com.szrapnel.games.quicksave.levels
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class Level2 extends Level1
+	public class Level2 extends ALevel
 	{
 		public function Level2()
 		{
@@ -42,6 +40,8 @@ package com.szrapnel.games.quicksave.levels
 			{
 				delay = 0.01;
 			}
+			
+			super.generate();
 			
 			TweenLite.delayedCall(delay, dispatchLevelReady);
 		}

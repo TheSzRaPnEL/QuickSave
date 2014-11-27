@@ -11,7 +11,7 @@ package com.szrapnel.games.quicksave.levels
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class Level4 extends Level1
+	public class Level4 extends ALevel
 	{
 		public function Level4()
 		{
@@ -40,6 +40,8 @@ package com.szrapnel.games.quicksave.levels
 			{
 				delay = 0.01;
 			}
+			
+			super.generate();
 			
 			TweenLite.delayedCall(delay, dispatchLevelReady);
 		}

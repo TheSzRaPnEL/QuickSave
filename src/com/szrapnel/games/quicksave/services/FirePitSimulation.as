@@ -248,7 +248,7 @@ package com.szrapnel.games.quicksave.services
 			}
 			
 			var cow:Body = getBody("Ball");
-			if (cow.position.x < 24 && platform.position.x < 24 && cow.position.y > platform.position.y - 80 && cow.position.y < platform.position.y + 60)
+			if (!grabbed && cow.position.x < 24 && platform.position.x < 24 && cow.position.y > platform.position.y - 80 && cow.position.y < platform.position.y + 60)
 			{
 				eventDispatcher.dispatchEvent(new LevelEvent(LevelEvent.LOST));
 			}
