@@ -45,8 +45,8 @@ package com.szrapnel.games.quicksave.states.gameStates
 				actor.selectionScreen.bannerText.texture = Assets.getTexture("CowFall_SScreen_level7_baner_TXT2");
 				actor.selectionScreen.bannerText.x = 32;
 				actor.selectionScreen.bannerNumber.text = String(actor.sharedObject.data.saved);
-				actor.selectionScreen.bannerNumber.x = 170;
-				actor.selectionScreen.bannerNumber.y = 17;
+				actor.selectionScreen.bannerNumber.x = 167;
+				actor.selectionScreen.bannerNumber.y = 45;
 			}
 			
 			actor.selectionScreen.alpha = 0;
