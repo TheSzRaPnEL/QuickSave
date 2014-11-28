@@ -15,8 +15,6 @@ package com.szrapnel.games.quicksave.services
 		
 		function reset():void
 		
-		function dropNewCow():void
-		
 		function update(time:Number):void
 		
 		function getBody(name:String):Body

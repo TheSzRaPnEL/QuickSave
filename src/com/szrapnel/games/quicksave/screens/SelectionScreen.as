@@ -85,7 +85,7 @@ package com.szrapnel.games.quicksave.screens
 		
 		private function onMiniatureTriggered_handler(e:Event):void
 		{
-			dispatchEventWith(Event.TRIGGERED, false, levelMiniatures.indexOf(e.target));
+			dispatchEventWith(Event.TRIGGERED, false, levelMiniatures.indexOf(SimpleButton(e.target)));
 		}
 		
 		public function deactivateLevel(value:int):void

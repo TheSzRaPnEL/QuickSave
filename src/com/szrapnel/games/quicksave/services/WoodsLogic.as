@@ -1,11 +1,10 @@
 package com.szrapnel.games.quicksave.services
 {
-	import com.szrapnel.games.quicksave.events.LevelEvent;
-	import com.szrapnel.games.quicksave.items.Banner;
 	import com.szrapnel.games.quicksave.items.Cow;
 	import com.szrapnel.games.services.Assets;
+	import nape.geom.Vec2;
 	import starling.display.Sprite;
-	import starling.events.Event;
+	import starling.events.EnterFrameEvent;
 	
 	/**
 	 * ...
@@ -16,44 +15,31 @@ package com.szrapnel.games.quicksave.services
 		public function WoodsLogic(gameStage:IGameStage, symulation:ISimulation)
 		{
 			super(gameStage, symulation);
+			
+			scoreToWin = 4;
 		}
 		
-		protected override function onEFrame(e:Event):void
+		protected override function onEFrame(e:EnterFrameEvent):void
 		{
 			var obstacleTop:Sprite = gameStage.getObject("ObstacleTop");
-			obstacleTop.x = symulation.getBody("ObstacleTop").position.x;
-			obstacleTop.y = symulation.getBody("ObstacleTop").position.y;
+			var obstacleTopBodyPos:Vec2 = symulation.getBody("ObstacleTop").position;
+			obstacleTop.x = obstacleTopBodyPos.x;
+			obstacleTop.y = obstacleTopBodyPos.y;
 			
 			var obstacleBot:Sprite = gameStage.getObject("ObstacleBot");
-			obstacleBot.x = symulation.getBody("ObstacleBot").position.x;
-			obstacleBot.y = symulation.getBody("ObstacleBot").position.y;
+			var obstacleBotBodyPos:Vec2 = symulation.getBody("ObstacleBot").position;
+			obstacleBot.x = obstacleBotBodyPos.x;
+			obstacleBot.y = obstacleBotBodyPos.y;
 			
 			super.onEFrame(e);
 		}
 		
 		protected override function dropNewCow():void
 		{
-			stop();
+			super.dropNewCow();
 			
-			dispatchEvent(new LevelEvent(LevelEvent.COW_SAVED));
-			bullCounter = 0;
-			isBull = false;
-			
-			score++;
-			
-			if (score >= 4)
-			{
-				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/4";
-				dispatchEvent(new LevelEvent(LevelEvent.WON));
-			}
-			else
-			{
-				Cow(gameStage.getObject("Cow")).image.texture = Assets.getTexture("CowFall_Bull");
-				isBull = true;
-				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/4";
-				symulation.dropNewCow();
-				start();
-			}
+			Cow(gameStage.getObject("Cow")).image.texture = Assets.getTexture("CowFall_Bull");
+			isBull = true;
 		}
 		
 	}

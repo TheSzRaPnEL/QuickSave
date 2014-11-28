@@ -48,6 +48,7 @@ package com.szrapnel
 			
 			star = new Starling(StarlingMain, stage, new Rectangle(0, 0, stage.fullScreenWidth, stage.fullScreenHeight));
 			star.antiAliasing = 0;
+			star.showStats = true;
 			star.stage.stageHeight = 960;
 			star.stage.stageWidth = stage.fullScreenWidth * 960 / stage.fullScreenHeight;
 			

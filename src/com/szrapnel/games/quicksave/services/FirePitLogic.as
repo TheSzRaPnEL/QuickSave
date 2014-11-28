@@ -5,17 +5,17 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.quicksave.events.SimulationEvent;
 	import com.szrapnel.games.quicksave.items.Banner;
-	import com.szrapnel.games.quicksave.items.Cow;
 	import com.szrapnel.games.quicksave.items.CowDeath;
 	import com.szrapnel.games.quicksave.items.TelescopicSpring;
-	import com.szrapnel.games.services.Assets;
 	import flash.utils.clearTimeout;
+	import flash.utils.getTimer;
 	import flash.utils.setTimeout;
 	import nape.geom.Vec2;
 	import nape.phys.Body;
 	import nape.phys.BodyType;
 	import starling.display.DisplayObject;
 	import starling.display.Sprite;
+	import starling.events.EnterFrameEvent;
 	import starling.events.Event;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
@@ -30,26 +30,30 @@ package com.szrapnel.games.quicksave.services
 		protected var gameStage:IGameStage;
 		protected var symulation:ISimulation;
 		protected var score:int;
+		protected var scoreToWin:int;
 		protected var isBull:Boolean;
 		protected var bullCounter:int;
-		private var now:Number;
+		
+		private var now:int;
 		private var playBtn:Sprite;
-		private var clickTime:Number;
+		private var clickTime:int;
 		private var lastMaxVelocity:Number;
 		private var timerId:uint;
 		private var deadCowIcon:Sprite;
-		private var startTime:Number;
+		private var startTime:int;
 		
 		public function FirePitLogic(gameStage:IGameStage, symulation:ISimulation)
 		{
 			this.gameStage = gameStage;
 			this.symulation = symulation;
+			
 			clickTime = 0;
 			lastMaxVelocity = -500;
 			
 			playBtn = gameStage.getObject("PlayBtn");
 			
 			isBull = false;
+			scoreToWin = 10;
 			
 			symulation.eventDispatcher.removeEventListener(SimulationEvent.COW_GRABBED, onCowGrabbed_handler);
 			symulation.eventDispatcher.addEventListener(SimulationEvent.COW_GRABBED, onCowGrabbed_handler);
@@ -60,7 +64,7 @@ package com.szrapnel.games.quicksave.services
 			if (isBull)
 			{
 				bullCounter++;
-				if (bullCounter < 4)
+				if (bullCounter < 3)
 				{
 					symulation.getBody("RightWall").position.x = 0;
 					symulation.grabbed = false;
@@ -69,6 +73,7 @@ package com.szrapnel.games.quicksave.services
 					ball.velocity = Vec2.weak(0, -500 * Math.random() - 150);
 					ball.angularVel = -20 * Math.random() + 10;
 					ball.type = BodyType.DYNAMIC;
+					
 					if (!(symulation.space.listeners.has(symulation.interactionListener)))
 					{
 						symulation.space.listeners.add(symulation.interactionListener);
@@ -93,19 +98,18 @@ package com.szrapnel.games.quicksave.services
 					playBtn.alpha = 0;
 					playBtn.touchable = false;
 					
-					start();
+					dropNewCow();
 				}
 			}
 		}
 		
 		public function init():void
 		{
-			isBull = false;
-			bullCounter = 0;
+			resetGame();
 			
-			startTime = new Date().time;
+			startTime = getTimer();
 			score = 0;
-			Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/4";
+			Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/" + scoreToWin;
 			
 			symulation.reset();
 			
@@ -124,7 +128,7 @@ package com.szrapnel.games.quicksave.services
 				{
 					stopResetVelocityTimer();
 					
-					var now:Number = new Date().time;
+					var now:int = getTimer();
 					if (clickTime == 0)
 					{
 						clickTime = now;
@@ -167,30 +171,34 @@ package com.szrapnel.games.quicksave.services
 		
 		private function resetVelocityTimer():void
 		{
-			if (symulation.getBody("Platform").velocity.x <= -500)
+			var platformVelocity:Vec2 = symulation.getBody("Platform").velocity;
+			if (platformVelocity.x <= -500)
 			{
-				symulation.getBody("Platform").velocity.x = -500;
+				platformVelocity.x = -500;
 				lastMaxVelocity = -500;
 			}
-			if (symulation.getBody("PlatformInner").velocity.x <= -500)
+			
+			var platformInnerVelocity:Vec2 = symulation.getBody("PlatformInner").velocity;
+			if (platformInnerVelocity.x <= -500)
 			{
-				symulation.getBody("PlatformInner").velocity.x = -500;
+				platformInnerVelocity.x = -500;
 				lastMaxVelocity = -500;
 			}
 		}
 		
-		protected function onEFrame(e:Event):void
+		protected function onEFrame(e:EnterFrameEvent):void
 		{
 			var platform:Sprite = gameStage.getObject("Platform");
 			platform.x = symulation.getBody("Platform").position.x;
 			
 			var cow:Sprite = gameStage.getObject("Cow");
-			cow.x = symulation.getBody("Ball").position.x;
-			cow.y = symulation.getBody("Ball").position.y;
-			cow.rotation = symulation.getBody("Ball").rotation;
+			var ball:Body = symulation.getBody("Ball");
+			cow.x = ball.position.x;
+			cow.y = ball.position.y;
+			cow.rotation = ball.rotation;
 			
-			//var hand:Sprite = gameStage.getObject("Hand");
-			//TelescopicSpring(hand).setWidth(460 - platform.x);
+			var hand:Sprite = gameStage.getObject("Hand");
+			TelescopicSpring(hand).setWidth(460 - platform.x);
 			
 			if (cow.y < 0)
 			{
@@ -204,16 +212,16 @@ package com.szrapnel.games.quicksave.services
 			
 			if (cow.y > 900)
 			{
-				theend();
+				endGame();
 			}
 			else if (cow.x > 580 || cow.x < -110)
 			{
-				dropNewCow();
+				addPoint();
 			}
 			else
 			{
-				now = new Date().time;
-				var delta:Number = now - startTime;
+				now = getTimer();
+				var delta:int = now - startTime;
 				if (delta <= 0)
 				{
 					delta = 1;
@@ -223,28 +231,38 @@ package com.szrapnel.games.quicksave.services
 			}
 		}
 		
-		protected function dropNewCow():void
+		protected function addPoint():void
 		{
-			stop();
-			
 			dispatchEvent(new LevelEvent(LevelEvent.COW_SAVED));
-			bullCounter = 0;
-			isBull = false;
-			symulation.getBody("RightWall").position.x = 0;
 			
 			score++;
-			if (score >= 4)
+			Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/" + scoreToWin;
+			
+			if (score >= scoreToWin)
 			{
 				dispatchEvent(new LevelEvent(LevelEvent.WON));
 			}
 			else
 			{
-				Cow(gameStage.getObject("Cow")).image.texture = Assets.getTexture("CowFall_Bull");
-				isBull = true;
-				Banner(gameStage.getObject("Banner")).savedTxtf.text = "" + score + "/4";
-				symulation.dropNewCow();
-				start();
+				dropNewCow();
 			}
+		}
+		
+		protected function dropNewCow():void
+		{
+			stop();
+			
+			resetGame();
+			
+			start();
+		}
+		
+		protected function resetGame():void
+		{
+			isBull = false;
+			bullCounter = 0;
+			
+			symulation.reset();
 		}
 		
 		public function stop():void
@@ -254,7 +272,7 @@ package com.szrapnel.games.quicksave.services
 			gameStage.getObject("Death").removeEventListener(Event.COMPLETE, onDeathComplete_handler);
 			TweenLite.killTweensOf(gameStage.getObject("DeadCowIcon"));
 			gameStage.getObject("DeadCowIcon").visible = false;
-			removeEventListener(Event.ENTER_FRAME, onEFrame);
+			removeEventListener(EnterFrameEvent.ENTER_FRAME, onEFrame);
 			stage.removeEventListener(TouchEvent.TOUCH, onTouch);
 		}
 		
@@ -264,32 +282,20 @@ package com.szrapnel.games.quicksave.services
 			symulation.eventDispatcher.addEventListener(SimulationEvent.COW_GRABBED, onCowGrabbed_handler);
 			
 			gameStage.getObject("Cow").visible = true;
-			startTime = new Date().time;
+			startTime = getTimer();
 			
-			removeEventListener(Event.ENTER_FRAME, onEFrame);
-			addEventListener(Event.ENTER_FRAME, onEFrame);
+			removeEventListener(EnterFrameEvent.ENTER_FRAME, onEFrame);
+			addEventListener(EnterFrameEvent.ENTER_FRAME, onEFrame);
 			
 			stage.removeEventListener(TouchEvent.TOUCH, onTouch);
 			stage.addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 		
-		public function theend():void
+		public function endGame():void
 		{
 			stop();
 			
 			var cow:Sprite = gameStage.getObject("Cow");
-			
-			if (isBull)
-			{
-				Cow(cow).image.texture = Assets.getTexture("CowFall_Cow");
-				isBull = false;
-				symulation.grabbed = false;
-				symulation.getBody("Ball").type = BodyType.DYNAMIC;
-			}
-			bullCounter = 0;
-			
-			symulation.getBody("RightWall").position.x = 0;
-			
 			var death:Sprite = gameStage.getObject("Death");
 			death.x = cow.x;
 			death.y = cow.y;
@@ -301,7 +307,7 @@ package com.szrapnel.games.quicksave.services
 			
 			cow.visible = false;
 			
-			//TelescopicSpring(gameStage.getObject("Hand")).setWidth(460 - gameStage.getObject("Platform").x);
+			TelescopicSpring(gameStage.getObject("Hand")).setWidth(460 - gameStage.getObject("Platform").x);
 		}
 		
 		private function onDeathComplete_handler(e:Event):void
@@ -340,7 +346,7 @@ package com.szrapnel.games.quicksave.services
 					deadCowIcon.alpha = 0;
 					deadCowIcon.touchable = false;
 					
-					start();
+					dropNewCow();
 				}
 			}
 		}

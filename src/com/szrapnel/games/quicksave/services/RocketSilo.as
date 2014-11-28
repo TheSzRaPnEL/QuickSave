@@ -34,13 +34,6 @@ package com.szrapnel.games.quicksave.services
 			LaserField(laserField).play();
 			laserField.name = "Animation";
 			addObject(laserField);
-			
-			var obstacle:Sprite = new Obstacle();
-			obstacle.x = 270;
-			obstacle.y = 250;
-			addChildAt(obstacle, numChildren - 3);
-			obstacle.name = "Obstacle";
-			addObject(obstacle);
 		}
 		
 	}

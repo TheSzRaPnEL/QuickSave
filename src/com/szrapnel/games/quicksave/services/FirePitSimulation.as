@@ -22,31 +22,35 @@ package com.szrapnel.games.quicksave.services
 	{
 		private static const debugMode:Boolean = false;
 		
-		private var _space:Space;
+		protected var bodies:Vector.<Body>;
+		protected var ballToPlatformOffset:int;
+		protected var bouncyMaterial:Material;
+		protected var glueMaterial:Material;
+		protected var _interactionListener:InteractionListener;
+		protected var _isBull:Boolean;
+		protected var _grabbed:Boolean;
+		
 		private var topWall:Body;
 		private var leftWall:Body;
 		private var rightWall:Body;
 		private var rightWallBot:Body;
 		private var dockWallTop:Body;
 		private var dockWallBot:Body;
-		protected var bouncyMaterial:Material;
-		protected var glueMaterial:Material;
-		protected var bodies:Vector.<Body>;
 		private var debug:BitmapDebug;
-		protected var _interactionListener:InteractionListener;
 		private var f1c:CbType = new CbType();
 		private var f2c:CbType = new CbType();
-		protected var _grabbed:Boolean;
-		protected var _isBull:Boolean;
+		private var _space:Space;
 		private var _bullCounter:int;
-		protected var ballToPlatformOffset:int = 0;
 		private var _eventDispatcher:EventDispatcher;
 		
 		public function FirePitSimulation():void
 		{
 			_eventDispatcher = new EventDispatcher();
-			bodies = new Vector.<Body>;
 			_isBull = false;
+			_grabbed = false;
+			
+			bodies = new Vector.<Body>;
+			
 			super();
 		}
 		
@@ -61,8 +65,6 @@ package com.szrapnel.games.quicksave.services
 			glueMaterial = new Material(0.1, 2, 4, 2);
 			
 			setUp();
-			
-			grabbed = false;
 			
 			if (_interactionListener == null)
 			{
@@ -152,6 +154,8 @@ package com.szrapnel.games.quicksave.services
 			topWall.space = space;
 			
 			leftWall = new Body(BodyType.STATIC);
+			leftWall.userData.name = "LeftWall";
+			bodies.push(leftWall);
 			leftWall.shapes.add(new Polygon(Polygon.rect(-50, -400, 55, h + 500)));
 			leftWall.setShapeMaterials(glueMaterial);
 			leftWall.space = space;
@@ -173,23 +177,13 @@ package com.szrapnel.games.quicksave.services
 		
 		public function reset():void
 		{
-			dropNewCow();
-			
-			var platform:Body = getBody("Platform");
-			platform.position.setxy(100, 480);
-			platform.velocity.x = 0;
-			
-			var platformInner:Body = getBody("PlatformInner");
-			platformInner.position.setxy(100, 480);
-			platformInner.velocity.x = 0;
-		}
-		
-		public function dropNewCow():void
-		{
 			grabbed = false;
 			
 			var rightWall:Body = getBody("RightWall");
 			rightWall.position.x = 0;
+			
+			var leftWall:Body = getBody("LeftWall");
+			leftWall.position.x = 0;
 			
 			var ball:Body = getBody("Ball");
 			ball.type = BodyType.DYNAMIC;
@@ -206,18 +200,6 @@ package com.szrapnel.games.quicksave.services
 		
 		public function update(time:Number):void
 		{
-			//for each (var body:Body in bodies)
-			//{
-				//if (Math.abs(body.velocity.x) > 1200)
-				//{
-					//body.velocity.x *= 1200 / Math.abs(body.velocity.x);
-				//}
-				//if (Math.abs(body.velocity.y) > 1200)
-				//{
-					//body.velocity.y *= 1200 / Math.abs(body.velocity.y);
-				//}
-			//}
-			
 			space.step(time, 4, 4);
 			
 			lowerForces();
@@ -257,12 +239,13 @@ package com.szrapnel.games.quicksave.services
 		private function lowerForces():void
 		{
 			var platform:Body = getBody("Platform");
+			var cow:Body = getBody("Ball");
 			if (platform.position.x < 520)
 			{
 				platform.velocity.x += 35;
 				if (grabbed)
 				{
-					getBody("Ball").position.x = platform.position.x + ballToPlatformOffset;
+					cow.position.x = platform.position.x + ballToPlatformOffset;
 				}
 			}
 			else
@@ -271,8 +254,8 @@ package com.szrapnel.games.quicksave.services
 				platform.velocity.x = 0;
 				if (grabbed)
 				{
-					getBody("Ball").velocity.x = 0;
-					getBody("Ball").position.x = 600;
+					cow.velocity.x = 0;
+					cow.position.x = 600;
 				}
 			}
 			

@@ -9,7 +9,7 @@ package com.szrapnel.games.quicksave.services
 	{
 		function init():void
 		
-		function theend():void
+		function endGame():void
 		
 		function stop():void
 		

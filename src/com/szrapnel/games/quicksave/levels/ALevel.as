@@ -45,7 +45,7 @@ package com.szrapnel.games.quicksave.levels
 		
 		private function onLevelLost_handler(e:LevelEvent):void 
 		{
-			gameLogic.theend();
+			gameLogic.endGame();
 		}
 		
 		public function get gameStage():IGameStage
@@ -84,7 +84,7 @@ package com.szrapnel.games.quicksave.levels
 			
 			if (gameLogic != null)
 			{
-				gameLogic.theend();
+				gameLogic.endGame();
 			}
 		}
 		

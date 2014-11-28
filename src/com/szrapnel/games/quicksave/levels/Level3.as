@@ -4,6 +4,7 @@ package com.szrapnel.games.quicksave.levels
 	import com.szrapnel.games.quicksave.services.FirePitLogic;
 	import com.szrapnel.games.quicksave.services.FirePitSimulation;
 	import com.szrapnel.games.quicksave.services.RocketSilo;
+	import com.szrapnel.games.quicksave.services.RocketSiloLogic;
 	import flash.geom.Rectangle;
 	import starling.display.Sprite;
 	
@@ -32,7 +33,7 @@ package com.szrapnel.games.quicksave.levels
 				symulation = new FirePitSimulation();
 				symulation.generate();
 				
-				gameLogic = new FirePitLogic(gameStage, symulation);
+				gameLogic = new RocketSiloLogic(gameStage, symulation);
 				addChild(Sprite(gameLogic));
 				Sprite(gameLogic).touchable = false;
 			}
