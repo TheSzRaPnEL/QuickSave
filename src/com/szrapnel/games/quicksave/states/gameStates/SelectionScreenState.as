@@ -33,6 +33,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		public function exit():void 
 		{
+			actor.selectionScreen.removeEventListener(Event.TRIGGERED, onSelectionScreenTriggered_handler);
 			actor.selectionScreen.touchable = false;
 		}
 		

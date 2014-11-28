@@ -26,6 +26,7 @@ package com.szrapnel.games.quicksave
 	import flash.desktop.NativeApplication;
 	import flash.events.KeyboardEvent;
 	import flash.net.SharedObject;
+	import flash.ui.Keyboard;
 	import starling.core.Starling;
 	import starling.display.Quad;
 	import starling.display.Sprite;
@@ -115,19 +116,19 @@ package com.szrapnel.games.quicksave
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			
-			if (stateMachine.currState == QuickSave.INIT || stateMachine.currState == QuickSave.MAIN_MENU)
+			if (e.keyCode == Keyboard.HOME || e.keyCode == Keyboard.BACK && (stateMachine.currState == QuickSave.INIT || stateMachine.currState == QuickSave.MAIN_MENU))
 			{
 				NativeApplication.nativeApplication.exit();
 			}
-			if (stateMachine.currState == QuickSave.SELECTION_SCREEN)
+			if (e.keyCode == Keyboard.BACK && (stateMachine.currState == QuickSave.SELECTION_SCREEN))
 			{
 				stateMachine.setState(QuickSave.ENTERING_MAIN_MENU_FROM_SELECTION_SCREEN);
 			}
-			if (stateMachine.currState == QuickSave.IN_GAME)
+			if (e.keyCode == Keyboard.BACK && (stateMachine.currState == QuickSave.IN_GAME))
 			{
 				stateMachine.setState(QuickSave.ENTERING_SELECTION_SCREEN_FROM_IN_GAME);
 			}
-			if (stateMachine.currState == QuickSave.INTRO)
+			if (e.keyCode == Keyboard.BACK && (stateMachine.currState == QuickSave.INTRO))
 			{
 				stateMachine.setState(QuickSave.MAIN_MENU);
 			}

@@ -54,6 +54,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		private function levelReady_handler(e:Event):void
 		{
+			DisplayObject(level).removeEventListener(LevelEvent.READY, levelReady_handler);
 			checkStateReady();
 		}
 		

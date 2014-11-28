@@ -32,6 +32,7 @@ package com.szrapnel.games.quicksave.components
 				this.downState = upState;
 			}
 			addChild(image);
+			image.removeEventListener(TouchEvent.TOUCH, onImageTouch);
 			image.addEventListener(TouchEvent.TOUCH, onImageTouch);
 			
 			onBtn = false;
