@@ -118,7 +118,7 @@ package com.szrapnel.games.quicksave.services
 			removeChild(object, true);
 		}
 		
-		public function getObject(name:String):Sprite
+		public function getObject(name:String):*
 		{
 			for each (var object:Sprite in elements)
 			{

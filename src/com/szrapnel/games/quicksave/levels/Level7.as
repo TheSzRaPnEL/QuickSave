@@ -16,6 +16,8 @@ package com.szrapnel.games.quicksave.levels
 		public function Level7()
 		{
 			super();
+			
+			musicName = "alienmusic";
 		}
 		
 		public override function generate():void

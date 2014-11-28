@@ -19,5 +19,13 @@ package com.szrapnel.games.quicksave.levels
 		function get symulation():ISimulation
 		
 		function get gameLogic():IGameLogic
+		
+		function get musicName():String
+		
+		function set musicName(value:String):void
+		
+		function set visible(value:Boolean):void
+		
+		function set touchable(value:Boolean):void
 	}
 }

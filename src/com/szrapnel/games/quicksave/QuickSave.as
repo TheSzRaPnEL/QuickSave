@@ -64,7 +64,7 @@ package com.szrapnel.games.quicksave
 			_sharedObject = SharedObject.getLocal("CowFallSO", "/");
 			if (sharedObject.data.levels == null)
 			{
-				sharedObject.data.levels = new <Boolean>[true,false,false,false,false,false,false];
+				sharedObject.data.levels = new <Boolean>[true, false, false, false, false, false, false];
 				sharedObject.flush();
 			}
 			if (sharedObject.data.saved == null)
@@ -98,12 +98,12 @@ package com.szrapnel.games.quicksave
 			
 			stateMachine.setState(INIT);
 			
-			_assetsList = new < String > ["font.fnt", "font.png", "music.mp3", "alienmusic.mp3", "bounce.mp3"];
-			_assetsList.push("CowFall_SS001.png","CowFall_SS001.xml");
-			_assetsList.push("CowFall_SS002.png","CowFall_SS002.xml");
-			_assetsList.push("CowFall_SS003.png","CowFall_SS003.xml");
-			_assetsList.push("CowFall_SS004.png","CowFall_SS004.xml");
-			_assetsList.push("CowFall_SS005.png","CowFall_SS005.xml");
+			_assetsList = new <String>["font.fnt", "font.png", "music.mp3", "alienmusic.mp3", "bounce.mp3"];
+			_assetsList.push("CowFall_SS001.png", "CowFall_SS001.xml");
+			_assetsList.push("CowFall_SS002.png", "CowFall_SS002.xml");
+			_assetsList.push("CowFall_SS003.png", "CowFall_SS003.xml");
+			_assetsList.push("CowFall_SS004.png", "CowFall_SS004.xml");
+			_assetsList.push("CowFall_SS005.png", "CowFall_SS005.xml");
 			
 			_offset = int(Starling.current.stage.stageWidth - 540) / 2;
 			
@@ -116,19 +116,23 @@ package com.szrapnel.games.quicksave
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			
-			if (e.keyCode == Keyboard.HOME || e.keyCode == Keyboard.BACK && (stateMachine.currState == QuickSave.INIT || stateMachine.currState == QuickSave.MAIN_MENU))
+			if (e.keyCode == Keyboard.HOME)
 			{
 				NativeApplication.nativeApplication.exit();
 			}
-			if (e.keyCode == Keyboard.BACK && (stateMachine.currState == QuickSave.SELECTION_SCREEN))
+			if ((e.keyCode == Keyboard.BACK || e.keyCode == Keyboard.SPACE) && (stateMachine.currState == QuickSave.INIT || stateMachine.currState == QuickSave.MAIN_MENU))
+			{
+				NativeApplication.nativeApplication.exit();
+			}
+			if ((e.keyCode == Keyboard.BACK || e.keyCode == Keyboard.SPACE) && (stateMachine.currState == QuickSave.SELECTION_SCREEN))
 			{
 				stateMachine.setState(QuickSave.ENTERING_MAIN_MENU_FROM_SELECTION_SCREEN);
 			}
-			if (e.keyCode == Keyboard.BACK && (stateMachine.currState == QuickSave.IN_GAME))
+			if ((e.keyCode == Keyboard.BACK || e.keyCode == Keyboard.SPACE) && (stateMachine.currState == QuickSave.IN_GAME))
 			{
 				stateMachine.setState(QuickSave.ENTERING_SELECTION_SCREEN_FROM_IN_GAME);
 			}
-			if (e.keyCode == Keyboard.BACK && (stateMachine.currState == QuickSave.INTRO))
+			if ((e.keyCode == Keyboard.BACK || e.keyCode == Keyboard.SPACE) && (stateMachine.currState == QuickSave.INTRO))
 			{
 				stateMachine.setState(QuickSave.MAIN_MENU);
 			}
@@ -199,7 +203,7 @@ package com.szrapnel.games.quicksave
 			_levelPool = value;
 		}
 		
-		public function get sharedObject():SharedObject 
+		public function get sharedObject():SharedObject
 		{
 			return _sharedObject;
 		}

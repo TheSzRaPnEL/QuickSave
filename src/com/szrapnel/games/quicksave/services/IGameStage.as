@@ -15,6 +15,6 @@ package com.szrapnel.games.quicksave.services
 		
 		function removeObject(object:Sprite):void
 		
-		function getObject(name:String):Sprite
+		function getObject(name:String):*
 	}
 }

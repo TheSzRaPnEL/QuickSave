@@ -1,50 +1,48 @@
-package com.szrapnel.games.quicksave.states.gameStates 
+package com.szrapnel.games.quicksave.states.gameStates
 {
 	import com.szrapnel.games.quicksave.events.LevelEvent;
+	import com.szrapnel.games.quicksave.levels.ILevel;
 	import com.szrapnel.games.quicksave.QuickSave;
+	import com.szrapnel.games.quicksave.services.IGameLogic;
 	import com.szrapnel.games.quicksave.states.IState;
 	import com.szrapnel.games.services.Assets;
 	import com.szrapnel.games.services.SoundController;
-	import flash.media.Sound;
 	
 	/**
 	 * Game MainMenu state definition
 	 * @author SzRaPnEL
 	 */
-	public class InGameState implements IState 
+	public class InGameState implements IState
 	{
 		private var _name:String;
 		private var actor:*;
 		
-		public function InGameState(actor:*) 
+		public function InGameState(actor:*)
 		{
 			this.actor = actor;
 			_name = "inGameState";
 		}
 		
-		public function enter():void 
+		public function enter():void
 		{
-			actor.levelPool.getLevel(actor.currentLevel).visible = true;
-			actor.levelPool.getLevel(actor.currentLevel).touchable = true;
-			actor.levelPool.getLevel(actor.currentLevel).gameLogic.init();
-			actor.levelPool.getLevel(actor.currentLevel).gameStage.getObject("Animation").play();
-			if (actor.currentLevel == 6)
-			{
-				SoundController.playMusic(Assets.assetManager.getSound("alienmusic"));
-			}
-			else
-			{
-				SoundController.playMusic(Assets.assetManager.getSound("music"));
-			}
-			actor.levelPool.getLevel(actor.currentLevel).gameLogic.removeEventListener(LevelEvent.WON, levelWon_handler);
-			actor.levelPool.getLevel(actor.currentLevel).gameLogic.addEventListener(LevelEvent.WON, levelWon_handler);
-			actor.levelPool.getLevel(actor.currentLevel).gameLogic.removeEventListener(LevelEvent.COW_SAVED, cowSaved_handler);
-			actor.levelPool.getLevel(actor.currentLevel).gameLogic.addEventListener(LevelEvent.COW_SAVED, cowSaved_handler);
+			var currentLevel:ILevel = actor.levelPool.getLevel(actor.currentLevel);
+			currentLevel.visible = true;
+			currentLevel.touchable = true;
+			var currentLevelLogic:IGameLogic = currentLevel.gameLogic;
+			currentLevelLogic.init();
+			currentLevel.gameStage.getObject("Animation").play();
+			
+			SoundController.playMusic(Assets.assetManager.getSound(currentLevel.musicName));
+			
+			currentLevelLogic.removeEventListener(LevelEvent.WON, levelWon_handler);
+			currentLevelLogic.addEventListener(LevelEvent.WON, levelWon_handler);
+			currentLevelLogic.removeEventListener(LevelEvent.COW_SAVED, cowSaved_handler);
+			currentLevelLogic.addEventListener(LevelEvent.COW_SAVED, cowSaved_handler);
 		}
 		
-		private function cowSaved_handler(e:LevelEvent):void 
+		private function cowSaved_handler(e:LevelEvent):void
 		{
-			actor.sharedObject.data.saved+=22;
+			actor.sharedObject.data.saved += 22;
 			
 			if (actor.sharedObject.data.saved >= 1111)
 			{
@@ -54,7 +52,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 			actor.sharedObject.flush();
 		}
 		
-		private function levelWon_handler(e:LevelEvent):void 
+		private function levelWon_handler(e:LevelEvent):void
 		{
 			if (actor.levelPool.length - 1 > actor.currentLevel + 1 || (actor.levelPool.length > actor.currentLevel + 1 && actor.sharedObject.data.levels[6] == true))
 			{
@@ -69,28 +67,23 @@ package com.szrapnel.games.quicksave.states.gameStates
 			}
 		}
 		
-		public function update():void 
+		public function update():void
 		{
+		
+		}
+		
+		public function exit():void
+		{
+			var currentLevel:ILevel = actor.levelPool.getLevel(actor.currentLevel);
+			currentLevel.gameLogic.removeEventListener(LevelEvent.WON, levelWon_handler);
+			currentLevel.gameLogic.removeEventListener(LevelEvent.COW_SAVED, levelWon_handler);
+			currentLevel.gameLogic.stop();
+			currentLevel.gameStage.getObject("Animation").stop();
 			
+			SoundController.stopMusic(Assets.assetManager.getSound(currentLevel.musicName));
 		}
 		
-		public function exit():void 
-		{
-			actor.levelPool.getLevel(actor.currentLevel).gameLogic.removeEventListener(LevelEvent.WON, levelWon_handler);
-			actor.levelPool.getLevel(actor.currentLevel).gameLogic.removeEventListener(LevelEvent.COW_SAVED, levelWon_handler);
-			actor.levelPool.getLevel(actor.currentLevel).gameLogic.stop();
-			actor.levelPool.getLevel(actor.currentLevel).gameStage.getObject("Animation").stop();
-			if (actor.currentLevel == 6)
-			{
-				SoundController.stopMusic(Assets.assetManager.getSound("alienmusic"));
-			}
-			else
-			{
-				SoundController.stopMusic(Assets.assetManager.getSound("music"));
-			}
-		}
-		
-		public function get name():String 
+		public function get name():String
 		{
 			return _name;
 		}

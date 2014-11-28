@@ -21,6 +21,7 @@ package com.szrapnel.games.quicksave.levels
 		private var _gameStage:IGameStage;
 		private var _symulation:ISimulation;
 		private var _gameLogic:IGameLogic;
+		private var _musicName:String;
 		protected var isGenerated:Boolean;
 		protected var delay:Number;
 		protected var fsm:StateMachine;
@@ -76,6 +77,16 @@ package com.szrapnel.games.quicksave.levels
 		public function set gameLogic(value:IGameLogic):void
 		{
 			_gameLogic = value;
+		}
+		
+		public function get musicName():String 
+		{
+			return _musicName;
+		}
+		
+		public function set musicName(value:String):void 
+		{
+			_musicName = value;
 		}
 		
 		public override function dispose():void
