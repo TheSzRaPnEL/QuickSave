@@ -27,7 +27,6 @@ package com.szrapnel.games.quicksave.services
 		protected var bouncyMaterial:Material;
 		protected var glueMaterial:Material;
 		protected var _interactionListener:InteractionListener;
-		protected var _isBull:Boolean;
 		protected var _grabbed:Boolean;
 		
 		private var topWall:Body;
@@ -46,7 +45,6 @@ package com.szrapnel.games.quicksave.services
 		public function FirePitSimulation():void
 		{
 			_eventDispatcher = new EventDispatcher();
-			_isBull = false;
 			_grabbed = false;
 			
 			bodies = new Vector.<Body>;
@@ -186,6 +184,7 @@ package com.szrapnel.games.quicksave.services
 			leftWall.position.x = 0;
 			
 			var ball:Body = getBody("Ball");
+			TweenLite.killTweensOf(ball);
 			ball.type = BodyType.DYNAMIC;
 			ball.position.setxy(430 * Math.random() + 20, -100);
 			ball.angularVel = 10 * Math.random() - 5;
