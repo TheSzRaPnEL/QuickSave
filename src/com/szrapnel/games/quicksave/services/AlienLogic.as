@@ -1,8 +1,12 @@
 package com.szrapnel.games.quicksave.services
 {
+	import com.szrapnel.games.quicksave.enum.PlatformHideDirection;
 	import com.szrapnel.games.quicksave.items.Banner;
+	import com.szrapnel.games.quicksave.items.Platform;
 	import com.szrapnel.games.services.Assets;
 	import flash.net.SharedObject;
+	import nape.geom.Vec2;
+	import nape.phys.Body;
 	import starling.display.Sprite;
 	import starling.text.TextField;
 	
@@ -67,6 +71,32 @@ package com.szrapnel.games.quicksave.services
 			{
 				gameStage.getObject("Cow").image.texture = Assets.getTexture("CowFall_Cow");
 				isBull = false;
+			}
+			
+			var platformObject:* = gameStage.getObject("Platform");
+			var hand:* = gameStage.getObject("Hand");
+			var platform:Body = symulation.getBody("Platform");
+			var platformInner:Body = symulation.getBody("PlatformInner");
+			platform.velocity = Vec2.weak();
+			platformInner.velocity = Vec2.weak();
+			
+			if (score != 0 && platform.userData.hideDirection == PlatformHideDirection.RIGHT)
+			{
+				hand.x = -80;
+				platform.position.x = -150;
+				platformInner.position.x = -150;
+				platformObject.image.x = 180;
+				platformObject.image.width = -180;
+				platform.userData.hideDirection = PlatformHideDirection.LEFT;
+			}
+			else
+			{
+				hand.x = 630;
+				platform.position.x = 520;
+				platformInner.position.x = 520;
+				platformObject.image.x = 0;
+				platformObject.image.width = 180;
+				platform.userData.hideDirection = PlatformHideDirection.RIGHT;
 			}
 		}
 		

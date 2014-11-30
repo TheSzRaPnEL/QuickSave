@@ -2,6 +2,7 @@ package com.szrapnel.games.quicksave.services
 {
 	import com.greensock.easing.Bounce;
 	import com.greensock.TweenLite;
+	import com.szrapnel.games.quicksave.enum.PlatformHideDirection;
 	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.quicksave.events.SimulationEvent;
 	import com.szrapnel.games.quicksave.items.Banner;
@@ -67,6 +68,7 @@ package com.szrapnel.games.quicksave.services
 				if (bullCounter < 3)
 				{
 					symulation.getBody("RightWall").position.x = 0;
+					symulation.getBody("LeftWall").position.x = 0;
 					symulation.grabbed = false;
 					var ball:Body = symulation.getBody("Ball");
 					ball.position.y = symulation.getBody("Platform").position.y - 45;
@@ -134,20 +136,36 @@ package com.szrapnel.games.quicksave.services
 						clickTime = now;
 					}
 					
+					var platform:Body = symulation.getBody("Platform");
+					var platformVelocity:Vec2 = platform.velocity;
+					var platformInnerVelocity:Vec2 = symulation.getBody("PlatformInner").velocity;
+					
 					if (now - clickTime < 250)
 					{
-						if (lastMaxVelocity > -1200)
+						if (platform.userData.hideDirection == PlatformHideDirection.LEFT && lastMaxVelocity < 1200)
+						{
+							lastMaxVelocity += 300;
+						}
+						if (platform.userData.hideDirection == PlatformHideDirection.RIGHT && lastMaxVelocity > -1200)
 						{
 							lastMaxVelocity -= 300;
 						}
-						symulation.getBody("Platform").velocity.x = lastMaxVelocity;
-						symulation.getBody("PlatformInner").velocity.x = lastMaxVelocity;
+						
+						platformVelocity.x = lastMaxVelocity;
+						platformInnerVelocity.x = lastMaxVelocity;
 					}
-					else if (symulation.getBody("Platform").velocity.x > -500)
+					else
 					{
-						symulation.getBody("Platform").velocity.x = -500;
-						symulation.getBody("PlatformInner").velocity.x = -500;
-						lastMaxVelocity = -500;
+						if (platform.userData.hideDirection == PlatformHideDirection.LEFT)
+						{
+							lastMaxVelocity = 500;
+						}
+						if (platform.userData.hideDirection == PlatformHideDirection.RIGHT)
+						{
+							lastMaxVelocity = -500;
+						}
+						platformVelocity.x = lastMaxVelocity;
+						platformInnerVelocity.x = lastMaxVelocity;
 					}
 					
 					clickTime = now;
@@ -161,28 +179,32 @@ package com.szrapnel.games.quicksave.services
 		
 		private function startResetVelocityTimer():void
 		{
-			timerId = setTimeout(resetVelocityTimer, 250);
+			stopResetVelocityTimer();
+			TweenLite.delayedCall(250, resetVelocityTimer);
 		}
 		
 		private function stopResetVelocityTimer():void
 		{
-			clearTimeout(timerId);
+			TweenLite.killDelayedCallsTo(resetVelocityTimer);
 		}
 		
 		private function resetVelocityTimer():void
 		{
 			var platformVelocity:Vec2 = symulation.getBody("Platform").velocity;
-			if (platformVelocity.x <= -500)
+			var platformInnerVelocity:Vec2 = symulation.getBody("PlatformInner").velocity;
+			
+			if (symulation.getBody("Platform").userData.hideDirection == PlatformHideDirection.LEFT && platformVelocity.x > 500)
 			{
-				platformVelocity.x = -500;
-				lastMaxVelocity = -500;
+				lastMaxVelocity = 500;
+				platformVelocity.x = 0;
+				platformInnerVelocity.x = 0;
 			}
 			
-			var platformInnerVelocity:Vec2 = symulation.getBody("PlatformInner").velocity;
-			if (platformInnerVelocity.x <= -500)
+			if (symulation.getBody("Platform").userData.hideDirection == PlatformHideDirection.RIGHT && platformVelocity.x < -500)
 			{
-				platformInnerVelocity.x = -500;
 				lastMaxVelocity = -500;
+				platformVelocity.x = 0;
+				platformInnerVelocity.x = 0;
 			}
 		}
 		
@@ -197,8 +219,16 @@ package com.szrapnel.games.quicksave.services
 			cow.y = ball.position.y;
 			cow.rotation = ball.rotation;
 			
-			var hand:Sprite = gameStage.getObject("Hand");
-			TelescopicSpring(hand).setWidth(460 - platform.x);
+			var hand:* = gameStage.getObject("Hand");
+			var platformBodyHideDirection:String = symulation.getBody("Platform").userData.hideDirection;
+			if (platformBodyHideDirection == PlatformHideDirection.RIGHT)
+			{
+				hand.setWidth(460 - platform.x);
+			}
+			else
+			{
+				hand.setWidth(-90 - platform.x);
+			}
 			
 			if (cow.y < 0)
 			{
@@ -214,7 +244,7 @@ package com.szrapnel.games.quicksave.services
 			{
 				endGame();
 			}
-			else if (cow.x > 580 || cow.x < -110)
+			else if (cow.x > 570 || cow.x < -30)
 			{
 				addPoint();
 			}
@@ -259,6 +289,8 @@ package com.szrapnel.games.quicksave.services
 		
 		protected function resetGame():void
 		{
+			stopResetVelocityTimer();
+			
 			isBull = false;
 			bullCounter = 0;
 			
@@ -306,8 +338,6 @@ package com.szrapnel.games.quicksave.services
 			CowDeath(death).play();
 			
 			cow.visible = false;
-			
-			TelescopicSpring(gameStage.getObject("Hand")).setWidth(460 - gameStage.getObject("Platform").x);
 		}
 		
 		private function onDeathComplete_handler(e:Event):void

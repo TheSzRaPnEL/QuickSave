@@ -22,8 +22,11 @@ package com.szrapnel.games.quicksave
 	import com.szrapnel.games.quicksave.states.gameStates.IntroState;
 	import com.szrapnel.games.quicksave.states.gameStates.MainMenuState;
 	import com.szrapnel.games.quicksave.states.gameStates.SelectionScreenState;
+	import com.szrapnel.games.services.Assets;
+	import com.szrapnel.games.services.SoundController;
 	import com.szrapnel.games.services.StateMachine;
 	import flash.desktop.NativeApplication;
+	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.net.SharedObject;
 	import flash.ui.Keyboard;
@@ -109,6 +112,24 @@ package com.szrapnel.games.quicksave
 			
 			NativeApplication.nativeApplication.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 			Starling.current.nativeStage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+			Starling.current.nativeStage.addEventListener(Event.ACTIVATE, onStageActivation);
+			Starling.current.nativeStage.addEventListener(Event.DEACTIVATE, onStageDeactivation);
+		}
+		
+		private function onStageDeactivation(e:Event):void 
+		{
+			if (stateMachine.currState == QuickSave.IN_GAME)
+			{
+				SoundController.stopMusic(Assets.assetManager.getSound(levelPool.getLevel(currentLevel).musicName));
+			}
+		}
+		
+		private function onStageActivation(e:Event):void 
+		{
+			if (stateMachine.currState == QuickSave.IN_GAME)
+			{
+				SoundController.playMusic(Assets.assetManager.getSound(levelPool.getLevel(currentLevel).musicName));
+			}
 		}
 		
 		private function onKeyDown(e:KeyboardEvent):void

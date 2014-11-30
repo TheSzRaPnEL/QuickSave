@@ -1,6 +1,8 @@
 package com.szrapnel.games.quicksave.services
 {
 	import com.greensock.TweenLite;
+	import com.szrapnel.games.quicksave.enum.PlatformHideDirection;
+	import com.szrapnel.games.quicksave.enum.PlatformType;
 	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.quicksave.events.SimulationEvent;
 	import nape.callbacks.CbEvent;
@@ -89,6 +91,7 @@ package com.szrapnel.games.quicksave.services
 				ballToPlatformOffset = cow.position.x - platform.position.x;
 				cow.position.y = platform.position.y - 35;
 				getBody("RightWall").position.x = 1000;
+				getBody("LeftWall").position.x = -1000;
 				TweenLite.to(cow, 0.2, {rotation: int(cow.rotation / (Math.PI / 2)) * (Math.PI / 2), onComplete: rotationComplete_handler});
 			}
 		}
@@ -117,6 +120,8 @@ package com.szrapnel.games.quicksave.services
 			
 			var platform:Body = new Body(BodyType.KINEMATIC);
 			platform.userData.name = "Platform";
+			platform.userData.type = PlatformType.GRAB;
+			platform.userData.hideDirection = PlatformHideDirection.RIGHT;
 			bodies.push(platform);
 			platform.allowRotation = false;
 			platform.shapes.add(new Polygon(Polygon.rect(10, -5, 150, 25)));
@@ -212,61 +217,72 @@ package com.szrapnel.games.quicksave.services
 			}
 		}
 		
-		private function illegalCollisions():void
+		protected function illegalCollisions():void
 		{
 			var platform:Body = getBody("Platform");
-			if (platform.position.x < 0)
+			var platformInner:Body = getBody("PlatformInner");
+			var cow:Body = getBody("Ball");
+			
+			if (platform.userData.hideDirection == PlatformHideDirection.RIGHT && platform.position.x < 0)
 			{
 				platform.position.x = 0;
 				platform.velocity.x = 0;
-			}
-			
-			var platformInner:Body = getBody("PlatformInner");
-			if (platformInner.position.x < 0)
-			{
 				platformInner.position.x = 0;
 				platformInner.velocity.x = 0;
 			}
 			
-			var cow:Body = getBody("Ball");
-			if (!grabbed && cow.position.x < 24 && platform.position.x < 24 && cow.position.y > platform.position.y - 80 && cow.position.y < platform.position.y + 60)
+			if (platform.userData.hideDirection == PlatformHideDirection.LEFT && platform.position.x > 380)
 			{
-				eventDispatcher.dispatchEvent(new LevelEvent(LevelEvent.LOST));
+				platform.position.x = 380;
+				platform.velocity.x = 0;
+				platformInner.position.x = 380;
+				platformInner.velocity.x = 0;
+			}
+			
+			if (!grabbed && cow.position.y > platform.position.y - 80 && cow.position.y < platform.position.y + 60)
+			{
+				if ((platform.userData.hideDirection == PlatformHideDirection.RIGHT && cow.position.x < 24 && platform.position.x < 24) || (platform.userData.hideDirection == PlatformHideDirection.LEFT && cow.position.x > 420 && platform.position.x > 420))
+				{
+					eventDispatcher.dispatchEvent(new LevelEvent(LevelEvent.LOST));
+				}
 			}
 		}
 		
-		private function lowerForces():void
+		protected function lowerForces():void
 		{
 			var platform:Body = getBody("Platform");
+			var platformInner:Body = getBody("PlatformInner");
 			var cow:Body = getBody("Ball");
-			if (platform.position.x < 520)
+			
+			if (platform.userData.hideDirection == PlatformHideDirection.RIGHT && platform.position.x < 520)
 			{
 				platform.velocity.x += 35;
-				if (grabbed)
-				{
-					cow.position.x = platform.position.x + ballToPlatformOffset;
-				}
+				platformInner.velocity.x += 35;
 			}
-			else
+			if (platform.userData.hideDirection == PlatformHideDirection.RIGHT && platform.position.x > 520)
 			{
 				platform.position.x = 520;
 				platform.velocity.x = 0;
-				if (grabbed)
-				{
-					cow.velocity.x = 0;
-					cow.position.x = 600;
-				}
-			}
-			
-			var platformInner:Body = getBody("PlatformInner");
-			if (platformInner.position.x < 520)
-			{
-				platformInner.velocity.x += 35;
-			}
-			else
-			{
 				platformInner.position.x = 520;
 				platformInner.velocity.x = 0;
+			}
+			if (platform.userData.hideDirection == PlatformHideDirection.LEFT && platform.position.x > -150)
+			{
+				platform.velocity.x -= 35;
+				platformInner.velocity.x -= 35;
+			}
+			if (platform.userData.hideDirection == PlatformHideDirection.LEFT && platform.position.x < -150)
+			{
+				platform.position.x = -150;
+				platform.velocity.x = 0;
+				platformInner.position.x = -150;
+				platformInner.velocity.x = 0;
+			}
+			
+			if (grabbed)
+			{
+				cow.position.x = platform.position.x + ballToPlatformOffset;
+				cow.velocity = Vec2.weak();
 			}
 		}
 		

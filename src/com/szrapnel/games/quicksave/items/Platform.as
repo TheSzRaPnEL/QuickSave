@@ -11,6 +11,7 @@ package com.szrapnel.games.quicksave.items
 	public class Platform extends Sprite
 	{
 		private var container:Sprite;
+		private var _image:Image;
 		
 		public function Platform()
 		{
@@ -19,10 +20,15 @@ package com.szrapnel.games.quicksave.items
 			container = new Sprite();
 			addChild(container);
 			
-			var image:Image = new Image(Assets.getTexture("CowFall_platform"));
+			_image = new Image(Assets.getTexture("CowFall_platform"));
 			image.y = -50;
 			image.width = 180;
 			container.addChild(image);
+		}
+		
+		public function get image():Image 
+		{
+			return _image;
 		}
 		
 	}
