@@ -239,9 +239,9 @@ package com.szrapnel.games.quicksave.services
 				platformInner.velocity.x = 0;
 			}
 			
-			if (!grabbed && cow.position.y > platform.position.y - 80 && cow.position.y < platform.position.y + 60)
+			if (!grabbed && cow.position.y > platform.position.y - 40 && cow.position.y < platform.position.y + 30)
 			{
-				if ((platform.userData.hideDirection == PlatformHideDirection.RIGHT && cow.position.x < 24 && platform.position.x < 24) || (platform.userData.hideDirection == PlatformHideDirection.LEFT && cow.position.x > 420 && platform.position.x > 420))
+				if ((platform.userData.hideDirection == PlatformHideDirection.RIGHT && cow.position.x < 24 && platform.position.x < 24) || (platform.userData.hideDirection == PlatformHideDirection.LEFT && cow.position.x > 370 && platform.position.x > 370))
 				{
 					eventDispatcher.dispatchEvent(new LevelEvent(LevelEvent.LOST));
 				}
