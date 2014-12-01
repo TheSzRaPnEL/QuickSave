@@ -1,7 +1,7 @@
 package com.szrapnel
 {
-	import com.szrapnel.games.IGame;
 	import com.szrapnel.games.events.DisplayListEvent;
+	import com.szrapnel.games.IGame;
 	import com.szrapnel.games.quicksave.QuickSave;
 	import com.szrapnel.games.services.Assets;
 	import starling.core.Starling;

@@ -1,11 +1,14 @@
-package com.szrapnel.games.quicksave.states.gameStates 
+package com.szrapnel.games.quicksave.states.gameStates
 {
 	import com.szrapnel.games.events.DisplayListEvent;
 	import com.szrapnel.games.quicksave.events.IntroEvent;
 	import com.szrapnel.games.quicksave.intro.IntroMovie;
 	import com.szrapnel.games.quicksave.QuickSave;
 	import com.szrapnel.games.quicksave.states.IState;
+	import com.szrapnel.games.services.Assets;
 	import starling.core.Starling;
+	import starling.display.BlendMode;
+	import starling.display.Image;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -14,18 +17,18 @@ package com.szrapnel.games.quicksave.states.gameStates
 	 * Game IntroState state definition
 	 * @author SzRaPnEL
 	 */
-	public class IntroState implements IState 
+	public class IntroState implements IState
 	{
 		private var actor:*;
 		private var _name:String;
 		
-		public function IntroState(actor:*) 
+		public function IntroState(actor:*)
 		{
 			this.actor = actor;
 			_name = "introState";
 		}
 		
-		public function enter():void 
+		public function enter():void
 		{
 			if (actor.introMovie == null)
 			{
@@ -33,6 +36,16 @@ package com.szrapnel.games.quicksave.states.gameStates
 				actor.introMovie.touchable = false;
 				actor.addChild(actor.introMovie);
 				actor.introMovie.generate();
+				
+				var leftSideFrame:Image = new Image(Assets.getTexture("CowFall_frame_LEFT"));
+				leftSideFrame.blendMode = BlendMode.NONE;
+				actor.addChild(leftSideFrame);
+				leftSideFrame.x = actor.offset - leftSideFrame.width;
+				
+				var rightSideFrame:Image = new Image(Assets.getTexture("CowFall_frame_RIGHT"));
+				rightSideFrame.blendMode = BlendMode.NONE;
+				actor.addChild(rightSideFrame);
+				rightSideFrame.x = actor.offset + 540;
 			}
 			
 			actor.introMovie.x = actor.offset;
@@ -47,12 +60,12 @@ package com.szrapnel.games.quicksave.states.gameStates
 			actor.gameBackground.addEventListener(TouchEvent.TOUCH, onStageTouch_handler);
 		}
 		
-		public function update():void 
+		public function update():void
 		{
-			
+		
 		}
 		
-		public function exit():void 
+		public function exit():void
 		{
 			actor.introMovie.removeEventListener(IntroEvent.INTRO_FINISHED, onIntroFinished_handler);
 			actor.gameBackground.removeEventListener(TouchEvent.TOUCH, onStageTouch_handler);
@@ -65,17 +78,17 @@ package com.szrapnel.games.quicksave.states.gameStates
 			dispatchShowAdmobRequest();
 		}
 		
-		public function get name():String 
+		public function get name():String
 		{
 			return _name;
 		}
 		
-		private function onIntroFinished_handler(e:IntroEvent):void 
+		private function onIntroFinished_handler(e:IntroEvent):void
 		{
 			actor.stateMachine.setState(QuickSave.MAIN_MENU);
 		}
 		
-		private function onStageTouch_handler(e:TouchEvent):void 
+		private function onStageTouch_handler(e:TouchEvent):void
 		{
 			if (e.getTouch(actor.gameBackground))
 			{
@@ -91,7 +104,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 			}
 		}
 		
-		private function dispatchShowAdmobRequest():void 
+		private function dispatchShowAdmobRequest():void
 		{
 			Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.SHOW_ADMOB));
 		}

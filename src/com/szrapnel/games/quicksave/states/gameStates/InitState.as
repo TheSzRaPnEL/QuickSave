@@ -1,4 +1,4 @@
-package com.szrapnel.games.quicksave.states.gameStates 
+package com.szrapnel.games.quicksave.states.gameStates
 {
 	import com.szrapnel.games.quicksave.states.IState;
 	import starling.core.Starling;
@@ -9,18 +9,18 @@ package com.szrapnel.games.quicksave.states.gameStates
 	 * Game MainMenu state definition
 	 * @author SzRaPnEL
 	 */
-	public class InitState implements IState 
+	public class InitState implements IState
 	{
 		private var _name:String;
 		private var actor:*;
 		
-		public function InitState(actor:*) 
+		public function InitState(actor:*)
 		{
 			this.actor = actor;
 			_name = "initState";
 		}
 		
-		public function enter():void 
+		public function enter():void
 		{
 			if (actor.gameBackground == null)
 			{
@@ -31,17 +31,17 @@ package com.szrapnel.games.quicksave.states.gameStates
 			}
 		}
 		
-		public function update():void 
+		public function update():void
 		{
-			
+		
 		}
 		
-		public function exit():void 
+		public function exit():void
 		{
-			
+		
 		}
 		
-		public function get name():String 
+		public function get name():String
 		{
 			return _name;
 		}

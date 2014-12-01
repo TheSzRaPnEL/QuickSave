@@ -1,5 +1,6 @@
 package com.szrapnel.games.quicksave.states.gameStates 
 {
+	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.quicksave.QuickSave;
 	import com.szrapnel.games.quicksave.states.IState;
 	import starling.events.Event;
@@ -24,6 +25,8 @@ package com.szrapnel.games.quicksave.states.gameStates
 			actor.selectionScreen.touchable = true;
 			actor.selectionScreen.removeEventListener(Event.TRIGGERED, onSelectionScreenTriggered_handler);
 			actor.selectionScreen.addEventListener(Event.TRIGGERED, onSelectionScreenTriggered_handler);
+			actor.selectionScreen.removeEventListener(LevelEvent.BACK_BTN_PRESSED, onBackBtnPress_handler);
+			actor.selectionScreen.addEventListener(LevelEvent.BACK_BTN_PRESSED, onBackBtnPress_handler);
 		}
 		
 		public function update():void 
@@ -34,6 +37,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 		public function exit():void 
 		{
 			actor.selectionScreen.removeEventListener(Event.TRIGGERED, onSelectionScreenTriggered_handler);
+			actor.selectionScreen.removeEventListener(LevelEvent.BACK_BTN_PRESSED, onBackBtnPress_handler);
 			actor.selectionScreen.touchable = false;
 		}
 		
@@ -46,6 +50,11 @@ package com.szrapnel.games.quicksave.states.gameStates
 		{
 			actor.currentLevel = e.data;
 			actor.stateMachine.setState(QuickSave.ENTERING_IN_GAME_FROM_SELECTION_SCREEN);
+		}
+		
+		private function onBackBtnPress_handler(e:LevelEvent):void 
+		{
+			actor.stateMachine.setState(QuickSave.ENTERING_MAIN_MENU_FROM_SELECTION_SCREEN);
 		}
 		
 	}

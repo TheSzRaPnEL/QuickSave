@@ -1,6 +1,7 @@
 package com.szrapnel.games.quicksave.screens
 {
 	import com.szrapnel.games.quicksave.components.SimpleButton;
+	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.services.Assets;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -81,6 +82,18 @@ package com.szrapnel.games.quicksave.screens
 			lock.y = miniature.y + 220;
 			locks.push(lock);
 			addChild(lock);
+			
+			var backBtn:SimpleButton = new SimpleButton(Assets.getTexture("CowFall_button_back"));
+			backBtn.removeEventListener(Event.TRIGGERED, onBackBtnTriggered);
+			backBtn.addEventListener(Event.TRIGGERED, onBackBtnTriggered);
+			backBtn.x = 10;
+			backBtn.y = 895;
+			addChild(backBtn);
+		}
+		
+		private function onBackBtnTriggered(e:Event):void 
+		{
+			dispatchEvent(new LevelEvent(LevelEvent.BACK_BTN_PRESSED));
 		}
 		
 		private function onMiniatureTriggered_handler(e:Event):void

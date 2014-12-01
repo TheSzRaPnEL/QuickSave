@@ -15,7 +15,7 @@ package com.szrapnel.games.quicksave.services
 		
 		function start():void
 		
-		function addEventListener(type:String, listener:Function):void;
+		function addEventListener(type:String, listener:Function):void
 		
 		function removeEventListener(type:String, listener:Function):void
 	}

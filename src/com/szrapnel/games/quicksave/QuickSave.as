@@ -116,7 +116,7 @@ package com.szrapnel.games.quicksave
 			Starling.current.nativeStage.addEventListener(Event.DEACTIVATE, onStageDeactivation);
 		}
 		
-		private function onStageDeactivation(e:Event):void 
+		private function onStageDeactivation(e:Event):void
 		{
 			if (stateMachine.currState == QuickSave.IN_GAME)
 			{
@@ -124,7 +124,7 @@ package com.szrapnel.games.quicksave
 			}
 		}
 		
-		private function onStageActivation(e:Event):void 
+		private function onStageActivation(e:Event):void
 		{
 			if (stateMachine.currState == QuickSave.IN_GAME)
 			{

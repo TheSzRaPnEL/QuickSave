@@ -38,6 +38,13 @@ package com.szrapnel.games.quicksave.states.gameStates
 			currentLevelLogic.addEventListener(LevelEvent.WON, levelWon_handler);
 			currentLevelLogic.removeEventListener(LevelEvent.COW_SAVED, cowSaved_handler);
 			currentLevelLogic.addEventListener(LevelEvent.COW_SAVED, cowSaved_handler);
+			currentLevel.gameStage.removeEventListener(LevelEvent.BACK_BTN_PRESSED, onBackBtnPressed_handler);
+			currentLevel.gameStage.addEventListener(LevelEvent.BACK_BTN_PRESSED, onBackBtnPressed_handler);
+		}
+		
+		private function onBackBtnPressed_handler(e:LevelEvent):void 
+		{
+			actor.stateMachine.setState(QuickSave.ENTERING_MAIN_MENU_FROM_IN_GAME);
 		}
 		
 		private function cowSaved_handler(e:LevelEvent):void
@@ -77,6 +84,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 			var currentLevel:ILevel = actor.levelPool.getLevel(actor.currentLevel);
 			currentLevel.gameLogic.removeEventListener(LevelEvent.WON, levelWon_handler);
 			currentLevel.gameLogic.removeEventListener(LevelEvent.COW_SAVED, levelWon_handler);
+			currentLevel.gameStage.removeEventListener(LevelEvent.BACK_BTN_PRESSED, onBackBtnPressed_handler);
 			currentLevel.gameLogic.stop();
 			currentLevel.gameStage.getObject("Animation").stop();
 			

@@ -28,7 +28,7 @@
             </struct>
         </array>
         <key>allowRotation</key>
-        <false/>
+        <true/>
         <key>premultiplyAlpha</key>
         <false/>
         <key>shapeDebug</key>
@@ -106,9 +106,9 @@
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
-            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
+            <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
             <key>forceSquared</key>
-            <true/>
+            <false/>
             <key>forceWordAligned</key>
             <false/>
             <key>maxRects</key>
@@ -199,7 +199,6 @@
             <filename>CowFall_pack6/CowFall_SScreen_level5.png</filename>
             <filename>CowFall_pack6/CowFall_SScreen_level5_lock.png</filename>
             <filename>CowFall_pack6/CowFall_SScreen_level7_baner.png</filename>
-            <filename>CowFall_pack5/CowFall_INTRO_myNAME.png</filename>
             <filename>CowFall_pack5/CowFall_spring.png</filename>
             <filename>CowFall_pack5/CowFall_SScreen_level1.png</filename>
             <filename>CowFall_pack5/CowFall_SScreen_level2.png</filename>
@@ -209,16 +208,10 @@
             <filename>CowFall_pack5/CowFall_SScreen_level7.png</filename>
             <filename>CowFall_pack5/CowFall_SScreen_level7_lock.png</filename>
             <filename>CowFall_pack5/CowFall_bckg_U.jpg</filename>
-            <filename>CowFall_pack4/CowFall_button_taptap.png</filename>
             <filename>CowFall_pack4/CowFall_CowDEATH_001.png</filename>
             <filename>CowFall_pack4/CowFall_CowDEATH_002.png</filename>
             <filename>CowFall_pack4/CowFall_CowDEATH_003.png</filename>
             <filename>CowFall_pack4/CowFall_CowDEATH_004.png</filename>
-            <filename>CowFall_pack4/CowFall_failed.png</filename>
-            <filename>CowFall_pack4/CowFall_INTRO_brasNeverDies.png</filename>
-            <filename>CowFall_pack4/CowFall_INTRO_myNAME.png</filename>
-            <filename>CowFall_pack4/CowFall_INTRO_yoloYolt.png</filename>
-            <filename>CowFall_pack4/CowFall_skull.png</filename>
             <filename>CowFall_pack3/CowFall_banner.png</filename>
             <filename>CowFall_pack3/CowFall_bckg3_button_off.png</filename>
             <filename>CowFall_pack3/CowFall_bckg3_button_on.png</filename>
@@ -237,36 +230,16 @@
             <filename>CowFall_pack3/CowFall_bckg1.jpg</filename>
             <filename>CowFall_pack6/CowFall_bckg5_shark.png</filename>
             <filename>CowFall_pack5/CowFall_bckg2_crock.png</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_001.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_002.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_003.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_004.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_005.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_006.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_007.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_008.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_009.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_010.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_011.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_012.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_013.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_014.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_015.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_016.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_017.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_018.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_019.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_020.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_021.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_022.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_023.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_024.jpg</filename>
-            <filename>CowFall_pack5/CowFall_bckg7_anim_025.jpg</filename>
             <filename>CowFall_pack1/CowFall_Cow.png</filename>
-            <filename>CowFall_pack3/CowFall_bckg3_anim_000.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg3_anim_001.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg3_anim_002.jpg</filename>
-            <filename>CowFall_pack3/CowFall_bckg3_anim_003.jpg</filename>
+            <filename>CowFall_pack8/CowFall_button_removeADS.png</filename>
+            <filename>CowFall_pack8/CowFall_button_back.png</filename>
+            <filename>CowFall_pack8/CowFall_marker.png</filename>
+            <filename>CowFall_pack8/CowFall_platform_button.png</filename>
+            <filename>CowFall_pack8/CowFall_platform_buttonON.png</filename>
+            <filename>CowFall_pack8/CowFall_failed.png</filename>
+            <filename>CowFall_pack8/CowFall_button_taptap.png</filename>
+            <filename>CowFall_pack8/CowFall_frame_LEFT.png</filename>
+            <filename>CowFall_pack8/CowFall_frame_RIGHT.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

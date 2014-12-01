@@ -1,5 +1,7 @@
 package com.szrapnel.games.quicksave.services
 {
+	import com.szrapnel.games.quicksave.components.SimpleButton;
+	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.quicksave.items.Background;
 	import com.szrapnel.games.quicksave.items.Banner;
 	import com.szrapnel.games.quicksave.items.Cow;
@@ -9,8 +11,10 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.items.Platform;
 	import com.szrapnel.games.quicksave.items.PlayBtn;
 	import com.szrapnel.games.quicksave.items.TelescopicSpring;
-	import starling.display.Quad;
+	import com.szrapnel.games.services.Assets;
+	import starling.display.Image;
 	import starling.display.Sprite;
+	import starling.events.Event;
 	
 	/**
 	 * ...
@@ -18,11 +22,11 @@ package com.szrapnel.games.quicksave.services
 	 */
 	public class FirePit extends Sprite implements IGameStage
 	{
-		private var elements:Vector.<Sprite>;
+		private var elements:Vector.<Object>;
 		
 		public function FirePit()
 		{
-			elements = new Vector.<Sprite>;
+			elements = new Vector.<Object>;
 			super();
 		}
 		
@@ -89,9 +93,9 @@ package com.szrapnel.games.quicksave.services
 			addObject(playBtn);
 			
 			var indicator:Sprite = new Sprite();
-			var quad:Quad = new Quad(20, 20, 0xFF0000);
-			indicator.addChild(quad);
-			indicator.pivotX = 10;
+			var image:Image = new Image(Assets.getTexture("CowFall_marker"));
+			indicator.addChild(image);
+			indicator.pivotX = image.width / 2;
 			indicator.visible = false;
 			indicator.y = 0;
 			addChild(indicator);
@@ -105,14 +109,28 @@ package com.szrapnel.games.quicksave.services
 			deadCowIcon.name = "DeadCowIcon";
 			deadCowIcon.visible = false;
 			addObject(deadCowIcon);
+			
+			var backBtn:SimpleButton = new SimpleButton(Assets.getTexture("CowFall_button_back"));
+			backBtn.removeEventListener(Event.TRIGGERED, onBackBtnTriggered);
+			backBtn.addEventListener(Event.TRIGGERED, onBackBtnTriggered);
+			backBtn.x = 20;
+			backBtn.y = 20;
+			addChild(backBtn);
+			backBtn.name = "BackBtn";
+			addObject(backBtn);
 		}
 		
-		public function addObject(object:Sprite):void
+		private function onBackBtnTriggered(e:Event):void 
+		{
+			dispatchEvent(new LevelEvent(LevelEvent.BACK_BTN_PRESSED));
+		}
+		
+		public function addObject(object:*):void
 		{
 			elements.push(object);
 		}
 		
-		public function removeObject(object:Sprite):void
+		public function removeObject(object:*):void
 		{
 			elements.splice(elements.indexOf(object), 1);
 			removeChild(object, true);
@@ -120,7 +138,7 @@ package com.szrapnel.games.quicksave.services
 		
 		public function getObject(name:String):*
 		{
-			for each (var object:Sprite in elements)
+			for each (var object:Object in elements)
 			{
 				if (object.name == name)
 				{

@@ -11,10 +11,14 @@ package com.szrapnel.games.quicksave.services
 	{
 		function generate():void
 		
-		function addObject(object:Sprite):void
+		function addObject(object:*):void
 		
-		function removeObject(object:Sprite):void
+		function removeObject(object:*):void
 		
 		function getObject(name:String):*
+		
+		function addEventListener(type:String, listener:Function):void
+		
+		function removeEventListener(type:String, listener:Function):void
 	}
 }

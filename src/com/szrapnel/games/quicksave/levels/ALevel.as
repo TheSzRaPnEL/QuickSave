@@ -42,6 +42,14 @@ package com.szrapnel.games.quicksave.levels
 		{
 			symulation.eventDispatcher.removeEventListener(LevelEvent.LOST, onLevelLost_handler);
 			symulation.eventDispatcher.addEventListener(LevelEvent.LOST, onLevelLost_handler);
+			
+			gameStage.removeEventListener(LevelEvent.BACK_BTN_PRESSED, onBackBtnPressed_handler);
+			gameStage.addEventListener(LevelEvent.BACK_BTN_PRESSED, onBackBtnPressed_handler);
+		}
+		
+		private function onBackBtnPressed_handler(e:LevelEvent):void 
+		{
+			dispatchEvent(new LevelEvent(LevelEvent.BACK_BTN_PRESSED));
 		}
 		
 		private function onLevelLost_handler(e:LevelEvent):void 

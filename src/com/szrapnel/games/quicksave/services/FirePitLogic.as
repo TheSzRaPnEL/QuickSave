@@ -244,7 +244,7 @@ package com.szrapnel.games.quicksave.services
 			{
 				endGame();
 			}
-			else if (cow.x > 570 || cow.x < -30)
+			else if (cow.x > 560 || cow.x < -30)
 			{
 				addPoint();
 			}
@@ -348,10 +348,7 @@ package com.szrapnel.games.quicksave.services
 			deadCowIcon = gameStage.getObject("DeadCowIcon");
 			deadCowIcon.visible = true;
 			TweenLite.to(deadCowIcon, 0, {x: 270, y: 480, scaleX: 3, scaleY: 3, alpha: 0});
-			TweenLite.to(deadCowIcon, 1, {scaleX: 1, scaleY: 1, alpha: 1, ease: Bounce.easeOut, onComplete: onDeadIconAnimationComplete_handler});
-			
-			DisplayObject(gameStage).removeEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
-			DisplayObject(gameStage).addEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
+			TweenLite.to(deadCowIcon, 0.5, {scaleX: 1, scaleY: 1, alpha: 1, ease: Bounce.easeOut, onComplete: onDeadIconAnimationComplete_handler});
 		}
 		
 		private function onDeadIconAnimationComplete_handler():void
@@ -361,6 +358,9 @@ package com.szrapnel.games.quicksave.services
 			playBtn.removeEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
 			playBtn.alpha = 0;
 			playBtn.touchable = false;
+			
+			DisplayObject(gameStage).removeEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
+			DisplayObject(gameStage).addEventListener(TouchEvent.TOUCH, onDeadCowIconTouch);
 		}
 		
 		private function onDeadCowIconTouch(e:TouchEvent):void

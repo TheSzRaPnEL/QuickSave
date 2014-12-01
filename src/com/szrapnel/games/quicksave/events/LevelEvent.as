@@ -12,6 +12,7 @@ package com.szrapnel.games.quicksave.events
 		public static const WON:String = "levelWon";
 		public static const LOST:String = "levelLost";
 		public static const COW_SAVED:String = "cowSaved";
+		public static const BACK_BTN_PRESSED:String = "backBtnPressed";
 		
 		public function LevelEvent(type:String, bubbles:Boolean=false, data:Object=null) 
 		{

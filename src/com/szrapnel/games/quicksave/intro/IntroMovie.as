@@ -7,6 +7,7 @@ package com.szrapnel.games.quicksave.intro
 	import com.szrapnel.games.quicksave.components.SimpleButton;
 	import com.szrapnel.games.quicksave.events.IntroEvent;
 	import com.szrapnel.games.services.Assets;
+	import flash.desktop.NativeApplication;
 	import flash.net.SharedObject;
 	import starling.core.Starling;
 	import starling.display.Image;
@@ -32,6 +33,8 @@ package com.szrapnel.games.quicksave.intro
 		private var playBtn:SimpleButton;
 		private var _isPlaying:Boolean;
 		private var timelineAnimation:TimelineLite;
+		private var removeAds:SimpleButton;
+		private var backBtn:SimpleButton;
 		
 		public function IntroMovie()
 		{
@@ -58,10 +61,17 @@ package com.szrapnel.games.quicksave.intro
 			container.addChild(cloud);
 			cloud.visible = false;
 			
-			var texturesNames:Vector.<String> = new < String > ["CowFall_INTRO_myNAME", "CowFall_INTRO_yoloYolt", "CowFall_INTRO_brasNeverDies"];
-			cloudText = new Image(Assets.getTexture(texturesNames[int(3*Math.random())]));
+			var randomTextIndex:int = int(16 * Math.random() + 1);
+			if (randomTextIndex < 10)
+			{
+				cloudText = new Image(Assets.getTexture("CowFall_cloudTXT_00" + randomTextIndex))
+			}
+			else
+			{
+				cloudText = new Image(Assets.getTexture("CowFall_cloudTXT_0" + randomTextIndex));
+			}
 			cloudText.x = 141;
-			cloudText.y = 112;
+			cloudText.y = 100;
 			container.addChild(cloudText);
 			cloudText.visible = false;
 			
@@ -87,9 +97,15 @@ package com.szrapnel.games.quicksave.intro
 			
 			playBtn = new SimpleButton(Assets.getTexture("CowFall_button_PLAY"));
 			playBtn.x = 193;
-			playBtn.y = 567;
+			playBtn.y = 537;
 			container.addChild(playBtn);
 			playBtn.visible = false;
+			
+			backBtn = new SimpleButton(Assets.getTexture("CowFall_button_back"));
+			backBtn.x = 10;
+			backBtn.y = 895;
+			addChild(backBtn);
+			backBtn.visible = false;
 		}
 		
 		private function onLogoTriggered_handler(e:Event):void
@@ -247,14 +263,48 @@ package com.szrapnel.games.quicksave.intro
 				playBtn.visible = true;
 				playBtn.alpha = 1;
 				playBtn.x = 193;
-				playBtn.y = 567;
+				playBtn.y = 537;
 				
+				backBtn.removeEventListener(Event.TRIGGERED, onBackBtnTriggered);
+				backBtn.addEventListener(Event.TRIGGERED, onBackBtnTriggered);
+				backBtn.x = 10;
+				backBtn.y = 895;
+				backBtn.visible = true;
+				
+				var sharedObject:SharedObject = SharedObject.getLocal("CowFallSO", "/");
+				if (sharedObject.data.ads == true)
+				{
+					removeAds = new SimpleButton(Assets.getTexture("CowFall_button_removeADS"));
+					removeAds.removeEventListener(Event.TRIGGERED, onRemoveAdsBtnTriggered);
+					removeAds.addEventListener(Event.TRIGGERED, onRemoveAdsBtnTriggered);
+					removeAds.x = 270 - removeAds.width / 2;
+					removeAds.y = 750;
+					addChild(removeAds);
+				}
+			
 				logo.removeEventListener(Event.TRIGGERED, onLogoTriggered_handler);
 				logo.addEventListener(Event.TRIGGERED, onLogoTriggered_handler);
 				playBtn.removeEventListener(Event.TRIGGERED, onPlayBtnTriggered_handler);
 				playBtn.addEventListener(Event.TRIGGERED, onPlayBtnTriggered_handler);
 				dispatchEvent(new IntroEvent(IntroEvent.INTRO_FINISHED));
 			}
+		}
+		
+		private function onRemoveAdsBtnTriggered(e:Event):void 
+		{
+			var sharedObject:SharedObject = SharedObject.getLocal("CowFallSO", "/");
+			if (sharedObject.data.ads == true)
+			{
+				sharedObject.data.ads = false;
+				sharedObject.flush();
+				removeChild(removeAds, true);
+				Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.HIDE_ADMOB));
+			}
+		}
+		
+		private function onBackBtnTriggered(e:Event):void 
+		{
+			NativeApplication.nativeApplication.exit();
 		}
 		
 		public function get isPlaying():Boolean

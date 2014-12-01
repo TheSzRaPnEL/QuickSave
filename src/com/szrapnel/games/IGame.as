@@ -1,4 +1,4 @@
-package com.szrapnel.games 
+package com.szrapnel.games
 {
 	import com.szrapnel.games.services.StateMachine;
 	
@@ -11,5 +11,4 @@ package com.szrapnel.games
 		function get assetsList():Vector.<String>;
 		function get stateMachine():StateMachine;
 	}
-	
 }
