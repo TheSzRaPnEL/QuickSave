@@ -21,7 +21,7 @@ package com.szrapnel.games.quicksave.services
 		{
 			super.generate();
 			
-			Background(getObject("Background")).image.texture = Assets.getTexture("CowFall_bckg3");
+			getObject("Background").image.texture = Assets.getTexture("CowFall_bckg3");
 			
 			var animation:Sprite = getObject("Animation");
 			var animIndex:int = getChildIndex(animation);

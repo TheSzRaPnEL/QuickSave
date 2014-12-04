@@ -22,7 +22,7 @@ package com.szrapnel.games.quicksave.services
 	
 	public class FirePitSimulation implements ISimulation
 	{
-		private static const debugMode:Boolean = false;
+		private static const debugMode:Boolean = true;
 		
 		protected var bodies:Vector.<Body>;
 		protected var ballToPlatformOffset:int;
@@ -81,7 +81,7 @@ package com.szrapnel.games.quicksave.services
 		{
 			var cow:Body = collision.int1.castBody;
 			var platform:Body = getBody("Platform");
-			if (cow.position.y < platform.position.y && cow.position.y > platform.position.y - 45)
+			if (platform.userData.type == PlatformType.GRAB && cow.position.y < platform.position.y && cow.position.y > platform.position.y - 45)
 			{
 				cow.type = BodyType.KINEMATIC;
 				cow.velocity = Vec2.weak();
@@ -93,6 +93,10 @@ package com.szrapnel.games.quicksave.services
 				getBody("RightWall").position.x = 1000;
 				getBody("LeftWall").position.x = -1000;
 				TweenLite.to(cow, 0.2, {rotation: int(cow.rotation / (Math.PI / 2)) * (Math.PI / 2), onComplete: rotationComplete_handler});
+			}
+			else
+			{
+				eventDispatcher.dispatchEvent(new SimulationEvent(SimulationEvent.COW_PLATFORM_COLLISION));
 			}
 		}
 		
@@ -239,7 +243,7 @@ package com.szrapnel.games.quicksave.services
 				platformInner.velocity.x = 0;
 			}
 			
-			if (!grabbed && cow.position.y > platform.position.y - 80 && cow.position.y < platform.position.y + 60)
+			if (!grabbed && cow.position.y > platform.position.y - 60 && cow.position.y < platform.position.y + 60)
 			{
 				if ((platform.userData.hideDirection == PlatformHideDirection.RIGHT && cow.position.x < 24 && platform.position.x < 24) || (platform.userData.hideDirection == PlatformHideDirection.LEFT && cow.position.x > 500 && platform.position.x > 356))
 				{

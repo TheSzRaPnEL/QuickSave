@@ -121,7 +121,7 @@ package com.szrapnel.games.quicksave.services
 			playBtn.touchable = true;
 		}
 		
-		private function onTouch(e:TouchEvent):void
+		protected function onTouch(e:TouchEvent):void
 		{
 			if (e.getTouch(stage))
 			{
@@ -212,6 +212,7 @@ package com.szrapnel.games.quicksave.services
 		{
 			var platform:Sprite = gameStage.getObject("Platform");
 			platform.x = symulation.getBody("Platform").position.x;
+			platform.y = symulation.getBody("Platform").position.y;
 			
 			var cow:Sprite = gameStage.getObject("Cow");
 			var ball:Body = symulation.getBody("Ball");
@@ -227,7 +228,7 @@ package com.szrapnel.games.quicksave.services
 			}
 			else
 			{
-				hand.setWidth(-90 - platform.x);
+				hand.setWidth(-80 - platform.x);
 			}
 			
 			if (cow.y < 0)
@@ -244,7 +245,7 @@ package com.szrapnel.games.quicksave.services
 			{
 				endGame();
 			}
-			else if (cow.x > 560 || cow.x < -30)
+			else if (cow.x > 560 || cow.x < -20)
 			{
 				addPoint();
 			}

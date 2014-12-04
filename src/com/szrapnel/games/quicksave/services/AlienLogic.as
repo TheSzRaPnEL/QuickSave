@@ -85,7 +85,7 @@ package com.szrapnel.games.quicksave.services
 				hand.x = -80;
 				platform.position.x = -150;
 				platformInner.position.x = -150;
-				platformObject.image.x = 180;
+				platformObject.image.x = 170;
 				platformObject.image.width = -180;
 				platform.userData.hideDirection = PlatformHideDirection.LEFT;
 			}
