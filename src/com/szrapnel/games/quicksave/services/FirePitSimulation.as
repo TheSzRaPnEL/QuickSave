@@ -22,7 +22,7 @@ package com.szrapnel.games.quicksave.services
 	
 	public class FirePitSimulation implements ISimulation
 	{
-		private static const debugMode:Boolean = true;
+		private static const debugMode:Boolean = false;
 		
 		protected var bodies:Vector.<Body>;
 		protected var ballToPlatformOffset:int;

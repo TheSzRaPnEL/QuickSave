@@ -11,6 +11,8 @@ package com.szrapnel.games.events
 		public static const HIDE_PRELOADER_OVERLAY:String = "hidePreloaderOverlay";
 		public static const SHOW_ADMOB:String = "showAdmob";
 		public static const HIDE_ADMOB:String = "hideAdmob";
+		static public const SHOW_INTERSTITIAL:String = "showInterstitial";
+		static public const HIDE_INTERSTITIAL:String = "hideInterstitial";
 		
 		public function DisplayListEvent(type:String, bubbles:Boolean=false, data:Object=null) 
 		{

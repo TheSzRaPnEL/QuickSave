@@ -1,5 +1,6 @@
 package com.szrapnel.games.quicksave
 {
+	import com.szrapnel.games.events.DisplayListEvent;
 	import com.szrapnel.games.IGame;
 	import com.szrapnel.games.quicksave.intro.IntroMovie;
 	import com.szrapnel.games.quicksave.levels.Level1;
@@ -118,6 +119,7 @@ package com.szrapnel.games.quicksave
 		
 		private function onStageDeactivation(e:Event):void
 		{
+			Starling.current.stop(true);
 			if (stateMachine.currState == QuickSave.IN_GAME)
 			{
 				SoundController.stopMusic(Assets.assetManager.getSound(levelPool.getLevel(currentLevel).musicName));
@@ -126,6 +128,8 @@ package com.szrapnel.games.quicksave
 		
 		private function onStageActivation(e:Event):void
 		{
+			Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.HIDE_INTERSTITIAL));
+			Starling.current.start();
 			if (stateMachine.currState == QuickSave.IN_GAME)
 			{
 				SoundController.playMusic(Assets.assetManager.getSound(levelPool.getLevel(currentLevel).musicName));

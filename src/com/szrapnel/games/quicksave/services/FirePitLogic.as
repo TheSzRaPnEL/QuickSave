@@ -2,6 +2,7 @@ package com.szrapnel.games.quicksave.services
 {
 	import com.greensock.easing.Bounce;
 	import com.greensock.TweenLite;
+	import com.szrapnel.games.events.DisplayListEvent;
 	import com.szrapnel.games.quicksave.enum.PlatformHideDirection;
 	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.quicksave.events.SimulationEvent;
@@ -14,6 +15,7 @@ package com.szrapnel.games.quicksave.services
 	import nape.geom.Vec2;
 	import nape.phys.Body;
 	import nape.phys.BodyType;
+	import starling.core.Starling;
 	import starling.display.DisplayObject;
 	import starling.display.Sprite;
 	import starling.events.EnterFrameEvent;
@@ -339,6 +341,11 @@ package com.szrapnel.games.quicksave.services
 			CowDeath(death).play();
 			
 			cow.visible = false;
+			
+			if (Math.random() > 0.9)
+			{
+				Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.SHOW_INTERSTITIAL));
+			}
 		}
 		
 		private function onDeathComplete_handler(e:Event):void
