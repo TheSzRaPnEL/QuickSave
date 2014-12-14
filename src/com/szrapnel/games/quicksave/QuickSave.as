@@ -102,7 +102,7 @@ package com.szrapnel.games.quicksave
 			
 			stateMachine.setState(INIT);
 			
-			_assetsList = new <String>["font.fnt", "font.png", "music.mp3", "alienmusic.mp3", "bounce.mp3"];
+			_assetsList = new <String>["font.fnt", "font.png", "music.mp3", "alienmusic.mp3", "bounce.mp3", "click.mp3", "collision.mp3", "collect.mp3", "grab.mp3", "cowDeath.mp3", "fail.mp3", "levelComplete.mp3", "levelOut.mp3"];
 			_assetsList.push("CowFall_SS001.png", "CowFall_SS001.xml");
 			_assetsList.push("CowFall_SS002.png", "CowFall_SS002.xml");
 			_assetsList.push("CowFall_SS003.png", "CowFall_SS003.xml");

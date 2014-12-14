@@ -7,6 +7,7 @@ package com.szrapnel.games.quicksave.intro
 	import com.szrapnel.games.quicksave.components.SimpleButton;
 	import com.szrapnel.games.quicksave.events.IntroEvent;
 	import com.szrapnel.games.services.Assets;
+	import com.szrapnel.games.services.SoundController;
 	import flash.desktop.NativeApplication;
 	import flash.net.SharedObject;
 	import starling.core.Starling;
@@ -110,6 +111,8 @@ package com.szrapnel.games.quicksave.intro
 		
 		private function onLogoTriggered_handler(e:Event):void
 		{
+			SoundController.playSound(Assets.assetManager.getSound("click"));
+			
 			var sharedObject:SharedObject = SharedObject.getLocal("CowFallSO", "/");
 			sharedObject.data.levels = new <Boolean>[true, false, false, false, false, false, false];
 			sharedObject.data.saved = 0;
@@ -129,6 +132,8 @@ package com.szrapnel.games.quicksave.intro
 		
 		private function onPlayBtnTriggered_handler(e:Event):void
 		{
+			SoundController.playSound(Assets.assetManager.getSound("click"));
+			
 			touchable = false;
 			dispatchEvent(new IntroEvent(IntroEvent.START_BTN_CLICKED));
 		}
@@ -292,6 +297,8 @@ package com.szrapnel.games.quicksave.intro
 		
 		private function onRemoveAdsBtnTriggered(e:Event):void 
 		{
+			SoundController.playSound(Assets.assetManager.getSound("click"));
+			
 			var sharedObject:SharedObject = SharedObject.getLocal("CowFallSO", "/");
 			if (sharedObject.data.ads == true)
 			{
@@ -304,6 +311,8 @@ package com.szrapnel.games.quicksave.intro
 		
 		private function onBackBtnTriggered(e:Event):void 
 		{
+			SoundController.playSound(Assets.assetManager.getSound("click"));
+			
 			NativeApplication.nativeApplication.exit();
 		}
 		

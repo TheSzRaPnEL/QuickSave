@@ -12,6 +12,7 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.items.PlayBtn;
 	import com.szrapnel.games.quicksave.items.TelescopicSpring;
 	import com.szrapnel.games.services.Assets;
+	import com.szrapnel.games.services.SoundController;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -122,6 +123,8 @@ package com.szrapnel.games.quicksave.services
 		
 		private function onBackBtnTriggered(e:Event):void 
 		{
+			SoundController.playSound(Assets.assetManager.getSound("click"));
+			
 			dispatchEvent(new LevelEvent(LevelEvent.BACK_BTN_PRESSED));
 		}
 		

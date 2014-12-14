@@ -5,6 +5,8 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.enum.PlatformType;
 	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.quicksave.events.SimulationEvent;
+	import com.szrapnel.games.services.Assets;
+	import com.szrapnel.games.services.SoundController;
 	import nape.callbacks.CbEvent;
 	import nape.callbacks.CbType;
 	import nape.callbacks.InteractionCallback;
@@ -40,9 +42,11 @@ package com.szrapnel.games.quicksave.services
 		private var debug:BitmapDebug;
 		private var f1c:CbType = new CbType();
 		private var f2c:CbType = new CbType();
+		private var f3c:CbType = new CbType();
 		private var _space:Space;
 		private var _bullCounter:int;
 		private var _eventDispatcher:EventDispatcher;
+		private var _interactionListener2:InteractionListener;
 		
 		public function FirePitSimulation():void
 		{
@@ -71,9 +75,15 @@ package com.szrapnel.games.quicksave.services
 				_interactionListener = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, f1c, f2c, collision);
 			}
 			
+			if (_interactionListener2 == null)
+			{
+				_interactionListener2 = new InteractionListener(CbEvent.BEGIN, InteractionType.COLLISION, f1c, f3c, collision2);
+			}
+			
 			if (!(space.listeners.has(interactionListener)))
 			{
 				space.listeners.add(interactionListener);
+				space.listeners.add(interactionListener2);
 			}
 		}
 		
@@ -83,6 +93,8 @@ package com.szrapnel.games.quicksave.services
 			var platform:Body = getBody("Platform");
 			if (platform.userData.type == PlatformType.GRAB && cow.position.y < platform.position.y && cow.position.y > platform.position.y - 45)
 			{
+				SoundController.playSound(Assets.assetManager.getSound("bounce"));
+				
 				cow.type = BodyType.KINEMATIC;
 				cow.velocity = Vec2.weak();
 				cow.angularVel = 0;
@@ -96,7 +108,16 @@ package com.szrapnel.games.quicksave.services
 			}
 			else
 			{
+				SoundController.playSound(Assets.assetManager.getSound("grab"));
 				eventDispatcher.dispatchEvent(new SimulationEvent(SimulationEvent.COW_PLATFORM_COLLISION));
+			}
+		}
+		
+		protected function collision2(collision:InteractionCallback):void
+		{
+			if (!grabbed)
+			{
+				SoundController.playSound(Assets.assetManager.getSound("grab"));
 			}
 		}
 		
@@ -141,6 +162,7 @@ package com.szrapnel.games.quicksave.services
 			platform.position.setxy(100, h / 2);
 			platform.velocity.x = 0;
 			platform.space = space;
+			platform.cbTypes.add(f3c);
 			
 			var platformInner:Body = new Body(BodyType.KINEMATIC);
 			platformInner.userData.name = "PlatformInner";
@@ -159,6 +181,7 @@ package com.szrapnel.games.quicksave.services
 			topWall.shapes.add(new Polygon(Polygon.rect(-50, -400, 640, 40)));
 			topWall.setShapeMaterials(glueMaterial);
 			topWall.space = space;
+			topWall.cbTypes.add(f3c);
 			
 			leftWall = new Body(BodyType.STATIC);
 			leftWall.userData.name = "LeftWall";
@@ -166,6 +189,7 @@ package com.szrapnel.games.quicksave.services
 			leftWall.shapes.add(new Polygon(Polygon.rect(-50, -400, 55, h + 500)));
 			leftWall.setShapeMaterials(glueMaterial);
 			leftWall.space = space;
+			leftWall.cbTypes.add(f3c);
 			
 			rightWall = new Body(BodyType.STATIC);
 			rightWall.userData.name = "RightWall";
@@ -173,6 +197,7 @@ package com.szrapnel.games.quicksave.services
 			rightWall.shapes.add(new Polygon(Polygon.rect(w - 5, -400, 35, h + 500)));
 			rightWall.setShapeMaterials(glueMaterial);
 			rightWall.space = space;
+			rightWall.cbTypes.add(f3c);
 			
 			if (debugMode)
 			{
@@ -330,6 +355,11 @@ package com.szrapnel.games.quicksave.services
 		public function get interactionListener():InteractionListener 
 		{
 			return _interactionListener;
+		}
+		
+		public function get interactionListener2():InteractionListener 
+		{
+			return _interactionListener2;
 		}
 		
 	}

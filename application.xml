@@ -81,5 +81,6 @@
 	-->
   <extensions>
     <extensionID>com.admob.ane</extensionID>
+	<extensionID>com.in4ray.AudioInterface</extensionID>
   </extensions>
 </application>

@@ -9,6 +9,9 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.items.Banner;
 	import com.szrapnel.games.quicksave.items.CowDeath;
 	import com.szrapnel.games.quicksave.items.TelescopicSpring;
+	import com.szrapnel.games.services.Assets;
+	import com.szrapnel.games.services.SoundController;
+	import flash.system.Capabilities;
 	import flash.utils.clearTimeout;
 	import flash.utils.getTimer;
 	import flash.utils.setTimeout;
@@ -98,6 +101,8 @@ package com.szrapnel.games.quicksave.services
 				var touch:Touch = e.getTouch(stage);
 				if (touch.phase == TouchPhase.BEGAN)
 				{
+					SoundController.playSound(Assets.assetManager.getSound("click"));
+					
 					playBtn.removeEventListener(TouchEvent.TOUCH, onPlayBtnTouch);
 					playBtn.alpha = 0;
 					playBtn.touchable = false;
@@ -277,6 +282,8 @@ package com.szrapnel.games.quicksave.services
 			}
 			else
 			{
+				SoundController.playSound(Assets.assetManager.getSound("collect"));
+				
 				dropNewCow();
 			}
 		}
@@ -330,6 +337,8 @@ package com.szrapnel.games.quicksave.services
 		{
 			stop();
 			
+			SoundController.playSound(Assets.assetManager.getSound("cowDeath"));
+			
 			var cow:Sprite = gameStage.getObject("Cow");
 			var death:Sprite = gameStage.getObject("Death");
 			death.x = cow.x;
@@ -352,6 +361,8 @@ package com.szrapnel.games.quicksave.services
 		{
 			gameStage.getObject("Death").visible = false;
 			gameStage.getObject("Death").removeEventListener(Event.COMPLETE, onDeathComplete_handler);
+			
+			SoundController.playSound(Assets.assetManager.getSound("fail"));
 			
 			deadCowIcon = gameStage.getObject("DeadCowIcon");
 			deadCowIcon.visible = true;

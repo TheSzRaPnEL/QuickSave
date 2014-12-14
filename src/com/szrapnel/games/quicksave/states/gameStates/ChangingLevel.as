@@ -6,6 +6,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 	import com.szrapnel.games.quicksave.QuickSave;
 	import com.szrapnel.games.quicksave.states.IState;
 	import com.szrapnel.games.services.Assets;
+	import com.szrapnel.games.services.SoundController;
 	import starling.display.DisplayObject;
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -34,6 +35,8 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		public function enter():void
 		{
+			SoundController.playSound(Assets.assetManager.getSound("levelComplete"));
+			
 			if (loseBannerTop == null)
 			{
 				loseBannerTop = new Sprite();
@@ -113,6 +116,8 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		public function exit():void
 		{
+			SoundController.playSound(Assets.assetManager.getSound("levelOut"));
+			
 			TweenLite.killTweensOf(loseBannerTop);
 			TweenLite.killTweensOf(loseBannerBot, true);
 		}

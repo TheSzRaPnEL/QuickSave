@@ -4,6 +4,7 @@ package com.szrapnel.games.services
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
 	import flash.media.SoundTransform;
+	import flash.system.Capabilities;
 	/**
 	 * ...
 	 * @author SzRaPnEL
@@ -20,14 +21,21 @@ package com.szrapnel.games.services
 		
 		public static function playSound(sound:Sound, volume:Number = 0.5):void
 		{
-			var soundChannel:SoundChannel = new SoundChannel();
-			var soundTransform:SoundTransform = new SoundTransform(volume);
-			
-			soundChannel = sound.play();
-			soundChannel.soundTransform = soundTransform;
-			
-			soundChannel.removeEventListener(Event.SOUND_COMPLETE, onSoundComplete);
-			soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete);
+			//if (Capabilities.os.search("Linux") == -1)
+			//{
+				var soundChannel:SoundChannel = new SoundChannel();
+				var soundTransform:SoundTransform = new SoundTransform(volume);
+				
+				soundChannel = sound.play();
+				soundChannel.soundTransform = soundTransform;
+				
+				soundChannel.removeEventListener(Event.SOUND_COMPLETE, onSoundComplete);
+				soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete);
+			//}
+			//else
+			//{			
+				
+			//}
 		}
 		
 		private static function onSoundComplete(e:Event):void 

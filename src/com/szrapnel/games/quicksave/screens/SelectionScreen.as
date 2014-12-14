@@ -3,6 +3,7 @@ package com.szrapnel.games.quicksave.screens
 	import com.szrapnel.games.quicksave.components.SimpleButton;
 	import com.szrapnel.games.quicksave.events.LevelEvent;
 	import com.szrapnel.games.services.Assets;
+	import com.szrapnel.games.services.SoundController;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -93,11 +94,15 @@ package com.szrapnel.games.quicksave.screens
 		
 		private function onBackBtnTriggered(e:Event):void 
 		{
+			SoundController.playSound(Assets.assetManager.getSound("click"));
+			
 			dispatchEvent(new LevelEvent(LevelEvent.BACK_BTN_PRESSED));
 		}
 		
 		private function onMiniatureTriggered_handler(e:Event):void
 		{
+			SoundController.playSound(Assets.assetManager.getSound("click"));
+			
 			dispatchEventWith(Event.TRIGGERED, false, levelMiniatures.indexOf(SimpleButton(e.target)));
 		}
 		
