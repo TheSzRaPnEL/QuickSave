@@ -14,9 +14,9 @@ package com.szrapnel.games.quicksave.services
 	 * ...
 	 * @author SzRaPnEL
 	 */
-	public class RocketSiloLogic extends FirePitLogic
+	public class IslandLogic extends FirePitLogic
 	{
-		public function RocketSiloLogic(gameStage:IGameStage, symulation:ISimulation)
+		public function IslandLogic(gameStage:IGameStage, symulation:ISimulation)
 		{
 			super(gameStage, symulation);
 			
@@ -29,11 +29,11 @@ package com.szrapnel.games.quicksave.services
 			var platformObject:* = gameStage.getObject("Platform");
 			var platformInner:Body = symulation.getBody("PlatformInner");
 			platformObject.image.texture = Assets.getTexture("CowFall_platform_buttonON");
-			if (platform.userData.type == PlatformType.BUTTON && platform.userData.hideDirection == PlatformHideDirection.RIGHT)
+			if (platform.userData.type == PlatformType.BUTTON && platform.userData.hideDirection == PlatformHideDirection.LEFT)
 			{
 				symulation.eventDispatcher.removeEventListener(SimulationEvent.COW_PLATFORM_COLLISION, onCowPlatformCollision_handler);
-				TweenLite.to(platformInner.position, 0.3, {x: 560});
-				TweenLite.to(platform.position, 0.3, {x: 560, onComplete: buttonPlatformHidden});
+				TweenLite.to(platformInner.position, 0.3, {x: -160});
+				TweenLite.to(platform.position, 0.3, {x: -160, onComplete: buttonPlatformHidden});
 			}
 		}
 		
@@ -52,21 +52,21 @@ package com.szrapnel.games.quicksave.services
 				platform.shapes.at(2).fluidEnabled = false;
 				platform.shapes.at(2).sensorEnabled = false;
 			}
-			hand.x = -80;
+			hand.x = 620;
 			hand.y = 588;
-			platform.position.x = -80;
+			platform.position.x = 460;
 			platform.position.y = 600;
-			platformInner.position.x = -80;
+			platformInner.position.x = 460;
 			platformInner.position.y = 600;
-			platformObject.image.x = 170;
+			platformObject.image.x = 0;
 			platformObject.image.y = -50;
 			platformObject.image.texture = Assets.getTexture("CowFall_platform");
-			platformObject.image.width = -180;
+			platformObject.image.width = 180;
 			platformObject.image.height = 73;
-			platform.velocity = Vec2.weak(900);
-			platformInner.velocity = Vec2.weak(900);
+			platform.velocity = Vec2.weak(-900);
+			platformInner.velocity = Vec2.weak(-900);
 			platform.userData.type = PlatformType.GRAB;
-			platform.userData.hideDirection = PlatformHideDirection.LEFT;
+			platform.userData.hideDirection = PlatformHideDirection.RIGHT;
 		}
 		
 		protected override function dropNewCow():void
@@ -94,25 +94,25 @@ package com.szrapnel.games.quicksave.services
 			platform.velocity = Vec2.weak();
 			platformInner.velocity = Vec2.weak();
 			
-			if (score == 0 || (platform.userData.type == PlatformType.GRAB && platform.userData.hideDirection == PlatformHideDirection.LEFT))
+			if (score == 0 || (platform.userData.type == PlatformType.GRAB && platform.userData.hideDirection == PlatformHideDirection.RIGHT))
 			{
-				hand.x = 614;
+				hand.x = -60;
 				hand.y = 488;
-				platform.position.x = 100;
+				platform.position.x = 300;
 				platform.position.y = 480;
 				if (platform.shapes.length > 1)
 				{
 					platform.shapes.remove(platform.shapes.at(0));
 					platform.shapes.remove(platform.shapes.at(0));
 				}
-				platformInner.position.x = 100;
+				platformInner.position.x = 300;
 				platformInner.position.y = 480;
 				platformObject.image.texture = Assets.getTexture("CowFall_platform_button");
-				platformObject.image.x = 16;
+				platformObject.image.x = 156;
 				platformObject.image.y = -15;
-				platformObject.image.width = 145;
+				platformObject.image.width = -145;
 				platformObject.image.height = 40;
-				platform.userData.hideDirection = PlatformHideDirection.RIGHT;
+				platform.userData.hideDirection = PlatformHideDirection.LEFT;
 				platform.userData.type = PlatformType.BUTTON;
 			}
 		}
