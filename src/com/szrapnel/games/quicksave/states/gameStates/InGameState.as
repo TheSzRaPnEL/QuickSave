@@ -44,7 +44,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		private function onBackBtnPressed_handler(e:LevelEvent):void 
 		{
-			actor.stateMachine.setState(QuickSave.ENTERING_MAIN_MENU_FROM_IN_GAME);
+			actor.stateMachine.setState(QuickSave.ENTERING_SELECTION_SCREEN_FROM_IN_GAME);
 		}
 		
 		private function cowSaved_handler(e:LevelEvent):void

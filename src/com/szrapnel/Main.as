@@ -57,11 +57,11 @@ package com.szrapnel
 			
 			admob = AdMobManager.manager;
 			admob.operationMode = AdMobManager.TEST_MODE;
-			//admob.renderLayerType = AdMobManager.RENDER_TYPE_HARDWARE;
 			admob.bannersAdMobId = "ca-app-pub-3669883303109473/6323752906";
 			admob.createBannerAbsolute(AdMobSize.SMART_BANNER, 0, 0, "TopBanner");
 			
 			admob.interstitialAdMobId = "ca-app-pub-3669883303109473/8361034907";
+			admob.createInterstitial(null, false);
 		}
 		
 		private function showAdmob():void
@@ -71,12 +71,12 @@ package com.szrapnel
 		
 		private function showInterstitial():void
 		{
-			admob.createInterstitial("ca-app-pub-3669883303109473/8361034907", true);
+			admob.showInterstitial();
 		}
 
 		private function hideInterstitial():void
 		{
-			admob.removeInterstitial();
+			admob.cacheInterstitial("ca-app-pub-3669883303109473/8361034907");
 		}
 		
 		private function hideAdmob():void

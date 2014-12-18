@@ -351,7 +351,7 @@ package com.szrapnel.games.quicksave.services
 			
 			cow.visible = false;
 			
-			if (Math.random() > 0.9)
+			if (Math.random() > 0.1)
 			{
 				Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.SHOW_INTERSTITIAL));
 			}
