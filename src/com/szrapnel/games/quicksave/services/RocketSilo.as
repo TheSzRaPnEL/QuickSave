@@ -1,8 +1,6 @@
 package com.szrapnel.games.quicksave.services
 {
-	import com.szrapnel.games.quicksave.items.Background;
 	import com.szrapnel.games.quicksave.items.LaserField;
-	import com.szrapnel.games.quicksave.items.Obstacle;
 	import com.szrapnel.games.services.Assets;
 	import starling.display.Sprite;
 	
