@@ -11,6 +11,7 @@ package com.szrapnel.games.quicksave.services
 	import com.szrapnel.games.quicksave.items.TelescopicSpring;
 	import com.szrapnel.games.services.Assets;
 	import com.szrapnel.games.services.SoundController;
+	import flash.net.SharedObject;
 	import flash.system.Capabilities;
 	import flash.utils.clearTimeout;
 	import flash.utils.getTimer;
@@ -351,7 +352,7 @@ package com.szrapnel.games.quicksave.services
 			
 			cow.visible = false;
 			
-			if (Math.random() > 0.1)
+			if (Math.random() > 0.9 && SharedObject.getLocal("CowFallSO","/").data.ads == true)
 			{
 				Starling.current.root.dispatchEvent(new DisplayListEvent(DisplayListEvent.SHOW_INTERSTITIAL));
 			}
