@@ -48,7 +48,6 @@ package com.szrapnel
 			
 			star = new Starling(StarlingMain, stage, new Rectangle(0, 0, stage.fullScreenWidth, stage.fullScreenHeight));
 			star.antiAliasing = 0;
-			star.showStats = true;
 			star.stage.stageHeight = 960;
 			star.stage.stageWidth = stage.fullScreenWidth * 960 / stage.fullScreenHeight;
 			
@@ -89,9 +88,9 @@ package com.szrapnel
 			var logo:Bitmap = e.target.content;
 			logo.smoothing = true;
 			logo.width = 268 / 540 * stage.fullScreenWidth;
-			logo.scaleY = stage.fullScreenWidth / 540;
+			logo.scaleY = logo.scaleX;
 			logo.x = 136 / 540 * stage.fullScreenWidth;
-			logo.y = 720 / 960 * stage.fullScreenHeight;
+			logo.y = (stage.fullScreenHeight - logo.height) / 2;
 			preloaderOverlay.addChild(logo);
 		}
 		

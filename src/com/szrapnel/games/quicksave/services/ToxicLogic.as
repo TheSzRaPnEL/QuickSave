@@ -13,7 +13,7 @@ package com.szrapnel.games.quicksave.services
 		{
 			super(gameStage, symulation);
 			
-			scoreToWin = 6;
+			scoreToWin = 2;
 		}
 		
 		protected override function dropNewCow():void

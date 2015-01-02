@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:b0f51c929d36973062e18e7bb49af7d6:9969281549fb307f0427ce35285e1bff:c48d84f77a481afdba0405a470b28e5c$ -->
-<TextureAtlas imagePath="CowFall_SS002.png">
-    <SubTexture name="CowFall_bckg2" x="4" y="4" width="544" height="964"/>
-    <SubTexture name="CowFall_bckg3" x="4" y="974" width="544" height="964"/>
-    <SubTexture name="CowFall_bckg4" x="554" y="4" width="544" height="964"/>
-    <SubTexture name="CowFall_bckg5" x="1104" y="4" width="544" height="964"/>
-    <SubTexture name="CowFall_bckg6" x="554" y="974" width="544" height="964"/>
-    <SubTexture name="CowFall_bckg7" x="1104" y="974" width="544" height="964"/>
+<!-- $TexturePacker:SmartUpdate:56798d86147ffc4bf647795708638877:9969281549fb307f0427ce35285e1bff:c48d84f77a481afdba0405a470b28e5c$ -->
+<TextureAtlas imagePath="CowFall_SS002.atf">
+    <SubTexture name="CowFall_bckg2" x="4" y="4" rotated="true" width="964" height="544"/>
+    <SubTexture name="CowFall_bckg3" x="974" y="4" rotated="true" width="964" height="544"/>
+    <SubTexture name="CowFall_bckg4" x="4" y="554" rotated="true" width="964" height="544"/>
+    <SubTexture name="CowFall_bckg5" x="974" y="554" rotated="true" width="964" height="544"/>
+    <SubTexture name="CowFall_bckg6" x="4" y="1104" rotated="true" width="964" height="544"/>
+    <SubTexture name="CowFall_bckg7" x="974" y="1104" rotated="true" width="964" height="544"/>
 </TextureAtlas>

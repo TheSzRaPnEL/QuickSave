@@ -22,7 +22,7 @@ package com.szrapnel.games.quicksave.services
 		{
 			super(gameStage, symulation);
 			
-			scoreToWin = 4;
+			scoreToWin = 2;
 		}
 		
 		protected override function onEFrame(e:EnterFrameEvent):void

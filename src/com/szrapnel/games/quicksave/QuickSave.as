@@ -102,12 +102,12 @@ package com.szrapnel.games.quicksave
 			
 			stateMachine.setState(INIT);
 			
-			_assetsList = new <String>["font.fnt", "font.png", "music.mp3", "alienmusic.mp3", "bounce.mp3", "click.mp3", "collision.mp3", "collect.mp3", "grab.mp3", "cowDeath.mp3", "fail.mp3", "levelComplete.mp3", "levelOut.mp3"];
-			_assetsList.push("CowFall_SS001.png", "CowFall_SS001.xml");
-			_assetsList.push("CowFall_SS002.png", "CowFall_SS002.xml");
-			_assetsList.push("CowFall_SS003.png", "CowFall_SS003.xml");
-			_assetsList.push("CowFall_SS004.png", "CowFall_SS004.xml");
-			_assetsList.push("CowFall_SS005.png", "CowFall_SS005.xml");
+			_assetsList = new <String>["font.fnt", "font.atf", "music.mp3", "alienmusic.mp3", "bounce.mp3", "click.mp3", "collision.mp3", "collect.mp3", "grab.mp3", "cowDeath.mp3", "fail.mp3", "levelComplete.mp3", "levelOut.mp3"];
+			_assetsList.push("CowFall_SS001.atf", "CowFall_SS001.xml");
+			_assetsList.push("CowFall_SS002.atf", "CowFall_SS002.xml");
+			_assetsList.push("CowFall_SS003.atf", "CowFall_SS003.xml");
+			_assetsList.push("CowFall_SS004.atf", "CowFall_SS004.xml");
+			_assetsList.push("CowFall_SS005.atf", "CowFall_SS005.xml");
 			
 			_offset = int(Starling.current.stage.stageWidth - 540) / 2;
 			

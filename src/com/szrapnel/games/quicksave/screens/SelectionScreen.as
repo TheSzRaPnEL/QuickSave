@@ -55,7 +55,7 @@ package com.szrapnel.games.quicksave.screens
 			
 			var banner:Sprite = new Sprite();
 			banner.x = background.width / 20;
-			banner.y = 15 * background.height / 20;
+			banner.y = 15 * background.height / 21;
 			addChild(banner)
 			var bannerBackground:Image = new Image(Assets.getTexture("CowFall_SScreen_level7_baner"));
 			banner.addChild(bannerBackground);
@@ -88,7 +88,7 @@ package com.szrapnel.games.quicksave.screens
 			backBtn.removeEventListener(Event.TRIGGERED, onBackBtnTriggered);
 			backBtn.addEventListener(Event.TRIGGERED, onBackBtnTriggered);
 			backBtn.x = 10;
-			backBtn.y = 895;
+			backBtn.y = 870;
 			addChild(backBtn);
 		}
 		

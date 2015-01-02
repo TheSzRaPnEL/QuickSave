@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.5.3</string>
+        <string>3.6.0</string>
         <key>fileName</key>
         <string>E:/Projects/QuickSave/gfx/CowFall_SS004.tps</string>
         <key>autoSDSettings</key>
@@ -106,9 +106,9 @@
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
-            <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
+            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
             <key>forceSquared</key>
-            <false/>
+            <true/>
             <key>forceWordAligned</key>
             <false/>
             <key>maxRects</key>
@@ -257,7 +257,6 @@
             <filename>CowFall_pack8/CowFall_cloudTXT_013.png</filename>
             <filename>CowFall_pack8/CowFall_cloudTXT_014.png</filename>
             <filename>CowFall_pack4/CowFall_INTRO_brasNeverDies.png</filename>
-            <filename>CowFall_pack4/CowFall_INTRO_yoloYolt.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

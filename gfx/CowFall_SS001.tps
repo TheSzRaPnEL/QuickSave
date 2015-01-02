@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>3</int>
         <key>texturePackerVersion</key>
-        <string>3.5.3</string>
+        <string>3.6.0</string>
         <key>fileName</key>
         <string>E:/Projects/QuickSave/gfx/CowFall_SS001.tps</string>
         <key>autoSDSettings</key>
@@ -74,7 +74,7 @@
         <key>jpgQuality</key>
         <uint>80</uint>
         <key>pngOptimizationLevel</key>
-        <uint>1</uint>
+        <uint>2</uint>
         <key>webpQualityLevel</key>
         <uint>101</uint>
         <key>textureSubPath</key>
@@ -106,9 +106,9 @@
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
-            <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
+            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
             <key>forceSquared</key>
-            <false/>
+            <true/>
             <key>forceWordAligned</key>
             <false/>
             <key>maxRects</key>
@@ -192,13 +192,11 @@
             <filename>CowFall_pack7/CowFall_SScreen_level4_lock.png</filename>
             <filename>CowFall_pack7/CowFall_SScreen_level6.png</filename>
             <filename>CowFall_pack7/CowFall_SScreen_level6_lock.png</filename>
-            <filename>CowFall_pack7/CowFall_SScreen_level7_baner_TXT1.png</filename>
             <filename>CowFall_pack7/CowFall_SScreen_level7_baner_TXT2.png</filename>
             <filename>CowFall_pack6/CowFall_levelCOMPLETE_bottom.png</filename>
             <filename>CowFall_pack6/CowFall_levelCOMPLETE_top.png</filename>
             <filename>CowFall_pack6/CowFall_SScreen_level5.png</filename>
             <filename>CowFall_pack6/CowFall_SScreen_level5_lock.png</filename>
-            <filename>CowFall_pack6/CowFall_SScreen_level7_baner.png</filename>
             <filename>CowFall_pack5/CowFall_spring.png</filename>
             <filename>CowFall_pack5/CowFall_SScreen_level1.png</filename>
             <filename>CowFall_pack5/CowFall_SScreen_level2.png</filename>
@@ -217,7 +215,6 @@
             <filename>CowFall_pack3/CowFall_bckg3_button_on.png</filename>
             <filename>CowFall_pack3/CowFall_Bull.png</filename>
             <filename>CowFall_pack3/CowFall_button_PLAY.png</filename>
-            <filename>CowFall_pack3/CowFall_button_pouse.png</filename>
             <filename>CowFall_pack3/CowFall_lock.png</filename>
             <filename>CowFall_pack3/CowFall_szrapnel.png</filename>
             <filename>CowFall_pack2/CowFall_INTRO_cloud.jpg</filename>
@@ -232,7 +229,6 @@
             <filename>CowFall_pack5/CowFall_bckg2_crock.png</filename>
             <filename>CowFall_pack1/CowFall_Cow.png</filename>
             <filename>CowFall_pack8/CowFall_button_removeADS.png</filename>
-            <filename>CowFall_pack8/CowFall_button_back.png</filename>
             <filename>CowFall_pack8/CowFall_marker.png</filename>
             <filename>CowFall_pack8/CowFall_platform_button.png</filename>
             <filename>CowFall_pack8/CowFall_platform_buttonON.png</filename>
@@ -240,6 +236,14 @@
             <filename>CowFall_pack8/CowFall_button_taptap.png</filename>
             <filename>CowFall_pack8/CowFall_frame_LEFT.png</filename>
             <filename>CowFall_pack8/CowFall_frame_RIGHT.png</filename>
+            <filename>CowFall_pack9/CowFall_banner_FARM1.png</filename>
+            <filename>CowFall_pack9/CowFall_banner_FARM2.png</filename>
+            <filename>CowFall_pack9/CowFall_button_back.png</filename>
+            <filename>CowFall_pack9/CowFall_button_levels.png</filename>
+            <filename>CowFall_pack9/CowFall_button_sound.png</filename>
+            <filename>CowFall_pack9/CowFall_button_soundOFF.png</filename>
+            <filename>CowFall_pack9/CowFall_SScreen_level7_baner.png</filename>
+            <filename>CowFall_pack9/CowFall_SScreen_level7_baner_TXT1.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

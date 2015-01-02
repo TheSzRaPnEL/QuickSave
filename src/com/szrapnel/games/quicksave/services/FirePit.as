@@ -111,7 +111,7 @@ package com.szrapnel.games.quicksave.services
 			deadCowIcon.visible = false;
 			addObject(deadCowIcon);
 			
-			var backBtn:SimpleButton = new SimpleButton(Assets.getTexture("CowFall_button_back"));
+			var backBtn:SimpleButton = new SimpleButton(Assets.getTexture("CowFall_button_levels"));
 			backBtn.removeEventListener(Event.TRIGGERED, onBackBtnTriggered);
 			backBtn.addEventListener(Event.TRIGGERED, onBackBtnTriggered);
 			backBtn.x = 20;

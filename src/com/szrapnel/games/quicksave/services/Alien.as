@@ -45,7 +45,7 @@ package com.szrapnel.games.quicksave.services
 			scoreBoard.name = "ScoreBoard";
 			addObject(scoreBoard);
 			
-			var topScoreLabel:TextField = new TextField(250, 80, "YOUR TOP SCORE", "font", 30, 0xffffff, true);
+			var topScoreLabel:TextField = new TextField(250, 80, "BEST", "font", 30, 0xffffff, true);
 			topScoreLabel.touchable = false;
 			topScoreLabel.autoScale = true;
 			topScoreLabel.hAlign = HAlign.CENTER;

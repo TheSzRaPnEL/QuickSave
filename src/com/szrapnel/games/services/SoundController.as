@@ -13,6 +13,7 @@ package com.szrapnel.games.services
 	{
 		private static var musics:Vector.<Sound>;
 		private static var musicChannels:Vector.<SoundChannel>;
+		public static var mainVolume:Number = 1;
 		
 		public function SoundController() 
 		{
@@ -24,7 +25,7 @@ package com.szrapnel.games.services
 			//if (Capabilities.os.search("Linux") == -1)
 			//{
 				var soundChannel:SoundChannel = new SoundChannel();
-				var soundTransform:SoundTransform = new SoundTransform(volume);
+				var soundTransform:SoundTransform = new SoundTransform(volume * mainVolume);
 				
 				soundChannel = sound.play();
 				soundChannel.soundTransform = soundTransform;
@@ -58,7 +59,7 @@ package com.szrapnel.games.services
 			}
 			
 			var soundChannel:SoundChannel = new SoundChannel();
-			var soundTransform:SoundTransform = new SoundTransform(volume);
+			var soundTransform:SoundTransform = new SoundTransform(volume * mainVolume);
 			
 			soundChannel = music.play();
 			soundChannel.soundTransform = soundTransform;
@@ -93,7 +94,7 @@ package com.szrapnel.games.services
 			musicChannels.push(soundChannel);
 			musics.splice(indexofSoundChannel, 1);
 			musics.push(music);
-			var soundTransform:SoundTransform = new SoundTransform(volume);
+			var soundTransform:SoundTransform = new SoundTransform(volume * mainVolume);
 			musicChannels[musicChannels.length - 1].soundTransform = soundTransform;
 			musicChannels[musicChannels.length - 1].removeEventListener(Event.SOUND_COMPLETE, onMusicComplete);
 			musicChannels[musicChannels.length - 1].addEventListener(Event.SOUND_COMPLETE, onMusicComplete);

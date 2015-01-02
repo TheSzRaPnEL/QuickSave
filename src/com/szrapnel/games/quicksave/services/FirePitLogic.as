@@ -60,7 +60,7 @@ package com.szrapnel.games.quicksave.services
 			playBtn = gameStage.getObject("PlayBtn");
 			
 			isBull = false;
-			scoreToWin = 10;
+			scoreToWin = 2;
 			
 			symulation.eventDispatcher.removeEventListener(SimulationEvent.COW_GRABBED, onCowGrabbed_handler);
 			symulation.eventDispatcher.addEventListener(SimulationEvent.COW_GRABBED, onCowGrabbed_handler);

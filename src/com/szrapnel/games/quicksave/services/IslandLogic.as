@@ -20,7 +20,7 @@ package com.szrapnel.games.quicksave.services
 		{
 			super(gameStage, symulation);
 			
-			scoreToWin = 4;
+			scoreToWin = 2;
 		}
 		
 		private function onCowPlatformCollision_handler(e:SimulationEvent):void

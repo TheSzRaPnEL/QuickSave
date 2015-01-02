@@ -36,6 +36,7 @@ package com.szrapnel.games.quicksave.intro
 		private var timelineAnimation:TimelineLite;
 		private var removeAds:SimpleButton;
 		private var backBtn:SimpleButton;
+		private var soundBtn:SimpleButton;
 		
 		public function IntroMovie()
 		{
@@ -62,7 +63,7 @@ package com.szrapnel.games.quicksave.intro
 			container.addChild(cloud);
 			cloud.visible = false;
 			
-			var randomTextIndex:int = int(16 * Math.random() + 1);
+			var randomTextIndex:int = int(14 * Math.random() + 1);
 			if (randomTextIndex < 10)
 			{
 				cloudText = new Image(Assets.getTexture("CowFall_cloudTXT_00" + randomTextIndex))
@@ -104,9 +105,15 @@ package com.szrapnel.games.quicksave.intro
 			
 			backBtn = new SimpleButton(Assets.getTexture("CowFall_button_back"));
 			backBtn.x = 10;
-			backBtn.y = 895;
+			backBtn.y = 870;
 			addChild(backBtn);
 			backBtn.visible = false;
+			
+			soundBtn = new SimpleButton(Assets.getTexture("CowFall_button_sound"));
+			soundBtn.x = 490;
+			soundBtn.y = 870;
+			addChild(soundBtn);
+			soundBtn.visible = false;
 		}
 		
 		private function onLogoTriggered_handler(e:Event):void
@@ -114,8 +121,8 @@ package com.szrapnel.games.quicksave.intro
 			SoundController.playSound(Assets.assetManager.getSound("click"));
 			
 			var sharedObject:SharedObject = SharedObject.getLocal("CowFallSO", "/");
-			sharedObject.data.levels = new <Boolean>[true, false, false, false, false, false, false];
-			sharedObject.data.saved = 0;
+			sharedObject.data.levels = new <Boolean>[true, true, true, true, true, true, true];
+			sharedObject.data.saved = 2000;
 			if (sharedObject.data.ads == true)
 			{
 				sharedObject.data.ads = false;
@@ -273,8 +280,14 @@ package com.szrapnel.games.quicksave.intro
 				backBtn.removeEventListener(Event.TRIGGERED, onBackBtnTriggered);
 				backBtn.addEventListener(Event.TRIGGERED, onBackBtnTriggered);
 				backBtn.x = 10;
-				backBtn.y = 895;
+				backBtn.y = 870;
 				backBtn.visible = true;
+				
+				soundBtn.removeEventListener(Event.TRIGGERED, onSoundBtnTriggered);
+				soundBtn.addEventListener(Event.TRIGGERED, onSoundBtnTriggered);
+				soundBtn.x = 445;
+				soundBtn.y = 870;
+				soundBtn.visible = true;
 				
 				var sharedObject:SharedObject = SharedObject.getLocal("CowFallSO", "/");
 				if (sharedObject.data.ads == true)
@@ -314,6 +327,22 @@ package com.szrapnel.games.quicksave.intro
 			SoundController.playSound(Assets.assetManager.getSound("click"));
 			
 			NativeApplication.nativeApplication.exit();
+		}
+		
+		private function onSoundBtnTriggered(e:Event):void 
+		{
+			if (SoundController.mainVolume == 1)
+			{
+				SoundController.mainVolume = 0;
+				soundBtn.upState = Assets.getTexture("CowFall_button_soundOFF");
+			}
+			else
+			{
+				soundBtn.upState = Assets.getTexture("CowFall_button_sound");
+				SoundController.mainVolume = 1;
+			}
+			
+			soundBtn.downState = soundBtn.upState;
 		}
 		
 		public function get isPlaying():Boolean
