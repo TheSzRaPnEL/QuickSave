@@ -82,7 +82,7 @@
         <key>textureFormat</key>
         <enum type="SettingsBase::TextureFormat">png</enum>
         <key>borderPadding</key>
-        <uint>2</uint>
+        <uint>1</uint>
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
@@ -244,6 +244,8 @@
             <filename>CowFall_pack9/CowFall_button_soundOFF.png</filename>
             <filename>CowFall_pack9/CowFall_SScreen_level7_baner.png</filename>
             <filename>CowFall_pack9/CowFall_SScreen_level7_baner_TXT1.png</filename>
+            <filename>CowFall_pack9/CowFall_bckg_END_v2.jpg</filename>
+            <filename>CowFall_pack9/CowFall_button_door.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

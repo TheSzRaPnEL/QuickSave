@@ -1,62 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:86224af5ec3f1481bd654e1c9224f911:7bb773687ee011eafff2f6cc34157d01:f19499a0dfc3f97bf2b5211f5e67e7ce$ -->
+<!-- $TexturePacker:SmartUpdate:5dbdc9221653558d60ae7ebe6ae7236b:a9fdf7ed9d58b41b77ecb835859e6bc3:f19499a0dfc3f97bf2b5211f5e67e7ce$ -->
 <TextureAtlas imagePath="CowFall_SS001.atf">
-    <SubTexture name="CowFall_Bull" x="1110" y="750" width="60" height="60"/>
-    <SubTexture name="CowFall_Cow" x="1110" y="816" width="60" height="60"/>
-    <SubTexture name="CowFall_CowDEATH_001" x="542" y="1936" rotated="true" width="99" height="102" frameX="-11" frameY="-12" frameWidth="120" frameHeight="120"/>
-    <SubTexture name="CowFall_CowDEATH_002" x="1363" y="878" rotated="true" width="120" height="118" frameX="-2" frameY="0" frameWidth="120" frameHeight="120"/>
-    <SubTexture name="CowFall_CowDEATH_003" x="1899" y="748" width="120" height="120"/>
-    <SubTexture name="CowFall_CowDEATH_004" x="1363" y="1002" rotated="true" width="120" height="114" frameX="-6" frameY="0" frameWidth="120" frameHeight="120"/>
-    <SubTexture name="CowFall_INTRO_cloud" x="1613" y="4" width="424" height="276"/>
-    <SubTexture name="CowFall_INTRO_cow" x="1151" y="993" width="206" height="207"/>
-    <SubTexture name="CowFall_INTRO_eye1" x="326" y="1936" width="102" height="102"/>
-    <SubTexture name="CowFall_INTRO_eye2" x="434" y="1936" width="102" height="102"/>
-    <SubTexture name="CowFall_INTRO_logo" x="1579" y="286" width="458" height="238"/>
-    <SubTexture name="CowFall_SScreen_level1" x="1632" y="1240" rotated="true" width="262" height="161" frameX="-3" frameY="-16" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level1_lock" x="1632" y="1240" rotated="true" width="262" height="161" frameX="-3" frameY="-16" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level2" x="943" y="684" width="161" height="271" frameX="-3" frameY="-7" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level2_lock" x="1250" y="545" rotated="true" width="271" height="161" frameX="-3" frameY="-7" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level3" x="784" y="178" rotated="true" width="277" height="164" frameX="0" frameY="-1" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level3_lock" x="784" y="348" rotated="true" width="277" height="164" frameX="0" frameY="-1" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level4" x="1516" y="787" rotated="true" width="266" height="163" frameX="-1" frameY="-12" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level4_lock" x="1489" y="956" rotated="true" width="266" height="163" frameX="-1" frameY="-12" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level5" x="784" y="518" rotated="true" width="273" height="160" frameX="-4" frameY="-5" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level5_lock" x="777" y="684" width="160" height="273" frameX="-4" frameY="-5" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level6" x="1761" y="1071" rotated="true" width="263" height="163" frameX="-1" frameY="-15" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level6_lock" x="1363" y="1125" rotated="true" width="263" height="163" frameX="-1" frameY="-15" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level7" x="1243" y="712" rotated="true" width="267" height="160" frameX="-4" frameY="-11" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_SScreen_level7_baner" x="1096" y="100" width="477" height="182"/>
-    <SubTexture name="CowFall_SScreen_level7_baner_TXT1" x="646" y="631" rotated="true" width="125" height="321"/>
-    <SubTexture name="CowFall_SScreen_level7_baner_TXT2" x="4" y="1936" width="316" height="102" frameX="-7" frameY="-22" frameWidth="333" frameHeight="142"/>
-    <SubTexture name="CowFall_SScreen_level7_lock" x="1096" y="1215" width="160" height="267" frameX="-4" frameY="-11" frameWidth="180" frameHeight="280"/>
-    <SubTexture name="CowFall_banner" x="784" y="100" width="282" height="72" frameX="-1" frameY="0" frameWidth="283" frameHeight="74"/>
-    <SubTexture name="CowFall_banner_FARM1" x="1193" y="288" width="347" height="251"/>
-    <SubTexture name="CowFall_banner_FARM2" x="1546" y="530" width="347" height="251"/>
-    <SubTexture name="CowFall_bckg1" x="4" y="4" width="540" height="960"/>
-    <SubTexture name="CowFall_bckg2_crock" x="646" y="100" rotated="true" width="132" height="515" frameX="-16" frameY="-5" frameWidth="540" frameHeight="141"/>
-    <SubTexture name="CowFall_bckg3_button_off" x="1063" y="631" width="144" height="46"/>
-    <SubTexture name="CowFall_bckg3_button_on" x="1899" y="530" width="144" height="46"/>
-    <SubTexture name="CowFall_bckg5_shark" x="1899" y="582" rotated="true" width="123" height="160"/>
-    <SubTexture name="CowFall_bckg_U" x="4" y="970" width="540" height="960"/>
-    <SubTexture name="CowFall_button_PLAY" x="1262" y="1294" width="180" height="177"/>
-    <SubTexture name="CowFall_button_back" x="550" y="1521" width="86" height="85"/>
-    <SubTexture name="CowFall_button_levels" x="1110" y="882" width="60" height="60"/>
-    <SubTexture name="CowFall_button_removeADS" x="550" y="1612" rotated="true" width="85" height="313"/>
-    <SubTexture name="CowFall_button_sound" x="1096" y="288" width="86" height="85"/>
-    <SubTexture name="CowFall_button_soundOFF" x="1096" y="379" width="86" height="85"/>
-    <SubTexture name="CowFall_button_taptap" x="1448" y="1294" rotated="true" width="177" height="180"/>
-    <SubTexture name="CowFall_failed" x="1788" y="874" rotated="true" width="230" height="191"/>
-    <SubTexture name="CowFall_frame_LEFT" x="647" y="4" rotated="true" width="960" height="90"/>
-    <SubTexture name="CowFall_frame_RIGHT" x="550" y="4" width="90" height="960"/>
-    <SubTexture name="CowFall_hurdle" x="1110" y="683" width="61" height="61"/>
-    <SubTexture name="CowFall_levelCOMPLETE_bottom" x="647" y="1521" width="540" height="521"/>
-    <SubTexture name="CowFall_levelCOMPLETE_top" x="550" y="970" width="540" height="545"/>
-    <SubTexture name="CowFall_lock" x="1179" y="545" rotated="true" width="65" height="67"/>
-    <SubTexture name="CowFall_marker" x="1213" y="618" rotated="true" width="30" height="48"/>
-    <SubTexture name="CowFall_platform" x="1096" y="470" rotated="true" width="77" height="155"/>
-    <SubTexture name="CowFall_platform_button" x="1193" y="683" rotated="true" width="44" height="149"/>
-    <SubTexture name="CowFall_platform_buttonON" x="1193" y="838" rotated="true" width="44" height="149"/>
-    <SubTexture name="CowFall_spring" x="1579" y="100" rotated="true" width="6" height="58"/>
-    <SubTexture name="CowFall_szrapnel" x="1110" y="948" rotated="true" width="35" height="261"/>
+    <SubTexture name="CowFall_Bull" x="1524" y="616" width="60" height="60"/>
+    <SubTexture name="CowFall_Cow" x="977" y="1307" width="60" height="60"/>
+    <SubTexture name="CowFall_CowDEATH_001" x="541" y="1935" rotated="true" width="99" height="102" frameX="-11" frameY="-12" frameWidth="120" frameHeight="120"/>
+    <SubTexture name="CowFall_CowDEATH_002" x="1641" y="1517" width="118" height="120" frameX="-2" frameY="0" frameWidth="120" frameHeight="120"/>
+    <SubTexture name="CowFall_CowDEATH_003" x="1641" y="1391" width="120" height="120"/>
+    <SubTexture name="CowFall_CowDEATH_004" x="1636" y="1928" rotated="true" width="120" height="114" frameX="-6" frameY="0" frameWidth="120" frameHeight="120"/>
+    <SubTexture name="CowFall_INTRO_cloud" x="1612" y="3" width="424" height="276"/>
+    <SubTexture name="CowFall_INTRO_cow" x="977" y="1095" rotated="true" width="207" height="206"/>
+    <SubTexture name="CowFall_INTRO_eye1" x="325" y="1935" width="102" height="102"/>
+    <SubTexture name="CowFall_INTRO_eye2" x="433" y="1935" width="102" height="102"/>
+    <SubTexture name="CowFall_INTRO_logo" x="1803" y="1391" rotated="true" width="238" height="458"/>
+    <SubTexture name="CowFall_SScreen_level1" x="1636" y="1660" width="161" height="262" frameX="-3" frameY="-16" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_SScreen_level1_lock" x="1636" y="1660" width="161" height="262" frameX="-3" frameY="-16" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_SScreen_level2" x="1190" y="1111" rotated="true" width="271" height="161" frameX="-3" frameY="-7" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_SScreen_level2_lock" x="1190" y="1278" rotated="true" width="271" height="161" frameX="-3" frameY="-7" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_SScreen_level3" x="1197" y="771" rotated="true" width="277" height="164" frameX="0" frameY="-1" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_SScreen_level3_lock" x="1197" y="941" rotated="true" width="277" height="164" frameX="0" frameY="-1" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_SScreen_level4" x="812" y="1874" rotated="true" width="266" height="163" frameX="-1" frameY="-12" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_SScreen_level4_lock" x="1303" y="1445" width="163" height="266" frameX="-1" frameY="-12" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_SScreen_level5" x="645" y="1111" width="160" height="273" frameX="-4" frameY="-5" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_SScreen_level5_lock" x="811" y="1111" width="160" height="273" frameX="-4" frameY="-5" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_SScreen_level6" x="1467" y="1717" width="163" height="263" frameX="-1" frameY="-15" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_SScreen_level6_lock" x="1472" y="1391" width="163" height="263" frameX="-1" frameY="-15" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_SScreen_level7" x="971" y="1594" width="160" height="267" frameX="-4" frameY="-11" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_SScreen_level7_baner" x="783" y="1391" rotated="true" width="182" height="477"/>
+    <SubTexture name="CowFall_SScreen_level7_baner_TXT1" x="1197" y="549" width="321" height="125"/>
+    <SubTexture name="CowFall_SScreen_level7_baner_TXT2" x="3" y="1935" width="316" height="102" frameX="-7" frameY="-22" frameWidth="333" frameHeight="142"/>
+    <SubTexture name="CowFall_SScreen_level7_lock" x="1137" y="1539" width="160" height="267" frameX="-4" frameY="-11" frameWidth="180" frameHeight="280"/>
+    <SubTexture name="CowFall_banner" x="1965" y="446" rotated="true" width="72" height="282" frameX="-1" frameY="0" frameWidth="283" frameHeight="74"/>
+    <SubTexture name="CowFall_banner_FARM1" x="1612" y="285" width="347" height="251"/>
+    <SubTexture name="CowFall_banner_FARM2" x="1612" y="542" width="347" height="251"/>
+    <SubTexture name="CowFall_bckg1" x="3" y="3" width="540" height="960"/>
+    <SubTexture name="CowFall_bckg2_crock" x="645" y="1391" rotated="true" width="132" height="515" frameX="-16" frameY="-5" frameWidth="540" frameHeight="141"/>
+    <SubTexture name="CowFall_bckg3_button_off" x="1608" y="805" width="144" height="46"/>
+    <SubTexture name="CowFall_bckg3_button_on" x="1758" y="805" width="144" height="46"/>
+    <SubTexture name="CowFall_bckg5_shark" x="646" y="1912" width="160" height="123"/>
+    <SubTexture name="CowFall_bckg_END_v2" x="3" y="969" width="540" height="960"/>
+    <SubTexture name="CowFall_bckg_U" x="646" y="3" rotated="true" width="960" height="540"/>
+    <SubTexture name="CowFall_button_PLAY" x="1084" y="1867" width="180" height="177"/>
+    <SubTexture name="CowFall_button_back" x="1516" y="682" width="86" height="85"/>
+    <SubTexture name="CowFall_button_door" x="1516" y="773" width="86" height="85"/>
+    <SubTexture name="CowFall_button_levels" x="977" y="1373" width="60" height="60"/>
+    <SubTexture name="CowFall_button_removeADS" x="1197" y="680" width="313" height="85"/>
+    <SubTexture name="CowFall_button_sound" x="1084" y="1307" width="86" height="85"/>
+    <SubTexture name="CowFall_button_soundOFF" x="1084" y="1398" width="86" height="85"/>
+    <SubTexture name="CowFall_button_taptap" x="1803" y="1855" rotated="true" width="177" height="180"/>
+    <SubTexture name="CowFall_failed" x="1270" y="1812" width="191" height="230"/>
+    <SubTexture name="CowFall_frame_LEFT" x="549" y="3" width="90" height="960"/>
+    <SubTexture name="CowFall_frame_RIGHT" x="549" y="969" width="90" height="960"/>
+    <SubTexture name="CowFall_hurdle" x="1524" y="549" width="61" height="61"/>
+    <SubTexture name="CowFall_levelCOMPLETE_bottom" x="1480" y="864" width="540" height="521"/>
+    <SubTexture name="CowFall_levelCOMPLETE_top" x="646" y="549" rotated="true" width="545" height="540"/>
+    <SubTexture name="CowFall_lock" x="1965" y="734" width="67" height="65"/>
+    <SubTexture name="CowFall_marker" x="1480" y="771" rotated="true" width="30" height="48"/>
+    <SubTexture name="CowFall_platform" x="1965" y="285" rotated="true" width="77" height="155"/>
+    <SubTexture name="CowFall_platform_button" x="971" y="1439" rotated="true" width="44" height="149"/>
+    <SubTexture name="CowFall_platform_buttonON" x="1084" y="1489" width="149" height="44"/>
+    <SubTexture name="CowFall_spring" x="2038" y="734" rotated="true" width="6" height="58"/>
+    <SubTexture name="CowFall_szrapnel" x="1043" y="1307" rotated="true" width="35" height="261"/>
 </TextureAtlas>

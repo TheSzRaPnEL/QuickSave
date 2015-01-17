@@ -107,7 +107,7 @@ package com.szrapnel.games.quicksave
 			_assetsList.push("CowFall_SS002.atf", "CowFall_SS002.xml");
 			_assetsList.push("CowFall_SS003.atf", "CowFall_SS003.xml");
 			_assetsList.push("CowFall_SS004.atf", "CowFall_SS004.xml");
-			_assetsList.push("CowFall_SS005.atf", "CowFall_SS005.xml");
+			_assetsList.push("CowFall_SS005.png", "CowFall_SS005.xml");
 			
 			_offset = int(Starling.current.stage.stageWidth - 540) / 2;
 			
