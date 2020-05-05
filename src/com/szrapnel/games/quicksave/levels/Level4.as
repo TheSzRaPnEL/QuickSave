@@ -5,6 +5,7 @@ package com.szrapnel.games.quicksave.levels
 	import com.szrapnel.games.quicksave.services.ToxicLogic;
 	import com.szrapnel.games.quicksave.services.ToxicSimulation;
 	import flash.geom.Rectangle;
+	import starling.display.Quad;
 	import starling.display.Sprite;
 	
 	/**
@@ -28,7 +29,10 @@ package com.szrapnel.games.quicksave.levels
 				
 				gameStage = new Toxic();
 				gameStage.generate();
-				Sprite(gameStage).clipRect = new Rectangle(0, 0, 540, 960);
+				var quad:Quad = new Quad(540, 960);
+				quad.x = 0;
+				quad.y = 0;
+				Sprite(gameStage).mask = quad;
 				addChild(Sprite(gameStage));
 				
 				symulation = new ToxicSimulation();

@@ -99,7 +99,7 @@ package com.szrapnel.games.quicksave.levels
 		
 		public override function dispose():void
 		{
-			TweenLite.killDelayedCallsTo = dispatchLevelReady;
+			TweenLite.killDelayedCallsTo(dispatchLevelReady);
 			
 			if (gameLogic != null)
 			{

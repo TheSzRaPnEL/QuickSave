@@ -61,7 +61,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 		private function checkStateReady():void
 		{
 			tween = new TweenLite(actor.selectionScreen, 0.3, {x: actor.offset - actor.selectionScreen.width / 4, y: -actor.selectionScreen.height / 4, alpha: 0, scaleX: 1.5, scaleY: 1.5, onComplete: enterComplete_handler});
-			tween.delay = addingDelay;
+			tween.delay(addingDelay);
 		}
 		
 		public function update():void
@@ -71,7 +71,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		public function exit():void
 		{
-			tween.complete(true, true);
+			tween.kill();
 			tween = null;
 			
 			removeSelectionScreen();

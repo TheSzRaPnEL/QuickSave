@@ -79,7 +79,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		public function exit():void
 		{
-			tween.complete(true, true);
+			tween.kill();
 			tween = null;
 			
 			removeIntroScreen();

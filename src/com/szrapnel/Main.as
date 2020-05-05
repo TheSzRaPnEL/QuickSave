@@ -1,6 +1,5 @@
 package com.szrapnel
 {
-	import com.admob.*;
 	import com.szrapnel.games.events.DisplayListEvent;
 	import flash.display.Bitmap;
 	import flash.display.Loader;
@@ -24,7 +23,6 @@ package com.szrapnel
 	public class Main extends Sprite
 	{
 		private var star:Starling;
-		private var admob:AdMobManager;
 		private var preloaderOverlay:Sprite;
 		private var sharedObject:SharedObject;
 		
@@ -53,34 +51,6 @@ package com.szrapnel
 			
 			star.start();
 			star.addEventListener(starling.events.Event.ROOT_CREATED, onStarlingRootCreated);
-			
-			admob = AdMobManager.manager;
-			admob.operationMode = AdMobManager.TEST_MODE;
-			admob.bannersAdMobId = "ca-app-pub-3669883303109473/6323752906";
-			admob.createBannerAbsolute(AdMobSize.SMART_BANNER, 0, 0, "TopBanner");
-			
-			admob.interstitialAdMobId = "ca-app-pub-3669883303109473/8361034907";
-			admob.createInterstitial(null, false);
-		}
-		
-		private function showAdmob():void
-		{
-			admob.showBanner("TopBanner");
-		}
-		
-		private function showInterstitial():void
-		{
-			admob.showInterstitial();
-		}
-
-		private function hideInterstitial():void
-		{
-			admob.cacheInterstitial("ca-app-pub-3669883303109473/8361034907");
-		}
-		
-		private function hideAdmob():void
-		{
-			admob.hideAllBanner();
 		}
 		
 		private function onLoaded(e:flash.events.Event):void
@@ -98,38 +68,6 @@ package com.szrapnel
 		{
 			star.root.removeEventListener(DisplayListEvent.HIDE_PRELOADER_OVERLAY, onHidePreloaderOverlay_handler);
 			star.root.addEventListener(DisplayListEvent.HIDE_PRELOADER_OVERLAY, onHidePreloaderOverlay_handler);
-			star.root.removeEventListener(DisplayListEvent.SHOW_ADMOB, onShowAdmob_handler);
-			star.root.addEventListener(DisplayListEvent.SHOW_ADMOB, onShowAdmob_handler);
-			star.root.removeEventListener(DisplayListEvent.SHOW_INTERSTITIAL, onShowInterstitial_handler);
-			star.root.addEventListener(DisplayListEvent.SHOW_INTERSTITIAL, onShowInterstitial_handler);
-			star.root.removeEventListener(DisplayListEvent.HIDE_INTERSTITIAL, onHideInterstitial_handler);
-			star.root.addEventListener(DisplayListEvent.HIDE_INTERSTITIAL, onHideInterstitial_handler);
-			star.root.removeEventListener(DisplayListEvent.HIDE_ADMOB, onHideAdmob_handler);
-			star.root.addEventListener(DisplayListEvent.HIDE_ADMOB, onHideAdmob_handler);
-		}
-		
-		private function onHideInterstitial_handler(e:DisplayListEvent):void 
-		{
-			hideInterstitial();
-		}
-		
-		private function onShowInterstitial_handler(e:DisplayListEvent):void 
-		{
-			showInterstitial();
-		}
-		
-		private function onHideAdmob_handler(e:DisplayListEvent):void
-		{
-			hideAdmob();
-		}
-		
-		private function onShowAdmob_handler(e:DisplayListEvent):void
-		{
-			sharedObject = SharedObject.getLocal("CowFallSO", "/");
-			if (sharedObject.data.ads == true)
-			{
-				showAdmob();
-			}
 		}
 		
 		private function onHidePreloaderOverlay_handler(e:DisplayListEvent):void

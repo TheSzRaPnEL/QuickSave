@@ -42,7 +42,7 @@ package com.szrapnel.games.quicksave.states.gameStates
 		
 		public function exit():void
 		{
-			tween.complete(true, true);
+			tween.kill();
 			tween = null;
 			
 			DisplayObject(actor.levelPool.getLevel(actor.currentLevel)).removeFromParent();

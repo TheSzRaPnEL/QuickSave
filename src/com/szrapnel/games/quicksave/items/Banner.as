@@ -4,6 +4,7 @@ package com.szrapnel.games.quicksave.items
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.text.TextField;
+	import starling.text.TextFormat;
 	import starling.utils.Color;
 	
 	/**
@@ -26,14 +27,20 @@ package com.szrapnel.games.quicksave.items
 			var image:Image = new Image(Assets.getTexture("CowFall_banner"));
 			container.addChild(image);
 			
-			headline = new TextField(100, 35, "SAVE", "font", 32, Color.WHITE);
+			var bannerTextFormat:TextFormat = new TextFormat();
+			bannerTextFormat.color = Color.WHITE;
+			bannerTextFormat.font = "font";
+			bannerTextFormat.size = 32;
+			
+			//headline = new TextField(100, 35, "SAVE", "font", 32, Color.WHITE);
+			headline = new TextField(100, 35, "SAVE", bannerTextFormat);
 			headline.autoScale = true;
 			headline.x = 50;
 			headline.y = 10;
 			headline.touchable = false;
 			container.addChild(headline);
 			
-			_savedTxtf = new TextField(100, 35, "", "font", 32, Color.WHITE);
+			_savedTxtf = new TextField(100, 35, "", bannerTextFormat);
 			savedTxtf.autoScale = true;
 			savedTxtf.x = 185;
 			savedTxtf.y = 10;

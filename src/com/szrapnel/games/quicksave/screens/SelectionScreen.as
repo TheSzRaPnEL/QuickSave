@@ -8,9 +8,9 @@ package com.szrapnel.games.quicksave.screens
 	import starling.display.Sprite;
 	import starling.events.Event;
 	import starling.text.TextField;
+	import starling.text.TextFormat;
+	import starling.utils.Align;
 	import starling.utils.Color;
-	import starling.utils.HAlign;
-	import starling.utils.VAlign;
 	
 	/**
 	 * ...
@@ -63,10 +63,15 @@ package com.szrapnel.games.quicksave.screens
 			bannerText.x = 32;
 			bannerText.y = 15;
 			banner.addChild(bannerText);
-			_bannerNumber = new TextField(100, 40, "1111", "font", 30, 0xff7300);
+			var bannerNumberTextFormat:TextFormat = new TextFormat();
+			bannerNumberTextFormat.color = 0xff7300;
+			bannerNumberTextFormat.font = "font";
+			bannerNumberTextFormat.size = 30;
+			bannerNumberTextFormat.bold = false;
+			bannerNumberTextFormat.horizontalAlign = Align.CENTER;
+			bannerNumberTextFormat.verticalAlign = Align.CENTER;
+			_bannerNumber = new TextField(100, 40, "1111", bannerNumberTextFormat);
 			bannerNumber.autoScale = true;
-			bannerNumber.hAlign = HAlign.CENTER;
-			bannerNumber.vAlign = VAlign.CENTER;
 			bannerNumber.x = 81;
 			bannerNumber.y = 27;
 			banner.addChild(bannerNumber);
