@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?> 
-<application xmlns="http://ns.adobe.com/air/application/28.0">
+<application xmlns="http://ns.adobe.com/air/application/33.1">
 	
 	<id>air.CowFallOrigin</id>
-	<versionNumber>0.1</versionNumber>
+	<versionNumber>0.2.7</versionNumber>
 	<supportedProfiles>mobileDevice</supportedProfiles>
 	<filename>CowFallOrigin</filename>
 	
 	<name>CowFallOrigin</name>
+	<architecture>64</architecture>
 	<description></description>
 	<copyright></copyright>
 	
@@ -14,9 +15,9 @@
 		<manifestAdditions><![CDATA[
 			
 			<manifest android:installLocation="auto">
-			  <uses-sdk android:minSdkVersion="8"/>
-				<uses-permission android:name="android.permission.INTERNET"/>
-				<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
+				<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="28" />
+				<uses-permission android:name="android.permission.INTERNET" />
+				<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch" />
 			</manifest>
 			
 		]]></manifestAdditions>
